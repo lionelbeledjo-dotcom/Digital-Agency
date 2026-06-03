@@ -1,10 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/admin/formations/new")({
-  component: FormationForm,
-});
-
 function FormationForm({ titre = "Nouvelle formation" }: { titre?: string }) {
   return (
     <div className="space-y-6">
