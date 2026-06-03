@@ -2,13 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
 import { Download, Check } from "lucide-react";
 import { toast } from "sonner";
+import { useMemo } from "react";
 
 export const Route = createFileRoute("/admin/commissions")({
   component: AdminCommissions,
 });
 
 function AdminCommissions() {
-  const membres = useAppStore((s) => s.membres).filter((m) => m.commissionsTotal > 500).slice(0, 20);
+  const allMembres = useAppStore((s) => s.membres);
+  const membres = useMemo(() => allMembres.filter((m) => m.commissionsTotal > 500).slice(0, 20), [allMembres]);
   const total = membres.reduce((s, m) => s + m.commissionsTotal, 0);
 
   const kpis = [
