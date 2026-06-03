@@ -9,38 +9,134 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TarifsRouteImport } from './routes/tarifs'
+import { Route as FormationsRouteImport } from './routes/formations'
+import { Route as DetailRouteImport } from './routes/detail'
+import { Route as AffiliationRouteImport } from './routes/affiliation'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FormationsIdRouteImport } from './routes/formations.$id'
 
+const TarifsRoute = TarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormationsRoute = FormationsRouteImport.update({
+  id: '/formations',
+  path: '/formations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DetailRoute = DetailRouteImport.update({
+  id: '/detail',
+  path: '/detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AffiliationRoute = AffiliationRouteImport.update({
+  id: '/affiliation',
+  path: '/affiliation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FormationsIdRoute = FormationsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => FormationsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/affiliation': typeof AffiliationRoute
+  '/detail': typeof DetailRoute
+  '/formations': typeof FormationsRouteWithChildren
+  '/tarifs': typeof TarifsRoute
+  '/formations/$id': typeof FormationsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/affiliation': typeof AffiliationRoute
+  '/detail': typeof DetailRoute
+  '/formations': typeof FormationsRouteWithChildren
+  '/tarifs': typeof TarifsRoute
+  '/formations/$id': typeof FormationsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/affiliation': typeof AffiliationRoute
+  '/detail': typeof DetailRoute
+  '/formations': typeof FormationsRouteWithChildren
+  '/tarifs': typeof TarifsRoute
+  '/formations/$id': typeof FormationsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/affiliation'
+    | '/detail'
+    | '/formations'
+    | '/tarifs'
+    | '/formations/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/affiliation'
+    | '/detail'
+    | '/formations'
+    | '/tarifs'
+    | '/formations/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/affiliation'
+    | '/detail'
+    | '/formations'
+    | '/tarifs'
+    | '/formations/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AffiliationRoute: typeof AffiliationRoute
+  DetailRoute: typeof DetailRoute
+  FormationsRoute: typeof FormationsRouteWithChildren
+  TarifsRoute: typeof TarifsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tarifs': {
+      id: '/tarifs'
+      path: '/tarifs'
+      fullPath: '/tarifs'
+      preLoaderRoute: typeof TarifsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formations': {
+      id: '/formations'
+      path: '/formations'
+      fullPath: '/formations'
+      preLoaderRoute: typeof FormationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/detail': {
+      id: '/detail'
+      path: '/detail'
+      fullPath: '/detail'
+      preLoaderRoute: typeof DetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/affiliation': {
+      id: '/affiliation'
+      path: '/affiliation'
+      fullPath: '/affiliation'
+      preLoaderRoute: typeof AffiliationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +144,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/formations/$id': {
+      id: '/formations/$id'
+      path: '/$id'
+      fullPath: '/formations/$id'
+      preLoaderRoute: typeof FormationsIdRouteImport
+      parentRoute: typeof FormationsRoute
+    }
   }
 }
 
+interface FormationsRouteChildren {
+  FormationsIdRoute: typeof FormationsIdRoute
+}
+
+const FormationsRouteChildren: FormationsRouteChildren = {
+  FormationsIdRoute: FormationsIdRoute,
+}
+
+const FormationsRouteWithChildren = FormationsRoute._addFileChildren(
+  FormationsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AffiliationRoute: AffiliationRoute,
+  DetailRoute: DetailRoute,
+  FormationsRoute: FormationsRouteWithChildren,
+  TarifsRoute: TarifsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
