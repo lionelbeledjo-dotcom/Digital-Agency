@@ -47,7 +47,6 @@ import { Route as AdminContenuRouteImport } from './routes/admin.contenu'
 import { Route as AdminCommissionsRouteImport } from './routes/admin.commissions'
 import { Route as DashboardFormationIdRouteImport } from './routes/dashboard.formation.$id'
 import { Route as AdminModulesFormationIdRouteImport } from './routes/admin.modules.$formationId'
-import { Route as AdminFormationsNewRouteImport } from './routes/admin.formations.new'
 import { Route as AdminFormationsIdEditRouteImport } from './routes/admin.formations.$id.edit'
 
 const TarifsRoute = TarifsRouteImport.update({
@@ -240,11 +239,6 @@ const AdminModulesFormationIdRoute = AdminModulesFormationIdRouteImport.update({
   path: '/modules/$formationId',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminFormationsNewRoute = AdminFormationsNewRouteImport.update({
-  id: '/new',
-  path: '/new',
-  getParentRoute: () => AdminFormationsRoute,
-} as any)
 const AdminFormationsIdEditRoute = AdminFormationsIdEditRouteImport.update({
   id: '/$id/edit',
   path: '/$id/edit',
@@ -288,7 +282,6 @@ export interface FileRoutesByFullPath {
   '/paiement/succes': typeof PaiementSuccesRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/admin/formations/new': typeof AdminFormationsNewRoute
   '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
   '/dashboard/formation/$id': typeof DashboardFormationIdRoute
   '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
@@ -328,7 +321,6 @@ export interface FileRoutesByTo {
   '/paiement/succes': typeof PaiementSuccesRoute
   '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/admin/formations/new': typeof AdminFormationsNewRoute
   '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
   '/dashboard/formation/$id': typeof DashboardFormationIdRoute
   '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
@@ -371,7 +363,6 @@ export interface FileRoutesById {
   '/paiement/succes': typeof PaiementSuccesRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/admin/formations/new': typeof AdminFormationsNewRoute
   '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
   '/dashboard/formation/$id': typeof DashboardFormationIdRoute
   '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
@@ -415,7 +406,6 @@ export interface FileRouteTypes {
     | '/paiement/succes'
     | '/admin/'
     | '/dashboard/'
-    | '/admin/formations/new'
     | '/admin/modules/$formationId'
     | '/dashboard/formation/$id'
     | '/admin/formations/$id/edit'
@@ -455,7 +445,6 @@ export interface FileRouteTypes {
     | '/paiement/succes'
     | '/admin'
     | '/dashboard'
-    | '/admin/formations/new'
     | '/admin/modules/$formationId'
     | '/dashboard/formation/$id'
     | '/admin/formations/$id/edit'
@@ -497,7 +486,6 @@ export interface FileRouteTypes {
     | '/paiement/succes'
     | '/admin/'
     | '/dashboard/'
-    | '/admin/formations/new'
     | '/admin/modules/$formationId'
     | '/dashboard/formation/$id'
     | '/admin/formations/$id/edit'
@@ -791,13 +779,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminModulesFormationIdRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/formations/new': {
-      id: '/admin/formations/new'
-      path: '/new'
-      fullPath: '/admin/formations/new'
-      preLoaderRoute: typeof AdminFormationsNewRouteImport
-      parentRoute: typeof AdminFormationsRoute
-    }
     '/admin/formations/$id/edit': {
       id: '/admin/formations/$id/edit'
       path: '/$id/edit'
@@ -809,12 +790,10 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminFormationsRouteChildren {
-  AdminFormationsNewRoute: typeof AdminFormationsNewRoute
   AdminFormationsIdEditRoute: typeof AdminFormationsIdEditRoute
 }
 
 const AdminFormationsRouteChildren: AdminFormationsRouteChildren = {
-  AdminFormationsNewRoute: AdminFormationsNewRoute,
   AdminFormationsIdEditRoute: AdminFormationsIdEditRoute,
 }
 
