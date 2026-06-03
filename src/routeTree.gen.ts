@@ -10,15 +10,59 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TarifsRouteImport } from './routes/tarifs'
+import { Route as PaiementRouteImport } from './routes/paiement'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as FormationsRouteImport } from './routes/formations'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DetailRouteImport } from './routes/detail'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CgvRouteImport } from './routes/cgv'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AffiliationRouteImport } from './routes/affiliation'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as PaiementSuccesRouteImport } from './routes/paiement.succes'
+import { Route as PaiementAnnuleRouteImport } from './routes/paiement.annule'
 import { Route as FormationsIdRouteImport } from './routes/formations.$id'
+import { Route as DashboardProfilRouteImport } from './routes/dashboard.profil'
+import { Route as DashboardPaiementsRouteImport } from './routes/dashboard.paiements'
+import { Route as DashboardFormationsRouteImport } from './routes/dashboard.formations'
+import { Route as DashboardCommissionsRouteImport } from './routes/dashboard.commissions'
+import { Route as DashboardCertificatsRouteImport } from './routes/dashboard.certificats'
+import { Route as DashboardAffiliationRouteImport } from './routes/dashboard.affiliation'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
+import { Route as AuthRegisterRouteImport } from './routes/auth.register'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AdminParametresRouteImport } from './routes/admin.parametres'
+import { Route as AdminPaiementsRouteImport } from './routes/admin.paiements'
+import { Route as AdminMembresRouteImport } from './routes/admin.membres'
+import { Route as AdminFormationsRouteImport } from './routes/admin.formations'
+import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
+import { Route as AdminContenuRouteImport } from './routes/admin.contenu'
+import { Route as AdminCommissionsRouteImport } from './routes/admin.commissions'
+import { Route as DashboardFormationIdRouteImport } from './routes/dashboard.formation.$id'
+import { Route as AdminModulesFormationIdRouteImport } from './routes/admin.modules.$formationId'
+import { Route as AdminFormationsNewRouteImport } from './routes/admin.formations.new'
+import { Route as AdminFormationsIdEditRouteImport } from './routes/admin.formations.$id.edit'
 
 const TarifsRoute = TarifsRouteImport.update({
   id: '/tarifs',
   path: '/tarifs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaiementRoute = PaiementRouteImport.update({
+  id: '/paiement',
+  path: '/paiement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FormationsRoute = FormationsRouteImport.update({
@@ -26,9 +70,34 @@ const FormationsRoute = FormationsRouteImport.update({
   path: '/formations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DetailRoute = DetailRouteImport.update({
   id: '/detail',
   path: '/detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CgvRoute = CgvRouteImport.update({
+  id: '/cgv',
+  path: '/cgv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AffiliationRoute = AffiliationRouteImport.update({
@@ -36,75 +105,422 @@ const AffiliationRoute = AffiliationRouteImport.update({
   path: '/affiliation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const PaiementSuccesRoute = PaiementSuccesRouteImport.update({
+  id: '/succes',
+  path: '/succes',
+  getParentRoute: () => PaiementRoute,
+} as any)
+const PaiementAnnuleRoute = PaiementAnnuleRouteImport.update({
+  id: '/annule',
+  path: '/annule',
+  getParentRoute: () => PaiementRoute,
 } as any)
 const FormationsIdRoute = FormationsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => FormationsRoute,
 } as any)
+const DashboardProfilRoute = DashboardProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPaiementsRoute = DashboardPaiementsRouteImport.update({
+  id: '/paiements',
+  path: '/paiements',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardFormationsRoute = DashboardFormationsRouteImport.update({
+  id: '/formations',
+  path: '/formations',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCommissionsRoute = DashboardCommissionsRouteImport.update({
+  id: '/commissions',
+  path: '/commissions',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCertificatsRoute = DashboardCertificatsRouteImport.update({
+  id: '/certificats',
+  path: '/certificats',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAffiliationRoute = DashboardAffiliationRouteImport.update({
+  id: '/affiliation',
+  path: '/affiliation',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/auth/reset-password',
+  path: '/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/auth/register',
+  path: '/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/auth/forgot-password',
+  path: '/auth/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminParametresRoute = AdminParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPaiementsRoute = AdminPaiementsRouteImport.update({
+  id: '/paiements',
+  path: '/paiements',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMembresRoute = AdminMembresRouteImport.update({
+  id: '/membres',
+  path: '/membres',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFormationsRoute = AdminFormationsRouteImport.update({
+  id: '/formations',
+  path: '/formations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEmailsRoute = AdminEmailsRouteImport.update({
+  id: '/emails',
+  path: '/emails',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContenuRoute = AdminContenuRouteImport.update({
+  id: '/contenu',
+  path: '/contenu',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCommissionsRoute = AdminCommissionsRouteImport.update({
+  id: '/commissions',
+  path: '/commissions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const DashboardFormationIdRoute = DashboardFormationIdRouteImport.update({
+  id: '/formation/$id',
+  path: '/formation/$id',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const AdminModulesFormationIdRoute = AdminModulesFormationIdRouteImport.update({
+  id: '/modules/$formationId',
+  path: '/modules/$formationId',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFormationsNewRoute = AdminFormationsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminFormationsRoute,
+} as any)
+const AdminFormationsIdEditRoute = AdminFormationsIdEditRouteImport.update({
+  id: '/$id/edit',
+  path: '/$id/edit',
+  getParentRoute: () => AdminFormationsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/affiliation': typeof AffiliationRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/cgv': typeof CgvRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/detail': typeof DetailRoute
+  '/faq': typeof FaqRoute
   '/formations': typeof FormationsRouteWithChildren
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
+  '/admin/commissions': typeof AdminCommissionsRoute
+  '/admin/contenu': typeof AdminContenuRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/formations': typeof AdminFormationsRouteWithChildren
+  '/admin/membres': typeof AdminMembresRoute
+  '/admin/paiements': typeof AdminPaiementsRoute
+  '/admin/parametres': typeof AdminParametresRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/dashboard/affiliation': typeof DashboardAffiliationRoute
+  '/dashboard/certificats': typeof DashboardCertificatsRoute
+  '/dashboard/commissions': typeof DashboardCommissionsRoute
+  '/dashboard/formations': typeof DashboardFormationsRoute
+  '/dashboard/paiements': typeof DashboardPaiementsRoute
+  '/dashboard/profil': typeof DashboardProfilRoute
   '/formations/$id': typeof FormationsIdRoute
+  '/paiement/annule': typeof PaiementAnnuleRoute
+  '/paiement/succes': typeof PaiementSuccesRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/admin/formations/new': typeof AdminFormationsNewRoute
+  '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
+  '/dashboard/formation/$id': typeof DashboardFormationIdRoute
+  '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/affiliation': typeof AffiliationRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/cgv': typeof CgvRoute
+  '/contact': typeof ContactRoute
   '/detail': typeof DetailRoute
+  '/faq': typeof FaqRoute
   '/formations': typeof FormationsRouteWithChildren
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
+  '/admin/commissions': typeof AdminCommissionsRoute
+  '/admin/contenu': typeof AdminContenuRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/formations': typeof AdminFormationsRouteWithChildren
+  '/admin/membres': typeof AdminMembresRoute
+  '/admin/paiements': typeof AdminPaiementsRoute
+  '/admin/parametres': typeof AdminParametresRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/dashboard/affiliation': typeof DashboardAffiliationRoute
+  '/dashboard/certificats': typeof DashboardCertificatsRoute
+  '/dashboard/commissions': typeof DashboardCommissionsRoute
+  '/dashboard/formations': typeof DashboardFormationsRoute
+  '/dashboard/paiements': typeof DashboardPaiementsRoute
+  '/dashboard/profil': typeof DashboardProfilRoute
   '/formations/$id': typeof FormationsIdRoute
+  '/paiement/annule': typeof PaiementAnnuleRoute
+  '/paiement/succes': typeof PaiementSuccesRoute
+  '/admin': typeof AdminIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/admin/formations/new': typeof AdminFormationsNewRoute
+  '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
+  '/dashboard/formation/$id': typeof DashboardFormationIdRoute
+  '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/affiliation': typeof AffiliationRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/cgv': typeof CgvRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/detail': typeof DetailRoute
+  '/faq': typeof FaqRoute
   '/formations': typeof FormationsRouteWithChildren
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
+  '/admin/commissions': typeof AdminCommissionsRoute
+  '/admin/contenu': typeof AdminContenuRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/formations': typeof AdminFormationsRouteWithChildren
+  '/admin/membres': typeof AdminMembresRoute
+  '/admin/paiements': typeof AdminPaiementsRoute
+  '/admin/parametres': typeof AdminParametresRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/dashboard/affiliation': typeof DashboardAffiliationRoute
+  '/dashboard/certificats': typeof DashboardCertificatsRoute
+  '/dashboard/commissions': typeof DashboardCommissionsRoute
+  '/dashboard/formations': typeof DashboardFormationsRoute
+  '/dashboard/paiements': typeof DashboardPaiementsRoute
+  '/dashboard/profil': typeof DashboardProfilRoute
   '/formations/$id': typeof FormationsIdRoute
+  '/paiement/annule': typeof PaiementAnnuleRoute
+  '/paiement/succes': typeof PaiementSuccesRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/admin/formations/new': typeof AdminFormationsNewRoute
+  '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
+  '/dashboard/formation/$id': typeof DashboardFormationIdRoute
+  '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/affiliation'
+    | '/blog'
+    | '/cgv'
+    | '/contact'
+    | '/dashboard'
     | '/detail'
+    | '/faq'
     | '/formations'
+    | '/mentions-legales'
+    | '/paiement'
     | '/tarifs'
+    | '/admin/commissions'
+    | '/admin/contenu'
+    | '/admin/emails'
+    | '/admin/formations'
+    | '/admin/membres'
+    | '/admin/paiements'
+    | '/admin/parametres'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/blog/$slug'
+    | '/dashboard/affiliation'
+    | '/dashboard/certificats'
+    | '/dashboard/commissions'
+    | '/dashboard/formations'
+    | '/dashboard/paiements'
+    | '/dashboard/profil'
     | '/formations/$id'
+    | '/paiement/annule'
+    | '/paiement/succes'
+    | '/admin/'
+    | '/dashboard/'
+    | '/admin/formations/new'
+    | '/admin/modules/$formationId'
+    | '/dashboard/formation/$id'
+    | '/admin/formations/$id/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/affiliation'
+    | '/blog'
+    | '/cgv'
+    | '/contact'
     | '/detail'
+    | '/faq'
     | '/formations'
+    | '/mentions-legales'
+    | '/paiement'
     | '/tarifs'
+    | '/admin/commissions'
+    | '/admin/contenu'
+    | '/admin/emails'
+    | '/admin/formations'
+    | '/admin/membres'
+    | '/admin/paiements'
+    | '/admin/parametres'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/blog/$slug'
+    | '/dashboard/affiliation'
+    | '/dashboard/certificats'
+    | '/dashboard/commissions'
+    | '/dashboard/formations'
+    | '/dashboard/paiements'
+    | '/dashboard/profil'
     | '/formations/$id'
+    | '/paiement/annule'
+    | '/paiement/succes'
+    | '/admin'
+    | '/dashboard'
+    | '/admin/formations/new'
+    | '/admin/modules/$formationId'
+    | '/dashboard/formation/$id'
+    | '/admin/formations/$id/edit'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/affiliation'
+    | '/blog'
+    | '/cgv'
+    | '/contact'
+    | '/dashboard'
     | '/detail'
+    | '/faq'
     | '/formations'
+    | '/mentions-legales'
+    | '/paiement'
     | '/tarifs'
+    | '/admin/commissions'
+    | '/admin/contenu'
+    | '/admin/emails'
+    | '/admin/formations'
+    | '/admin/membres'
+    | '/admin/paiements'
+    | '/admin/parametres'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/blog/$slug'
+    | '/dashboard/affiliation'
+    | '/dashboard/certificats'
+    | '/dashboard/commissions'
+    | '/dashboard/formations'
+    | '/dashboard/paiements'
+    | '/dashboard/profil'
     | '/formations/$id'
+    | '/paiement/annule'
+    | '/paiement/succes'
+    | '/admin/'
+    | '/dashboard/'
+    | '/admin/formations/new'
+    | '/admin/modules/$formationId'
+    | '/dashboard/formation/$id'
+    | '/admin/formations/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AffiliationRoute: typeof AffiliationRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  CgvRoute: typeof CgvRoute
+  ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   DetailRoute: typeof DetailRoute
+  FaqRoute: typeof FaqRoute
   FormationsRoute: typeof FormationsRouteWithChildren
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PaiementRoute: typeof PaiementRouteWithChildren
   TarifsRoute: typeof TarifsRoute
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,11 +532,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TarifsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/paiement': {
+      id: '/paiement'
+      path: '/paiement'
+      fullPath: '/paiement'
+      preLoaderRoute: typeof PaiementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/formations': {
       id: '/formations'
       path: '/formations'
       fullPath: '/formations'
       preLoaderRoute: typeof FormationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/detail': {
@@ -130,11 +567,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DetailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cgv': {
+      id: '/cgv'
+      path: '/cgv'
+      fullPath: '/cgv'
+      preLoaderRoute: typeof CgvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/affiliation': {
       id: '/affiliation'
       path: '/affiliation'
       fullPath: '/affiliation'
       preLoaderRoute: typeof AffiliationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -144,6 +616,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/paiement/succes': {
+      id: '/paiement/succes'
+      path: '/succes'
+      fullPath: '/paiement/succes'
+      preLoaderRoute: typeof PaiementSuccesRouteImport
+      parentRoute: typeof PaiementRoute
+    }
+    '/paiement/annule': {
+      id: '/paiement/annule'
+      path: '/annule'
+      fullPath: '/paiement/annule'
+      preLoaderRoute: typeof PaiementAnnuleRouteImport
+      parentRoute: typeof PaiementRoute
+    }
     '/formations/$id': {
       id: '/formations/$id'
       path: '/$id'
@@ -151,8 +651,238 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FormationsIdRouteImport
       parentRoute: typeof FormationsRoute
     }
+    '/dashboard/profil': {
+      id: '/dashboard/profil'
+      path: '/profil'
+      fullPath: '/dashboard/profil'
+      preLoaderRoute: typeof DashboardProfilRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/paiements': {
+      id: '/dashboard/paiements'
+      path: '/paiements'
+      fullPath: '/dashboard/paiements'
+      preLoaderRoute: typeof DashboardPaiementsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/formations': {
+      id: '/dashboard/formations'
+      path: '/formations'
+      fullPath: '/dashboard/formations'
+      preLoaderRoute: typeof DashboardFormationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/commissions': {
+      id: '/dashboard/commissions'
+      path: '/commissions'
+      fullPath: '/dashboard/commissions'
+      preLoaderRoute: typeof DashboardCommissionsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/certificats': {
+      id: '/dashboard/certificats'
+      path: '/certificats'
+      fullPath: '/dashboard/certificats'
+      preLoaderRoute: typeof DashboardCertificatsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/affiliation': {
+      id: '/dashboard/affiliation'
+      path: '/affiliation'
+      fullPath: '/dashboard/affiliation'
+      preLoaderRoute: typeof DashboardAffiliationRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/auth/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/auth/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/parametres': {
+      id: '/admin/parametres'
+      path: '/parametres'
+      fullPath: '/admin/parametres'
+      preLoaderRoute: typeof AdminParametresRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/paiements': {
+      id: '/admin/paiements'
+      path: '/paiements'
+      fullPath: '/admin/paiements'
+      preLoaderRoute: typeof AdminPaiementsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/membres': {
+      id: '/admin/membres'
+      path: '/membres'
+      fullPath: '/admin/membres'
+      preLoaderRoute: typeof AdminMembresRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/formations': {
+      id: '/admin/formations'
+      path: '/formations'
+      fullPath: '/admin/formations'
+      preLoaderRoute: typeof AdminFormationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/emails': {
+      id: '/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AdminEmailsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/contenu': {
+      id: '/admin/contenu'
+      path: '/contenu'
+      fullPath: '/admin/contenu'
+      preLoaderRoute: typeof AdminContenuRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/commissions': {
+      id: '/admin/commissions'
+      path: '/commissions'
+      fullPath: '/admin/commissions'
+      preLoaderRoute: typeof AdminCommissionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/dashboard/formation/$id': {
+      id: '/dashboard/formation/$id'
+      path: '/formation/$id'
+      fullPath: '/dashboard/formation/$id'
+      preLoaderRoute: typeof DashboardFormationIdRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/admin/modules/$formationId': {
+      id: '/admin/modules/$formationId'
+      path: '/modules/$formationId'
+      fullPath: '/admin/modules/$formationId'
+      preLoaderRoute: typeof AdminModulesFormationIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/formations/new': {
+      id: '/admin/formations/new'
+      path: '/new'
+      fullPath: '/admin/formations/new'
+      preLoaderRoute: typeof AdminFormationsNewRouteImport
+      parentRoute: typeof AdminFormationsRoute
+    }
+    '/admin/formations/$id/edit': {
+      id: '/admin/formations/$id/edit'
+      path: '/$id/edit'
+      fullPath: '/admin/formations/$id/edit'
+      preLoaderRoute: typeof AdminFormationsIdEditRouteImport
+      parentRoute: typeof AdminFormationsRoute
+    }
   }
 }
+
+interface AdminFormationsRouteChildren {
+  AdminFormationsNewRoute: typeof AdminFormationsNewRoute
+  AdminFormationsIdEditRoute: typeof AdminFormationsIdEditRoute
+}
+
+const AdminFormationsRouteChildren: AdminFormationsRouteChildren = {
+  AdminFormationsNewRoute: AdminFormationsNewRoute,
+  AdminFormationsIdEditRoute: AdminFormationsIdEditRoute,
+}
+
+const AdminFormationsRouteWithChildren = AdminFormationsRoute._addFileChildren(
+  AdminFormationsRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminCommissionsRoute: typeof AdminCommissionsRoute
+  AdminContenuRoute: typeof AdminContenuRoute
+  AdminEmailsRoute: typeof AdminEmailsRoute
+  AdminFormationsRoute: typeof AdminFormationsRouteWithChildren
+  AdminMembresRoute: typeof AdminMembresRoute
+  AdminPaiementsRoute: typeof AdminPaiementsRoute
+  AdminParametresRoute: typeof AdminParametresRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminModulesFormationIdRoute: typeof AdminModulesFormationIdRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCommissionsRoute: AdminCommissionsRoute,
+  AdminContenuRoute: AdminContenuRoute,
+  AdminEmailsRoute: AdminEmailsRoute,
+  AdminFormationsRoute: AdminFormationsRouteWithChildren,
+  AdminMembresRoute: AdminMembresRoute,
+  AdminPaiementsRoute: AdminPaiementsRoute,
+  AdminParametresRoute: AdminParametresRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminModulesFormationIdRoute: AdminModulesFormationIdRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardAffiliationRoute: typeof DashboardAffiliationRoute
+  DashboardCertificatsRoute: typeof DashboardCertificatsRoute
+  DashboardCommissionsRoute: typeof DashboardCommissionsRoute
+  DashboardFormationsRoute: typeof DashboardFormationsRoute
+  DashboardPaiementsRoute: typeof DashboardPaiementsRoute
+  DashboardProfilRoute: typeof DashboardProfilRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardFormationIdRoute: typeof DashboardFormationIdRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAffiliationRoute: DashboardAffiliationRoute,
+  DashboardCertificatsRoute: DashboardCertificatsRoute,
+  DashboardCommissionsRoute: DashboardCommissionsRoute,
+  DashboardFormationsRoute: DashboardFormationsRoute,
+  DashboardPaiementsRoute: DashboardPaiementsRoute,
+  DashboardProfilRoute: DashboardProfilRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardFormationIdRoute: DashboardFormationIdRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
 
 interface FormationsRouteChildren {
   FormationsIdRoute: typeof FormationsIdRoute
@@ -166,12 +896,38 @@ const FormationsRouteWithChildren = FormationsRoute._addFileChildren(
   FormationsRouteChildren,
 )
 
+interface PaiementRouteChildren {
+  PaiementAnnuleRoute: typeof PaiementAnnuleRoute
+  PaiementSuccesRoute: typeof PaiementSuccesRoute
+}
+
+const PaiementRouteChildren: PaiementRouteChildren = {
+  PaiementAnnuleRoute: PaiementAnnuleRoute,
+  PaiementSuccesRoute: PaiementSuccesRoute,
+}
+
+const PaiementRouteWithChildren = PaiementRoute._addFileChildren(
+  PaiementRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   AffiliationRoute: AffiliationRoute,
+  BlogRoute: BlogRouteWithChildren,
+  CgvRoute: CgvRoute,
+  ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   DetailRoute: DetailRoute,
+  FaqRoute: FaqRoute,
   FormationsRoute: FormationsRouteWithChildren,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  PaiementRoute: PaiementRouteWithChildren,
   TarifsRoute: TarifsRoute,
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

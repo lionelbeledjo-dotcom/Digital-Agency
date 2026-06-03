@@ -131,12 +131,12 @@ function AdminHome() {
 
       <div className="space-y-3">
         {[
-          { c: "gold", t: "Commissions vendredi prêtes (342 500 F sur 28 membres)" },
-          { c: "destructive", t: "3 paiements ont échoué cette semaine" },
-          { c: "sky", t: "12 abonnements expirent dans les 7 jours" },
+          { cls: "border-gold/40 bg-gold/5", icon: "text-gold", t: "Commissions vendredi prêtes (342 500 F sur 28 membres)" },
+          { cls: "border-destructive/40 bg-destructive/5", icon: "text-destructive", t: "3 paiements ont échoué cette semaine" },
+          { cls: "border-sky/40 bg-sky/5", icon: "text-sky", t: "12 abonnements expirent dans les 7 jours" },
         ].map((a, i) => (
-          <div key={i} className={`flex items-center gap-3 rounded-xl border bg-card p-4 border-${a.c}/40 bg-${a.c}/5`}>
-            <AlertTriangle className={`h-5 w-5 text-${a.c}`} />
+          <div key={i} className={`flex items-center gap-3 rounded-xl border bg-card p-4 ${a.cls}`}>
+            <AlertTriangle className={`h-5 w-5 ${a.icon}`} />
             <p className="text-sm">{a.t}</p>
           </div>
         ))}
