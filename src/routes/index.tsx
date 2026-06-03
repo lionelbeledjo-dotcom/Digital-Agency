@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
 import { PublicLayout } from "@/components/public-layout";
 import { ArrowRight, Sparkles, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, Quote, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -212,7 +212,8 @@ function HomePage() {
 }
 
 function FormationsPreview() {
-  const formations = useAppStore((s) => s.formations.slice(0, 6));
+  const allFormations = useAppStore((s) => s.formations);
+  const formations = useMemo(() => allFormations.slice(0, 6), [allFormations]);
   return (
     <section className="border-t border-border py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">

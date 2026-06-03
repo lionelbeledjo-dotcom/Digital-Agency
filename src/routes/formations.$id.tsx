@@ -2,7 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
 import { useAppStore } from "@/store/appStore";
 import { CheckCircle2, ChevronRight, Clock, Users, Star, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/formations/$id")({
   component: FormationDetailPage,
@@ -11,7 +11,8 @@ export const Route = createFileRoute("/formations/$id")({
 function FormationDetailPage() {
   const { id } = useParams({ from: "/formations/$id" });
   const formation = useAppStore((s) => s.getFormation(id));
-  const others = useAppStore((s) => s.formations.filter((f) => f.id !== id).slice(0, 3));
+  const allFormations = useAppStore((s) => s.formations);
+  const others = useMemo(() => allFormations.filter((f) => f.id !== id).slice(0, 3), [allFormations, id]);
   const isLoggedIn = useAppStore((s) => s.isLoggedIn);
   const [openModule, setOpenModule] = useState(0);
 
