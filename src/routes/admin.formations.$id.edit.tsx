@@ -1,5 +1,5 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
-import { FormationForm } from "./admin.formations.new";
+import { FormationForm } from "@/components/formation-form";
 import { useAppStore } from "@/store/appStore";
 
 export const Route = createFileRoute("/admin/formations/$id/edit")({
