@@ -31,10 +31,11 @@ export function TopNav() {
             <Link
               key={l.to}
               to={l.to}
-              className={`text-sm font-medium transition-colors hover:text-forest ${pathname.startsWith(l.to) ? "text-forest font-semibold" : "text-muted-foreground"}`}
+              className={`link-underline text-sm font-medium transition-colors hover:text-forest ${pathname.startsWith(l.to) ? "text-forest font-semibold" : "text-muted-foreground"}`}
             >
               {l.label}
             </Link>
+
           ))}
         </nav>
 
