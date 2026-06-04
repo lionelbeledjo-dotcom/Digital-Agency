@@ -35,7 +35,7 @@ export function AdminLayout() {
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber">
               <span className="text-xs font-bold text-forest">LB</span>
             </div>
-            <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
+            <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
           </div>
           <span className="rounded-full bg-amber/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber">Admin</span>
         </Link>

@@ -117,7 +117,7 @@ function DashboardHome() {
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <code className="flex-1 min-w-[200px] truncate rounded-lg bg-navy/60 px-3 py-2 text-sm">{user.lienAffilie}</code>
           <button onClick={() => { navigator.clipboard?.writeText(user.lienAffilie); toast.success("Lien copié !"); }} className="rounded-lg border border-border px-3 py-2 text-sm"><Copy className="h-4 w-4" /></button>
-          <a href={`https://wa.me/?text=${encodeURIComponent("Rejoins LB Digital : " + user.lienAffilie)}`} className="rounded-lg gradient-cobalt px-3 py-2 text-sm text-white"><Share2 className="h-4 w-4" /></a>
+          <a href={`https://wa.me/?text=${encodeURIComponent("Rejoins Digital Agency : " + user.lienAffilie)}`} className="rounded-lg gradient-cobalt px-3 py-2 text-sm text-white"><Share2 className="h-4 w-4" /></a>
         </div>
       </div>
 

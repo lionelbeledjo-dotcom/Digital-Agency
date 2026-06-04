@@ -4,13 +4,13 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({ meta: [{ title: "FAQ · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "FAQ · Digital Agency" }] }),
   component: FaqPage,
 });
 
 const sections = [
   { titre: "Général", qs: [
-    { q: "Qu'est-ce que LB Digital ?", a: "Une plateforme de formation IA + affiliation pour l'Afrique francophone." },
+    { q: "Qu'est-ce que Digital Agency ?", a: "Une plateforme de formation IA + affiliation pour l'Afrique francophone." },
     { q: "À qui s'adresse la plateforme ?", a: "Tout francophone qui veut apprendre l'IA et générer des revenus." },
     { q: "Combien ça coûte pour commencer ?", a: "0 FCFA. Le plan Starter est gratuit à vie." },
     { q: "Dans quels pays c'est disponible ?", a: "12 pays d'Afrique francophone + Europe via Wero/PayPal." },

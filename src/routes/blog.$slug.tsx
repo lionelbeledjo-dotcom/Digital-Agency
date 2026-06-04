@@ -34,7 +34,7 @@ function BlogArticle() {
             <p>Avec un peu de méthode, une formation solide et la bonne plateforme, il est possible de générer un revenu complémentaire dès le premier mois.</p>
             <h2 className="text-2xl font-bold text-foreground" style={{ fontFamily: "var(--font-serif)" }}>Les 3 piliers à maîtriser</h2>
             <p>1. La compréhension des outils IA. 2. La capacité à créer du contenu engageant. 3. La discipline du partage quotidien.</p>
-            <p>Chez LB Digital, on te donne les trois sous forme de vidéos courtes, en français, avec une communauté active pour t'accompagner.</p>
+            <p>Chez Digital Agency, on te donne les trois sous forme de vidéos courtes, en français, avec une communauté active pour t'accompagner.</p>
           </div>
 
           <div className="mt-12 flex items-center gap-3 border-t border-border pt-6">

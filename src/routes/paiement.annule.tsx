@@ -3,7 +3,7 @@ import { PublicLayout } from "@/components/public-layout";
 import { XCircle } from "lucide-react";
 
 export const Route = createFileRoute("/paiement/annule")({
-  head: () => ({ meta: [{ title: "Paiement annulé · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Paiement annulé · Digital Agency" }] }),
   component: AnnulePage,
 });
 

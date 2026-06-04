@@ -28,7 +28,7 @@ function ContenuPage() {
       {tab === "homepage" && (
         <div className="space-y-4">
           <Box titre="Hero"><Field label="Titre H1" defaultValue="Maîtrise l'IA. Partage la connaissance. Génère des revenus réels." />
-            <Field label="Sous-titre" defaultValue="LB Digital te forme aux outils IA…" />
+            <Field label="Sous-titre" defaultValue="Digital Agency te forme aux outils IA…" />
             <Field label="CTA principal" defaultValue="Démarrer gratuitement" />
             <Field label="CTA secondaire" defaultValue="Découvrir le programme" /></Box>
           <Box titre="Stats">{["0 FCFA / Pour commencer","+500K FCFA / Par mois possibles","12 pays / Couverts","Vendredi / Mobile Money"].map((s, i) => <Field key={i} label={`Stat ${i + 1}`} defaultValue={s} />)}</Box>
@@ -57,7 +57,7 @@ function ContenuPage() {
         <div className="space-y-4">
           <Box titre="Texte hero"><Field label="Titre" defaultValue="Gagne jusqu'à 40% à vie" /></Box>
           <Box titre="Messages marketing">
-            <Textarea label="WhatsApp" defaultValue="🚀 Découvre LB Digital…" />
+            <Textarea label="WhatsApp" defaultValue="🚀 Découvre Digital Agency…" />
             <Textarea label="Facebook" defaultValue="Et si tu transformais ton téléphone…" />
             <Textarea label="TikTok" defaultValue="POV : t'as commencé l'affiliation à 0 FCFA…" />
           </Box>
@@ -67,9 +67,9 @@ function ContenuPage() {
 
       {tab === "legal" && (
         <div className="space-y-4">
-          <Box titre="Mentions légales"><Textarea label="" rows={8} defaultValue="LB Digital · Plateforme de formation…" /></Box>
+          <Box titre="Mentions légales"><Textarea label="" rows={8} defaultValue="Digital Agency · Plateforme de formation…" /></Box>
           <Box titre="CGV"><Textarea label="" rows={8} defaultValue="Les présentes CGV régissent l'utilisation…" /></Box>
-          <Box titre="Politique de confidentialité"><Textarea label="" rows={8} defaultValue="LB Digital traite tes données…" /></Box>
+          <Box titre="Politique de confidentialité"><Textarea label="" rows={8} defaultValue="Digital Agency traite tes données…" /></Box>
           <button onClick={save} className="rounded-full gradient-cobalt px-6 py-2.5 text-sm font-semibold text-white">Sauvegarder</button>
         </div>
       )}
@@ -83,7 +83,7 @@ function ContenuPage() {
             <Field label="Telegram URL" />
             <Field label="WhatsApp URL" />
           </Box>
-          <Box titre="Copyright"><Field label="Texte" defaultValue="© 2025 LB Digital" /></Box>
+          <Box titre="Copyright"><Field label="Texte" defaultValue="© 2025 Digital Agency" /></Box>
           <button onClick={save} className="rounded-full gradient-cobalt px-6 py-2.5 text-sm font-semibold text-white">Sauvegarder</button>
         </div>
       )}

@@ -4,7 +4,7 @@ import { CheckCircle2, Copy, Share2 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/paiement/succes")({
-  head: () => ({ meta: [{ title: "Paiement confirmé · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Paiement confirmé · Digital Agency" }] }),
   component: SuccesPage,
 });
 
@@ -18,7 +18,7 @@ function SuccesPage() {
             <CheckCircle2 className="h-14 w-14 text-green animate-pulse-dot" />
           </div>
           <h1 className="mt-8 text-4xl font-bold sm:text-5xl">Paiement confirmé ! 🎉</h1>
-          <p className="mt-3 text-muted-foreground">Bienvenue dans LB Digital. Un email de confirmation t'a été envoyé.</p>
+          <p className="mt-3 text-muted-foreground">Bienvenue dans Digital Agency. Un email de confirmation t'a été envoyé.</p>
 
           <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-left">
             <p className="text-xs uppercase tracking-wider text-sky">Ton lien d'affiliation</p>
@@ -34,7 +34,7 @@ function SuccesPage() {
             <Link to="/dashboard" className="rounded-full gradient-cobalt px-6 py-3 text-sm font-semibold text-white shadow-glow">
               Accéder à mon espace →
             </Link>
-            <a href={`https://wa.me/?text=Rejoins-moi sur LB Digital : ${link}`} target="_blank" rel="noreferrer" className="rounded-full border border-border px-6 py-3 text-sm font-semibold flex items-center gap-2">
+            <a href={`https://wa.me/?text=Rejoins-moi sur Digital Agency : ${link}`} target="_blank" rel="noreferrer" className="rounded-full border border-border px-6 py-3 text-sm font-semibold flex items-center gap-2">
               <Share2 className="h-4 w-4" /> Partager WhatsApp
             </a>
           </div>

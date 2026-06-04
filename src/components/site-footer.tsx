@@ -11,7 +11,7 @@ export function SiteFooter() {
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber">
                 <span className="text-sm font-bold text-forest">LB</span>
               </div>
-              <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
+              <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
             </div>
             <p className="mt-4 max-w-sm text-sm text-white/70">
               La plateforme "Apprends & Gagne" qui forme l'Afrique francophone à l'IA et reverse des commissions chaque vendredi.
@@ -45,7 +45,7 @@ export function SiteFooter() {
           {["Wero","PayPal","MTN Mobile Money","Orange Money"].map((p) => (
             <span key={p} className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/70">{p}</span>
           ))}
-          <p className="ml-auto text-xs text-white/50">&copy; 2025 LB Digital &middot; Tous droits réservés</p>
+          <p className="ml-auto text-xs text-white/50">&copy; 2025 Digital Agency &middot; Tous droits réservés</p>
         </div>
       </div>
     </footer>

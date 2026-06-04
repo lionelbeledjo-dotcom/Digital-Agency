@@ -18,7 +18,7 @@ function CertificatsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="font-serif text-3xl font-bold">Mes certificats</h1>
-        <p className="text-sm text-muted-foreground">Décroche tes diplômes officiels LB Digital.</p>
+        <p className="text-sm text-muted-foreground">Décroche tes diplômes officiels Digital Agency.</p>
       </div>
 
       {complets.length > 0 && (

@@ -3,7 +3,7 @@ import { PublicLayout } from "@/components/public-layout";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth/forgot-password")({
-  head: () => ({ meta: [{ title: "Mot de passe oublié · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Mot de passe oublié · Digital Agency" }] }),
   component: Page,
 });
 

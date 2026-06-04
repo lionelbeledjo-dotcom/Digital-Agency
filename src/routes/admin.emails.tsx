@@ -24,8 +24,8 @@ const variables = ["{prenom}","{nom}","{email}","{plan}","{commission}","{lien_a
 
 function AdminEmails() {
   const [active, setActive] = useState(1);
-  const [obj, setObj] = useState("Bienvenue sur LB Digital 🎉");
-  const [body, setBody] = useState("Salut {prenom},\n\nTon compte LB Digital est prêt. Voici ton lien d'affiliation : {lien_affilie}\n\nÀ très vite,\nL'équipe LB.");
+  const [obj, setObj] = useState("Bienvenue sur Digital Agency 🎉");
+  const [body, setBody] = useState("Salut {prenom},\n\nTon compte Digital Agency est prêt. Voici ton lien d'affiliation : {lien_affilie}\n\nÀ très vite,\nL'équipe LB.");
 
   return (
     <div className="space-y-6">

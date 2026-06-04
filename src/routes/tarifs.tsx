@@ -5,7 +5,7 @@ import { Check, X } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/tarifs")({
-  head: () => ({ meta: [{ title: "Tarifs · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Tarifs · Digital Agency" }] }),
   component: TarifsPage,
 });
 

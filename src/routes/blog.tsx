@@ -3,7 +3,7 @@ import { PublicLayout } from "@/components/public-layout";
 import { Search } from "lucide-react";
 
 export const Route = createFileRoute("/blog")({
-  head: () => ({ meta: [{ title: "Blog · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Blog · Digital Agency" }] }),
   component: BlogPage,
 });
 
@@ -24,7 +24,7 @@ function BlogPage() {
     <PublicLayout>
       <section className="bg-hero-radial py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h1 className="text-4xl font-bold text-foreground sm:text-5xl">Le blog LB Digital</h1>
+          <h1 className="text-4xl font-bold text-foreground sm:text-5xl">Le blog Digital Agency</h1>
           <p className="mt-3 text-muted-foreground">Stratégies, méthodes, études de cas pour passer à l'action.</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <div className="relative max-w-xs flex-1">

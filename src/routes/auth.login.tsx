@@ -3,7 +3,7 @@ import { PublicLayout } from "@/components/public-layout";
 import { useAppStore } from "@/store/appStore";
 
 export const Route = createFileRoute("/auth/login")({
-  head: () => ({ meta: [{ title: "Connexion · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Connexion · Digital Agency" }] }),
   component: LoginPage,
 });
 
@@ -27,7 +27,7 @@ function LoginPage() {
                 <span className="text-lg font-bold text-white">LB</span>
               </div>
               <h1 className="mt-4 text-2xl font-bold text-foreground">Bon retour</h1>
-              <p className="mt-1 text-sm text-muted-foreground">Connecte-toi à ton espace LB Digital.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Connecte-toi à ton espace Digital Agency.</p>
             </div>
             <form onSubmit={submit} className="mt-6 space-y-4">
               <Field label="Email" type="email" defaultValue="aminata@example.com" />

@@ -5,7 +5,7 @@ import { Search, Star } from "lucide-react";
 import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/formations")({
-  head: () => ({ meta: [{ title: "Formations · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Formations · Digital Agency" }] }),
   component: FormationsPage,
 });
 
