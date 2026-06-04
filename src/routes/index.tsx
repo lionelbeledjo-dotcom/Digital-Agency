@@ -3,6 +3,8 @@ import { useAppStore } from "@/store/appStore";
 import { PublicLayout } from "@/components/public-layout";
 import { ArrowRight, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, ChevronDown, Sparkles, Play } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useReveal } from "@/hooks/use-reveal";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,6 +43,8 @@ const faqs = [
 ];
 
 function HomePage() {
+  useReveal();
+
   return (
     <PublicLayout>
       {/* HERO */}
@@ -53,18 +57,25 @@ function HomePage() {
               Plateforme Apprends & Gagne · 12 pays
             </div>
 
-            <h1 className="mt-8 text-4xl font-bold leading-[1.08] text-foreground sm:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
-              Maîtrise l'<span className="text-accent-serif">IA</span>.
-              <br /> Partage la connaissance.
-              <br /> Génère des <span className="text-accent-serif">revenus réels</span>.
+            <h1 className="mt-8 text-3xl font-bold leading-[1.08] text-foreground sm:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
+              <span className="hero-word" style={{ animationDelay: "0.1s" }}>Maîtrise&nbsp;l'</span>
+              <span className="hero-word text-accent-serif" style={{ animationDelay: "0.4s" }}>IA</span>
+              <span className="hero-word" style={{ animationDelay: "0.7s" }}>.</span>
+              <br />
+              <span className="hero-word" style={{ animationDelay: "1.0s" }}>Partage&nbsp;la&nbsp;connaissance.</span>
+              <br />
+              <span className="hero-word" style={{ animationDelay: "1.3s" }}>Génère&nbsp;des&nbsp;</span>
+              <span className="hero-word text-accent-serif" style={{ animationDelay: "1.6s" }}>revenus&nbsp;réels</span>
+              <span className="hero-word" style={{ animationDelay: "1.9s" }}>.</span>
             </h1>
+
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
               Digital Agency te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]">
+              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow pulse-glow transition-transform hover:scale-[1.03]">
                 Démarrer gratuitement
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -84,19 +95,20 @@ function HomePage() {
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4 stagger">
             {[
               { v: "0 FCFA", l: "Pour commencer" },
               { v: "+500K", l: "FCFA/mois possibles" },
               { v: "12 pays", l: "Couverts" },
               { v: "Vendredi", l: "Paiement Mobile Money" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
+              <div key={s.l} className="hover-tilt rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
                 <p className="text-3xl font-bold text-forest sm:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>{s.v}</p>
                 <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.l}</p>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -120,11 +132,11 @@ function HomePage() {
             <p className="mt-4 text-muted-foreground">5 étapes simples, du compte gratuit à ton premier virement vendredi.</p>
           </div>
 
-          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5 reveal">
             {steps.map((s) => (
-              <div key={s.n} className="card-glow rounded-2xl border border-border bg-white p-6 shadow-soft">
+              <div key={s.n} className="card-glow hover-tilt rounded-2xl border border-border bg-white p-6 shadow-soft">
                 <div className="flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest">
+                  <div className="icon-bounce flex h-10 w-10 items-center justify-center rounded-xl bg-forest">
                     <s.Icon className="h-5 w-5 text-white" />
                   </div>
                   <span className="text-3xl font-bold text-border" style={{ fontFamily: "var(--font-heading)" }}>{s.n}</span>
@@ -134,6 +146,7 @@ function HomePage() {
               </div>
             ))}
           </div>
+
 
           <div className="mt-10 text-center">
             <Link to="/detail" className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-forest-light transition-colors">
@@ -234,10 +247,11 @@ function FormationsPreview() {
           <Link to="/formations" className="text-sm font-semibold text-forest hover:text-forest-light transition-colors">Voir toutes les formations →</Link>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 stagger reveal">
           {formations.map((f) => (
-            <Link key={f.id} to="/formations/$id" params={{ id: f.id }} className="card-glow group rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
-              <div className="flex h-32 items-center justify-center bg-forest/5 text-5xl">{f.emoji}</div>
+            <Link key={f.id} to="/formations/$id" params={{ id: f.id }} className="card-glow hover-tilt group rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
+              <div className="flex h-32 items-center justify-center bg-forest/5 text-5xl transition-transform duration-300 group-hover:scale-110">{f.emoji}</div>
+
               <div className="p-5">
                 <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-wider">
                   <span className="rounded-full bg-forest/10 px-2 py-0.5 text-forest font-medium">{f.categorie}</span>

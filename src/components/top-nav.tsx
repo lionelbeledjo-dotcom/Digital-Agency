@@ -31,10 +31,11 @@ export function TopNav() {
             <Link
               key={l.to}
               to={l.to}
-              className={`text-sm font-medium transition-colors hover:text-forest ${pathname.startsWith(l.to) ? "text-forest font-semibold" : "text-muted-foreground"}`}
+              className={`link-underline text-sm font-medium transition-colors hover:text-forest ${pathname.startsWith(l.to) ? "text-forest font-semibold" : "text-muted-foreground"}`}
             >
               {l.label}
             </Link>
+
           ))}
         </nav>
 
@@ -65,7 +66,7 @@ export function TopNav() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-white lg:hidden">
+        <div className="animate-slide-in-down border-t border-border bg-white lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
             {links.map((l) => (
               <Link
