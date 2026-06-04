@@ -20,7 +20,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CgvRouteImport } from './routes/cgv'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AffiliationRouteImport } from './routes/affiliation'
+import { Route as AdminRegisterRouteImport } from './routes/admin-register'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
+import { Route as AdminForgotPasswordRouteImport } from './routes/admin-forgot-password'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
@@ -106,9 +108,19 @@ const AffiliationRoute = AffiliationRouteImport.update({
   path: '/affiliation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRegisterRoute = AdminRegisterRouteImport.update({
+  id: '/admin-register',
+  path: '/admin-register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin-login',
   path: '/admin-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminForgotPasswordRoute = AdminForgotPasswordRouteImport.update({
+  id: '/admin-forgot-password',
+  path: '/admin-forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -260,7 +272,9 @@ const AdminFormationsIdEditRoute = AdminFormationsIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/admin-forgot-password': typeof AdminForgotPasswordRoute
   '/admin-login': typeof AdminLoginRoute
+  '/admin-register': typeof AdminRegisterRoute
   '/affiliation': typeof AffiliationRoute
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
@@ -302,7 +316,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin-forgot-password': typeof AdminForgotPasswordRoute
   '/admin-login': typeof AdminLoginRoute
+  '/admin-register': typeof AdminRegisterRoute
   '/affiliation': typeof AffiliationRoute
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
@@ -345,7 +361,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/admin-forgot-password': typeof AdminForgotPasswordRoute
   '/admin-login': typeof AdminLoginRoute
+  '/admin-register': typeof AdminRegisterRoute
   '/affiliation': typeof AffiliationRoute
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
@@ -390,7 +408,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/admin-forgot-password'
     | '/admin-login'
+    | '/admin-register'
     | '/affiliation'
     | '/blog'
     | '/cgv'
@@ -432,7 +452,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin-forgot-password'
     | '/admin-login'
+    | '/admin-register'
     | '/affiliation'
     | '/blog'
     | '/cgv'
@@ -474,7 +496,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/admin-forgot-password'
     | '/admin-login'
+    | '/admin-register'
     | '/affiliation'
     | '/blog'
     | '/cgv'
@@ -518,7 +542,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AdminForgotPasswordRoute: typeof AdminForgotPasswordRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminRegisterRoute: typeof AdminRegisterRoute
   AffiliationRoute: typeof AffiliationRoute
   BlogRoute: typeof BlogRouteWithChildren
   CgvRoute: typeof CgvRoute
@@ -615,11 +641,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AffiliationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin-register': {
+      id: '/admin-register'
+      path: '/admin-register'
+      fullPath: '/admin-register'
+      preLoaderRoute: typeof AdminRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin-login': {
       id: '/admin-login'
       path: '/admin-login'
       fullPath: '/admin-login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-forgot-password': {
+      id: '/admin-forgot-password'
+      path: '/admin-forgot-password'
+      fullPath: '/admin-forgot-password'
+      preLoaderRoute: typeof AdminForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -933,7 +973,9 @@ const PaiementRouteWithChildren = PaiementRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AdminForgotPasswordRoute: AdminForgotPasswordRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminRegisterRoute: AdminRegisterRoute,
   AffiliationRoute: AffiliationRoute,
   BlogRoute: BlogRouteWithChildren,
   CgvRoute: CgvRoute,

@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
 import { ShieldCheck } from "lucide-react";
 import { useState } from "react";
@@ -93,6 +93,7 @@ function AdminLoginPage() {
                 <label className="flex items-center gap-2 text-muted-foreground">
                   <input type="checkbox" className="rounded" /> Rester connecté
                 </label>
+                <Link to="/admin-forgot-password" className="text-amber font-medium hover:text-amber/80">Mot de passe oublié ?</Link>
               </div>
               <button
                 type="submit"
@@ -103,7 +104,11 @@ function AdminLoginPage() {
               </button>
             </form>
 
-            <div className="mt-6 rounded-xl bg-amber/10 border border-amber/20 p-3">
+            <p className="mt-5 text-center text-xs text-muted-foreground">
+              Pas encore de compte admin ? <Link to="/admin-register" className="text-forest font-semibold hover:text-forest-light">Créer un compte</Link>
+            </p>
+
+            <div className="mt-5 rounded-xl bg-amber/10 border border-amber/20 p-3">
               <p className="text-xs text-center text-amber font-medium">
                 Accès réservé aux administrateurs autorisés uniquement.
               </p>
