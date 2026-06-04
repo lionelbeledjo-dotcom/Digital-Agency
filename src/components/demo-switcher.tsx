@@ -1,17 +1,25 @@
 import { useAppStore, type DemoMode } from "@/store/appStore";
 import { useState } from "react";
 import { Eye, User, Shield, X } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 
 export function DemoSwitcher() {
   const mode = useAppStore((s) => s.demoMode);
   const setMode = useAppStore((s) => s.setDemoMode);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const modes: { id: DemoMode; label: string; Icon: typeof Eye; desc: string }[] = [
-    { id: "visitor", label: "Visiteur", Icon: Eye, desc: "Public, non connecté" },
-    { id: "member", label: "Membre", Icon: User, desc: "Aminata Koné · Club IA" },
-    { id: "admin", label: "Admin", Icon: Shield, desc: "Accès panneau admin" },
+  const modes: { id: DemoMode; label: string; Icon: typeof Eye; desc: string; path: string }[] = [
+    { id: "visitor", label: "Visiteur", Icon: Eye, desc: "Public, non connecté", path: "/" },
+    { id: "member", label: "Membre", Icon: User, desc: "Aminata Koné · Club IA", path: "/dashboard" },
+    { id: "admin", label: "Admin", Icon: Shield, desc: "Accès panneau admin", path: "/admin" },
   ];
+
+  function handleSwitch(m: DemoMode, path: string) {
+    setMode(m);
+    setOpen(false);
+    navigate({ to: path });
+  }
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
@@ -27,7 +35,7 @@ export function DemoSwitcher() {
               return (
                 <button
                   key={m.id}
-                  onClick={() => setMode(m.id)}
+                  onClick={() => handleSwitch(m.id, m.path)}
                   className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-colors ${active ? "border-forest bg-forest/5" : "border-border hover:bg-secondary"}`}
                 >
                   <m.Icon className={`h-5 w-5 ${active ? "text-forest" : "text-muted-foreground"}`} />
