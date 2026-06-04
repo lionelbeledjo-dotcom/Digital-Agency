@@ -43,6 +43,8 @@ const faqs = [
 ];
 
 function HomePage() {
+  useReveal();
+
   return (
     <PublicLayout>
       {/* HERO */}
