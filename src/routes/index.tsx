@@ -95,19 +95,20 @@ function HomePage() {
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4 stagger">
             {[
               { v: "0 FCFA", l: "Pour commencer" },
               { v: "+500K", l: "FCFA/mois possibles" },
               { v: "12 pays", l: "Couverts" },
               { v: "Vendredi", l: "Paiement Mobile Money" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
+              <div key={s.l} className="hover-tilt rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
                 <p className="text-3xl font-bold text-forest sm:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>{s.v}</p>
                 <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.l}</p>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
