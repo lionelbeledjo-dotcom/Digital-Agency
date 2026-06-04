@@ -75,7 +75,7 @@ function HomePage() {
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]">
+              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow pulse-glow transition-transform hover:scale-[1.03]">
                 Démarrer gratuitement
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
