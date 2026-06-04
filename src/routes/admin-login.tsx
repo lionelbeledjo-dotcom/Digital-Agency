@@ -1,7 +1,8 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useAppStore } from "@/store/appStore";
+import { supabase } from "@/lib/supabase";
 import { ShieldCheck } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin-login")({
   head: () => ({ meta: [{ title: "Admin · Connexion" }] }),
@@ -9,17 +10,38 @@ export const Route = createFileRoute("/admin-login")({
 });
 
 function AdminLoginPage() {
-  const setDemoMode = useAppStore((s) => s.setDemoMode);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setDemoMode("admin");
-      navigate({ to: "/admin" });
-    }, 1200);
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      toast.error("Email ou mot de passe incorrect.");
+      setLoading(false);
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", data.user.id)
+      .single();
+
+    if (!profile || profile.role !== "admin") {
+      await supabase.auth.signOut();
+      toast.error("Ce compte n'a pas les droits administrateur.");
+      setLoading(false);
+      return;
+    }
+
+    toast.success("Bienvenue, administrateur !");
+    navigate({ to: "/admin" });
   }
 
   return (
@@ -75,7 +97,9 @@ function AdminLoginPage() {
                 <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Email administrateur</label>
                 <input
                   type="email"
-                  defaultValue="admin@digitalagency.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@digitalagency.com"
                   className="mt-1 w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-olive/30"
                   required
                 />
@@ -84,7 +108,8 @@ function AdminLoginPage() {
                 <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Mot de passe</label>
                 <input
                   type="password"
-                  defaultValue="admin123"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="mt-1 w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-olive/30"
                   required
                 />

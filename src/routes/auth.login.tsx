@@ -1,6 +1,8 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
-import { useAppStore } from "@/store/appStore";
+import { supabase } from "@/lib/supabase";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth/login")({
   head: () => ({ meta: [{ title: "Connexion · Digital Agency" }] }),
@@ -8,12 +10,26 @@ export const Route = createFileRoute("/auth/login")({
 });
 
 function LoginPage() {
-  const login = useAppStore((s) => s.login);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
-    login("aminata@example.com");
+    setLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      toast.error(error.message === "Invalid login credentials"
+        ? "Email ou mot de passe incorrect."
+        : error.message);
+      setLoading(false);
+      return;
+    }
+
+    toast.success("Connexion réussie !");
     navigate({ to: "/dashboard" });
   }
 
@@ -30,13 +46,15 @@ function LoginPage() {
               <p className="mt-1 text-sm text-muted-foreground">Connecte-toi à ton espace Digital Agency.</p>
             </div>
             <form onSubmit={submit} className="mt-6 space-y-4">
-              <Field label="Email" type="email" defaultValue="aminata@example.com" />
-              <Field label="Mot de passe" type="password" defaultValue="password" />
+              <Field label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              <Field label="Mot de passe" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               <div className="flex items-center justify-between text-xs">
                 <label className="flex items-center gap-2 text-muted-foreground"><input type="checkbox" /> Se souvenir</label>
                 <Link to="/auth/forgot-password" className="text-forest font-medium">Mot de passe oublié ?</Link>
               </div>
-              <button type="submit" className="w-full rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]">Se connecter</button>
+              <button type="submit" disabled={loading} className="w-full rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02] disabled:opacity-60">
+                {loading ? "Connexion..." : "Se connecter"}
+              </button>
               <p className="text-center text-xs text-muted-foreground">
                 Pas encore inscrit ? <Link to="/auth/register" className="text-forest font-semibold">Créer un compte</Link>
               </p>
