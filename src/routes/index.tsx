@@ -160,6 +160,9 @@ function HomePage() {
       {/* FORMATIONS APERÇU */}
       <FormationsPreview />
 
+      {/* CONFIANCE */}
+      <TrustSection />
+
       {/* TARIFS */}
       <TarifsPreview />
 
@@ -325,6 +328,22 @@ function TarifsPreview() {
   );
 }
 
+function TrustSection() {
+  const partners = ["ChatGPT", "Canva", "MTN MoMo", "Orange Money", "PayPal", "Wero", "TikTok", "WhatsApp"];
+  return (
+    <section className="py-16 border-t border-border">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <p className="text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground">Outils & partenaires intégrés</p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          {partners.map((p) => (
+            <span key={p} className="text-sm font-semibold text-muted-foreground/60 hover:text-forest transition-colors">{p}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -336,12 +355,16 @@ function FaqSection() {
         </div>
         <div className="mt-10 space-y-3">
           {faqs.map((f, i) => (
-            <div key={i} className="rounded-2xl border border-border bg-white shadow-soft">
+            <div key={i} className="rounded-2xl border border-border bg-white shadow-soft overflow-hidden">
               <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between p-5 text-left">
                 <span className="font-semibold text-foreground">{f.q}</span>
-                <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open === i ? "rotate-180" : ""}`} />
+                <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${open === i ? "rotate-180" : ""}`} />
               </button>
-              {open === i && <p className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</p>}
+              <div className={`grid transition-all duration-300 ease-in-out ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                <div className="overflow-hidden">
+                  <p className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

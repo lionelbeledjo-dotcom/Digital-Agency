@@ -302,6 +302,55 @@
 }
 
 
+/* Smooth accordion via grid-rows */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
+}
+.accordion-content.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.accordion-content > div {
+  overflow: hidden;
+}
+
+/* Glass effect for premium cards */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Gradient text for numbers/stats */
+.stat-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--forest);
+}
+
+/* Smooth image zoom in cards */
+.img-zoom {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.08);
+}
+
+/* Badge pill styles */
+.badge-forest {
+  background: rgba(26, 92, 58, 0.08);
+  color: var(--forest);
+  font-weight: 500;
+}
+.badge-amber {
+  background: rgba(200, 164, 21, 0.1);
+  color: var(--amber);
+  font-weight: 500;
+}
+
 /* Italic accent for serif highlights */
 .text-accent-serif {
   font-family: var(--font-serif);
