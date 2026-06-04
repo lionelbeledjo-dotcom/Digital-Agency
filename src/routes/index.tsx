@@ -57,11 +57,18 @@ function HomePage() {
               Plateforme Apprends & Gagne · 12 pays
             </div>
 
-            <h1 className="mt-8 text-4xl font-bold leading-[1.08] text-foreground sm:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
-              Maîtrise l'<span className="text-accent-serif">IA</span>.
-              <br /> Partage la connaissance.
-              <br /> Génère des <span className="text-accent-serif">revenus réels</span>.
+            <h1 className="mt-8 text-3xl font-bold leading-[1.08] text-foreground sm:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
+              <span className="hero-word" style={{ animationDelay: "0.1s" }}>Maîtrise&nbsp;l'</span>
+              <span className="hero-word text-accent-serif" style={{ animationDelay: "0.4s" }}>IA</span>
+              <span className="hero-word" style={{ animationDelay: "0.7s" }}>.</span>
+              <br />
+              <span className="hero-word" style={{ animationDelay: "1.0s" }}>Partage&nbsp;la&nbsp;connaissance.</span>
+              <br />
+              <span className="hero-word" style={{ animationDelay: "1.3s" }}>Génère&nbsp;des&nbsp;</span>
+              <span className="hero-word text-accent-serif" style={{ animationDelay: "1.6s" }}>revenus&nbsp;réels</span>
+              <span className="hero-word" style={{ animationDelay: "1.9s" }}>.</span>
             </h1>
+
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
               Digital Agency te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
