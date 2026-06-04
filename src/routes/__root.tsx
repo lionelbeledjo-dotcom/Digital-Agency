@@ -18,15 +18,15 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-hero-radial px-4">
       <div className="max-w-md text-center">
-        <p className="text-sm uppercase tracking-[0.3em] text-sky">Erreur 404</p>
+        <p className="text-sm uppercase tracking-[0.3em] text-amber font-semibold">Erreur 404</p>
         <h1 className="mt-4 text-7xl font-bold text-foreground">Page introuvable</h1>
         <p className="mt-4 text-muted-foreground">
           Cette page n'existe pas ou a été déplacée.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/" className="rounded-full gradient-cobalt px-6 py-3 text-sm font-semibold text-white">Accueil</Link>
-          <Link to="/formations" className="rounded-full border border-border px-6 py-3 text-sm font-semibold">Formations</Link>
-          <Link to="/contact" className="rounded-full border border-border px-6 py-3 text-sm font-semibold">Contact</Link>
+          <Link to="/" className="rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white">Accueil</Link>
+          <Link to="/formations" className="rounded-full border-2 border-forest/20 px-6 py-3 text-sm font-semibold text-forest">Formations</Link>
+          <Link to="/contact" className="rounded-full border-2 border-forest/20 px-6 py-3 text-sm font-semibold text-forest">Contact</Link>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => { router.invalidate(); reset(); }}
-            className="rounded-md gradient-cobalt px-4 py-2 text-sm font-medium text-white"
+            className="rounded-md gradient-primary px-4 py-2 text-sm font-medium text-white"
           >
             Réessayer
           </button>
@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -94,7 +94,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="dark">
+      <body>
         {children}
         <Scripts />
       </body>
@@ -109,7 +109,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <DemoSwitcher />
-      <Toaster theme="dark" position="top-right" richColors />
+      <Toaster theme="light" position="top-right" richColors />
     </QueryClientProvider>
   );
 }

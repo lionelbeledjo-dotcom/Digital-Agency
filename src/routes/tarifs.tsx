@@ -41,11 +41,11 @@ function TarifsPage() {
     <PublicLayout>
       <section className="bg-hero-radial py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-bold sm:text-5xl">Choisir le bon plan pour toi</h1>
+          <h1 className="text-4xl font-bold text-foreground sm:text-5xl">Choisir le bon plan pour toi</h1>
           <p className="mt-4 text-muted-foreground">Commence gratuitement. Monte en gamme dès que tu génères tes premières commissions.</p>
-          <div className="mt-8 inline-flex rounded-full border border-border p-1">
-            <button onClick={() => setAnnuel(false)} className={`rounded-full px-4 py-2 text-sm ${!annuel ? "gradient-cobalt text-white" : "text-muted-foreground"}`}>Mensuel</button>
-            <button onClick={() => setAnnuel(true)} className={`rounded-full px-4 py-2 text-sm ${annuel ? "gradient-cobalt text-white" : "text-muted-foreground"}`}>Annuel <span className="ml-1 text-green">-20%</span></button>
+          <div className="mt-8 inline-flex rounded-full border border-border bg-secondary p-1">
+            <button onClick={() => setAnnuel(false)} className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${!annuel ? "gradient-primary text-white" : "text-muted-foreground"}`}>Mensuel</button>
+            <button onClick={() => setAnnuel(true)} className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${annuel ? "gradient-primary text-white" : "text-muted-foreground"}`}>Annuel <span className="ml-1 text-forest font-semibold">-20%</span></button>
           </div>
         </div>
       </section>
@@ -56,15 +56,15 @@ function TarifsPage() {
             {planList.map((p) => {
               const prix = annuel && "prixAnnuel" in p ? (p as { prixAnnuel: number }).prixAnnuel / 12 : p.prixMensuel;
               return (
-                <div key={p.id} className={`relative rounded-3xl border bg-card p-7 ${p.populaire ? "border-cobalt shadow-glow" : "border-border"}`}>
-                  {p.populaire && <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full gradient-cobalt px-4 py-1 text-xs font-bold text-white">⚡ Populaire</div>}
-                  <h3 className="text-lg font-bold">{p.nom}</h3>
-                  <p className="mt-4 font-serif text-5xl font-bold">{prix === 0 ? "Gratuit" : <>{Math.round(prix).toLocaleString("fr-FR")} <span className="text-base font-sans text-muted-foreground">FCFA{annuel ? "/mois eq." : "/mois"}</span></>}</p>
-                  <p className="mt-2 text-sm text-teal">Commission {p.commission}%</p>
+                <div key={p.id} className={`relative rounded-3xl border bg-white p-7 shadow-soft ${p.populaire ? "border-forest ring-2 ring-forest/10" : "border-border"}`}>
+                  {p.populaire && <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full gradient-primary px-4 py-1 text-xs font-bold text-white">⚡ Populaire</div>}
+                  <h3 className="text-lg font-bold text-foreground">{p.nom}</h3>
+                  <p className="mt-4 text-5xl font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>{prix === 0 ? "Gratuit" : <>{Math.round(prix).toLocaleString("fr-FR")} <span className="text-base font-normal text-muted-foreground">FCFA{annuel ? "/mois eq." : "/mois"}</span></>}</p>
+                  <p className="mt-2 text-sm text-amber font-medium">Commission {p.commission}%</p>
                   <ul className="mt-6 space-y-2 text-sm">
-                    {p.features.map((f) => <li key={f} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-green" /> {f}</li>)}
+                    {p.features.map((f) => <li key={f} className="flex gap-2 text-muted-foreground"><Check className="mt-0.5 h-4 w-4 shrink-0 text-forest" /> {f}</li>)}
                   </ul>
-                  <Link to="/paiement" hash={p.anchor} className={`mt-6 block rounded-full px-5 py-3 text-center text-sm font-semibold ${p.populaire ? "gradient-cobalt text-white shadow-glow" : "border border-border"}`}>
+                  <Link to="/paiement" hash={p.anchor} className={`mt-6 block rounded-full px-5 py-3 text-center text-sm font-semibold transition-all ${p.populaire ? "gradient-primary text-white shadow-glow hover:scale-[1.02]" : "border-2 border-forest/20 text-forest hover:border-forest/40"}`}>
                     {p.prixMensuel === 0 ? "Commencer" : "Choisir ce plan"}
                   </Link>
                 </div>
@@ -75,17 +75,17 @@ function TarifsPage() {
       </section>
 
       {/* Tableau comparatif */}
-      <section className="border-t border-border bg-navy2/30 py-16">
+      <section className="bg-secondary py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold text-center">Comparatif complet</h2>
-          <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-card">
+          <h2 className="text-3xl font-bold text-foreground text-center">Comparatif complet</h2>
+          <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-white shadow-soft">
             <table className="w-full text-sm">
               <thead className="border-b border-border">
                 <tr>
-                  <th className="px-4 py-4 text-left font-semibold">Fonctionnalité</th>
-                  <th className="px-4 py-4 text-center font-semibold">Starter</th>
-                  <th className="px-4 py-4 text-center font-semibold text-sky">Club IA</th>
-                  <th className="px-4 py-4 text-center font-semibold text-gold">Pro Creator</th>
+                  <th className="px-4 py-4 text-left font-semibold text-foreground">Fonctionnalité</th>
+                  <th className="px-4 py-4 text-center font-semibold text-foreground">Starter</th>
+                  <th className="px-4 py-4 text-center font-semibold text-forest">Club IA</th>
+                  <th className="px-4 py-4 text-center font-semibold text-amber">Pro Creator</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,7 +96,7 @@ function TarifsPage() {
                       const v = r[k];
                       return (
                         <td key={k} className="px-4 py-3 text-center">
-                          {typeof v === "boolean" ? (v ? <Check className="mx-auto h-4 w-4 text-green" /> : <X className="mx-auto h-4 w-4 text-muted-foreground/50" />) : <span className="font-medium">{v}</span>}
+                          {typeof v === "boolean" ? (v ? <Check className="mx-auto h-4 w-4 text-forest" /> : <X className="mx-auto h-4 w-4 text-muted-foreground/30" />) : <span className="font-medium text-foreground">{v}</span>}
                         </td>
                       );
                     })}
@@ -109,9 +109,9 @@ function TarifsPage() {
       </section>
 
       {/* Moyens de paiement */}
-      <section className="border-t border-border py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold text-center">Moyens de paiement</h2>
+          <h2 className="text-3xl font-bold text-foreground text-center">Moyens de paiement</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {[
               { n: "Wero", d: "Virement instantané · France, Belgique, Allemagne, Espagne, Portugal." },
@@ -119,8 +119,8 @@ function TarifsPage() {
               { n: "MTN Mobile Money", d: "Cameroun, CI, Bénin, Congo, Ghana · Push + PIN sur ton téléphone." },
               { n: "Orange Money", d: "CI, Sénégal, Cameroun, Mali, Guinée · Confirmation depuis ton menu Orange." },
             ].map((p) => (
-              <div key={p.n} className="rounded-2xl border border-border bg-card p-6">
-                <h3 className="font-semibold">{p.n}</h3>
+              <div key={p.n} className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+                <h3 className="font-semibold text-foreground">{p.n}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
               </div>
             ))}

@@ -1,5 +1,5 @@
 import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, Users, GraduationCap, Wallet, CreditCard, Mail, FileText, Settings, Sparkles, ShieldCheck } from "lucide-react";
+import { LayoutDashboard, Users, GraduationCap, Wallet, CreditCard, Mail, FileText, Settings, ShieldCheck } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
 import { useEffect } from "react";
 
@@ -28,16 +28,16 @@ export function AdminLayout() {
   const isActive = (to: string, exact?: boolean) => (exact ? path === to : path.startsWith(to));
 
   return (
-    <div className="flex min-h-screen bg-background">
-      <aside className="hidden w-64 flex-col border-r border-border lg:flex" style={{ backgroundColor: "#060C18" }}>
-        <Link to="/" className="flex items-center justify-between gap-2 border-b border-border px-5 py-4">
+    <div className="flex min-h-screen bg-secondary">
+      <aside className="hidden w-64 flex-col border-r border-white/10 bg-olive lg:flex">
+        <Link to="/" className="flex items-center justify-between gap-2 border-b border-white/10 px-5 py-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg gradient-cobalt">
-              <Sparkles className="h-4 w-4 text-white" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber">
+              <span className="text-xs font-bold text-forest">LB</span>
             </div>
-            <span className="font-bold">LB Digital</span>
+            <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
           </div>
-          <span className="rounded-full bg-destructive/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-destructive">Admin</span>
+          <span className="rounded-full bg-amber/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber">Admin</span>
         </Link>
 
         <nav className="flex-1 space-y-1 p-3">
@@ -45,8 +45,8 @@ export function AdminLayout() {
             <Link
               key={to}
               to={to}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                isActive(to, exact) ? "gradient-cobalt text-white shadow-glow" : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                isActive(to, exact) ? "bg-white/15 text-white" : "text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
               <Icon className="h-4 w-4" />
@@ -55,15 +55,15 @@ export function AdminLayout() {
           ))}
         </nav>
 
-        <div className="border-t border-border p-3 text-xs text-muted-foreground">
-          <div className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-green" /> Mode admin actif</div>
+        <div className="border-t border-white/10 p-3 text-xs text-white/50">
+          <div className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-amber" /> Mode admin actif</div>
         </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-16 items-center justify-between border-b border-border bg-navy/60 px-6 backdrop-blur-xl lg:px-8">
-          <h1 className="text-lg font-semibold">Panneau d'administration</h1>
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-destructive/20 text-sm font-bold text-destructive">A</div>
+        <header className="flex h-16 items-center justify-between border-b border-border bg-white px-6 lg:px-8">
+          <h1 className="text-lg font-semibold text-foreground">Panneau d'administration</h1>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-forest text-sm font-bold text-white">A</div>
         </header>
         <main className="flex-1 overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8">
           <Outlet />

@@ -31,26 +31,26 @@ function DetailPage() {
       <section className="bg-hero-radial py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <nav className="mb-6 flex items-center gap-1 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-foreground">Accueil</Link>
+            <Link to="/" className="hover:text-forest">Accueil</Link>
             <ChevronRight className="h-4 w-4" />
             <span className="text-foreground">Fonctionnement complet</span>
           </nav>
-          <h1 className="text-4xl font-bold sm:text-6xl">Le fonctionnement complet de <span className="text-gradient">LB Digital</span></h1>
+          <h1 className="text-4xl font-bold text-foreground sm:text-6xl">Le fonctionnement complet de <span className="text-accent-serif">LB Digital</span></h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">Apprends comment la plateforme te forme, te paie et grandit avec toi.</p>
         </div>
       </section>
 
       {/* Vision & Mission */}
-      <section className="border-t border-border py-20">
+      <section className="py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 md:grid-cols-2">
           <div>
-            <p className="text-sm uppercase tracking-wider text-sky">Vision</p>
-            <h2 className="mt-2 text-3xl font-bold">Démocratiser l'IA en Afrique francophone</h2>
+            <p className="text-sm uppercase tracking-wider text-amber font-semibold">Vision</p>
+            <h2 className="mt-2 text-3xl font-bold text-foreground">Démocratiser l'IA en Afrique francophone</h2>
             <p className="mt-4 text-muted-foreground">Chaque jeune africain devrait pouvoir maîtriser les outils IA et générer un revenu en ligne, depuis un simple téléphone.</p>
           </div>
           <div>
-            <p className="text-sm uppercase tracking-wider text-sky">Mission</p>
-            <h2 className="mt-2 text-3xl font-bold">Apprendre & Gagner en parallèle</h2>
+            <p className="text-sm uppercase tracking-wider text-amber font-semibold">Mission</p>
+            <h2 className="mt-2 text-3xl font-bold text-foreground">Apprendre & Gagner en parallèle</h2>
             <p className="mt-4 text-muted-foreground">Formations courtes et actionnables + système d'affiliation transparent qui paie chaque vendredi.</p>
           </div>
           {[
@@ -59,8 +59,8 @@ function DetailPage() {
             { t: "Communauté soudée", d: "Telegram + WhatsApp VIP pour s'entraider chaque jour." },
             { t: "Made for Africa", d: "Pensé pour MTN, Orange Money, FCFA, faible bande passante." },
           ].map((c) => (
-            <div key={c.t} className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="font-semibold">{c.t}</h3>
+            <div key={c.t} className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+              <h3 className="font-semibold text-foreground">{c.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{c.d}</p>
             </div>
           ))}
@@ -68,19 +68,19 @@ function DetailPage() {
       </section>
 
       {/* Plans */}
-      <section className="border-t border-border bg-navy2/30 py-20">
+      <section className="bg-secondary py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">Les 3 offres en détail</h2>
+          <h2 className="text-3xl font-bold text-foreground">Les 3 offres en détail</h2>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {(["starter","club_ia","pro_creator"] as const).map((id) => {
               const p = plans[id];
               return (
-                <div key={id} className={`rounded-2xl border bg-card p-6 ${p.populaire ? "border-cobalt" : "border-border"}`}>
-                  <h3 className="text-lg font-bold">{p.nom}</h3>
-                  <p className="mt-4 font-serif text-4xl font-bold">{p.prixMensuel === 0 ? "Gratuit" : `${p.prixMensuel.toLocaleString("fr-FR")} FCFA`}</p>
-                  <p className="text-sm text-teal">Commission {p.commission}%</p>
+                <div key={id} className={`rounded-2xl border bg-white p-6 shadow-soft ${p.populaire ? "border-forest ring-2 ring-forest/10" : "border-border"}`}>
+                  <h3 className="text-lg font-bold text-foreground">{p.nom}</h3>
+                  <p className="mt-4 text-4xl font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>{p.prixMensuel === 0 ? "Gratuit" : `${p.prixMensuel.toLocaleString("fr-FR")} FCFA`}</p>
+                  <p className="text-sm text-amber font-medium">Commission {p.commission}%</p>
                   <ul className="mt-5 space-y-2 text-sm">
-                    {p.features.map((f) => <li key={f} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green" />{f}</li>)}
+                    {p.features.map((f) => <li key={f} className="flex gap-2 text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-forest" />{f}</li>)}
                   </ul>
                 </div>
               );
@@ -90,26 +90,26 @@ function DetailPage() {
       </section>
 
       {/* Revenue simulation */}
-      <section className="border-t border-border py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">Simulation de revenus</h2>
+          <h2 className="text-3xl font-bold text-foreground">Simulation de revenus</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="font-semibold">Club IA (25%)</h3>
+            <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+              <h3 className="font-semibold text-foreground">Club IA (25%)</h3>
               <p className="mt-2 text-sm text-muted-foreground">25% de 3 500 FCFA = 875 FCFA / filleul / mois</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li>10 filleuls → <strong>8 750 FCFA</strong>/mois</li>
-                <li>50 filleuls → <strong>43 750 FCFA</strong>/mois</li>
-                <li>100 filleuls → <strong>87 500 FCFA</strong>/mois</li>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>10 filleuls → <strong className="text-foreground">8 750 FCFA</strong>/mois</li>
+                <li>50 filleuls → <strong className="text-foreground">43 750 FCFA</strong>/mois</li>
+                <li>100 filleuls → <strong className="text-foreground">87 500 FCFA</strong>/mois</li>
               </ul>
             </div>
-            <div className="rounded-2xl border border-cobalt bg-card p-6 shadow-glow">
-              <h3 className="font-semibold">Pro Creator (40%)</h3>
+            <div className="rounded-2xl border border-forest bg-forest/5 p-6 shadow-glow">
+              <h3 className="font-semibold text-foreground">Pro Creator (40%)</h3>
               <p className="mt-2 text-sm text-muted-foreground">40% de 8 500 FCFA = 3 400 FCFA / filleul / mois</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li>10 filleuls → <strong>34 000 FCFA</strong>/mois</li>
-                <li>50 filleuls → <strong>170 000 FCFA</strong>/mois</li>
-                <li>100 filleuls → <strong>340 000 FCFA</strong>/mois</li>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>10 filleuls → <strong className="text-foreground">34 000 FCFA</strong>/mois</li>
+                <li>50 filleuls → <strong className="text-foreground">170 000 FCFA</strong>/mois</li>
+                <li>100 filleuls → <strong className="text-foreground">340 000 FCFA</strong>/mois</li>
               </ul>
             </div>
           </div>
@@ -117,9 +117,9 @@ function DetailPage() {
       </section>
 
       {/* Paiements détaillés */}
-      <section className="border-t border-border bg-navy2/30 py-20">
+      <section className="bg-secondary py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">Moyens de paiement supportés</h2>
+          <h2 className="text-3xl font-bold text-foreground">Moyens de paiement supportés</h2>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {[
               { n: "Wero", d: "Virement instantané depuis ton app bancaire. France, Belgique, Allemagne, Espagne, Portugal." },
@@ -127,8 +127,8 @@ function DetailPage() {
               { n: "MTN Mobile Money", d: "Cameroun, Côte d'Ivoire, Bénin, Congo, Ghana. Push sur ton téléphone, PIN, confirmation." },
               { n: "Orange Money", d: "Côte d'Ivoire, Sénégal, Cameroun, Mali, Guinée. Confirme depuis ton menu Orange." },
             ].map((p) => (
-              <div key={p.n} className="rounded-2xl border border-border bg-card p-6">
-                <h3 className="font-semibold">{p.n}</h3>
+              <div key={p.n} className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+                <h3 className="font-semibold text-foreground">{p.n}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
               </div>
             ))}
@@ -137,15 +137,15 @@ function DetailPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold text-center">Questions fréquentes</h2>
+          <h2 className="text-3xl font-bold text-foreground text-center">Questions fréquentes</h2>
           <div className="mt-8 space-y-2">
             {faqs.map((f, i) => (
-              <div key={i} className="rounded-2xl border border-border bg-card">
+              <div key={i} className="rounded-2xl border border-border bg-white shadow-soft">
                 <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between p-5 text-left">
-                  <span className="font-semibold">{f.q}</span>
-                  <ChevronRight className={`h-5 w-5 transition-transform ${open === i ? "rotate-90" : ""}`} />
+                  <span className="font-semibold text-foreground">{f.q}</span>
+                  <ChevronRight className={`h-5 w-5 text-muted-foreground transition-transform ${open === i ? "rotate-90" : ""}`} />
                 </button>
                 {open === i && <p className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</p>}
               </div>
@@ -155,10 +155,10 @@ function DetailPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-border bg-hero-radial py-20">
+      <section className="bg-forest py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-          <h2 className="text-3xl font-bold">Prêt à commencer ?</h2>
-          <Link to="/auth/register" className="mt-6 inline-flex items-center gap-2 rounded-full gradient-cobalt px-7 py-4 font-semibold text-white shadow-glow">
+          <h2 className="text-3xl font-bold text-white">Prêt à commencer ?</h2>
+          <Link to="/auth/register" className="mt-6 inline-flex items-center gap-2 rounded-full gradient-amber px-7 py-4 font-semibold text-forest shadow-glow transition-transform hover:scale-[1.02]">
             Créer mon compte gratuit <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

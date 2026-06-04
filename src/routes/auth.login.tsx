@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
 import { useAppStore } from "@/store/appStore";
-import { Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/auth/login")({
   head: () => ({ meta: [{ title: "Connexion · LB Digital" }] }),
@@ -22,12 +21,12 @@ function LoginPage() {
     <PublicLayout>
       <section className="bg-hero-radial py-20">
         <div className="mx-auto max-w-md px-4 sm:px-6">
-          <div className="rounded-3xl border border-border bg-card p-8">
+          <div className="rounded-3xl border border-border bg-white p-8 shadow-soft">
             <div className="flex flex-col items-center text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl gradient-cobalt shadow-glow">
-                <Sparkles className="h-6 w-6 text-white" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest">
+                <span className="text-lg font-bold text-white">LB</span>
               </div>
-              <h1 className="mt-4 text-2xl font-bold">Bon retour</h1>
+              <h1 className="mt-4 text-2xl font-bold text-foreground">Bon retour</h1>
               <p className="mt-1 text-sm text-muted-foreground">Connecte-toi à ton espace LB Digital.</p>
             </div>
             <form onSubmit={submit} className="mt-6 space-y-4">
@@ -35,11 +34,11 @@ function LoginPage() {
               <Field label="Mot de passe" type="password" defaultValue="password" />
               <div className="flex items-center justify-between text-xs">
                 <label className="flex items-center gap-2 text-muted-foreground"><input type="checkbox" /> Se souvenir</label>
-                <Link to="/auth/forgot-password" className="text-sky">Mot de passe oublié ?</Link>
+                <Link to="/auth/forgot-password" className="text-forest font-medium">Mot de passe oublié ?</Link>
               </div>
-              <button type="submit" className="w-full rounded-full gradient-cobalt px-6 py-3 text-sm font-semibold text-white shadow-glow">Se connecter</button>
+              <button type="submit" className="w-full rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]">Se connecter</button>
               <p className="text-center text-xs text-muted-foreground">
-                Pas encore inscrit ? <Link to="/auth/register" className="text-sky font-semibold">Créer un compte</Link>
+                Pas encore inscrit ? <Link to="/auth/register" className="text-forest font-semibold">Créer un compte</Link>
               </p>
             </form>
           </div>
@@ -53,7 +52,7 @@ function Field({ label, ...rest }: { label: string } & React.InputHTMLAttributes
   return (
     <div>
       <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</label>
-      <input {...rest} className="mt-1 w-full rounded-lg border border-border bg-secondary px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-cobalt/40" />
+      <input {...rest} className="mt-1 w-full rounded-xl border border-border bg-secondary px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-forest/20" />
     </div>
   );
 }

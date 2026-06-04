@@ -1,5 +1,5 @@
 import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
-import { Home, GraduationCap, Wallet, Users, CreditCard, Award, User, Sparkles, LogOut } from "lucide-react";
+import { Home, GraduationCap, Wallet, Users, CreditCard, Award, User, LogOut } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
 import { useEffect } from "react";
 
@@ -29,14 +29,14 @@ export function MemberLayout() {
   const isActive = (to: string, exact?: boolean) => (exact ? path === to : path.startsWith(to));
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-secondary">
       {/* Sidebar desktop */}
-      <aside className="hidden w-60 flex-col border-r border-border bg-sidebar lg:flex">
-        <Link to="/" className="flex items-center gap-2 border-b border-border px-5 py-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg gradient-cobalt">
-            <Sparkles className="h-4 w-4 text-white" />
+      <aside className="hidden w-60 flex-col border-r border-border bg-forest lg:flex">
+        <Link to="/" className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber">
+            <span className="text-xs font-bold text-forest">LB</span>
           </div>
-          <span className="font-bold">LB Digital</span>
+          <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
         </Link>
 
         <nav className="flex-1 space-y-1 p-3">
@@ -44,8 +44,8 @@ export function MemberLayout() {
             <Link
               key={to}
               to={to}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                isActive(to, exact) ? "gradient-cobalt text-white shadow-glow" : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground"
+              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                isActive(to, exact) ? "bg-white/15 text-white" : "text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
               <Icon className="h-4 w-4" />
@@ -54,16 +54,16 @@ export function MemberLayout() {
           ))}
         </nav>
 
-        <div className="border-t border-border p-3">
-          <div className="flex items-center gap-3 rounded-lg bg-sidebar-accent p-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full gradient-cobalt text-sm font-bold text-white">
+        <div className="border-t border-white/10 p-3">
+          <div className="flex items-center gap-3 rounded-xl bg-white/10 p-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-forest">
               {user.prenom[0]}{user.nom[0]}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold">{user.prenom}</p>
-              <p className="text-[10px] uppercase tracking-wider text-sky">{user.plan.replace("_", " ")}</p>
+              <p className="truncate text-sm font-semibold text-white">{user.prenom}</p>
+              <p className="text-[10px] uppercase tracking-wider text-amber">{user.plan.replace("_", " ")}</p>
             </div>
-            <button onClick={logout} className="text-muted-foreground hover:text-foreground"><LogOut className="h-4 w-4" /></button>
+            <button onClick={logout} className="text-white/50 hover:text-white"><LogOut className="h-4 w-4" /></button>
           </div>
         </div>
       </aside>
@@ -76,13 +76,13 @@ export function MemberLayout() {
       </div>
 
       {/* Bottom nav mobile */}
-      <nav className="fixed bottom-0 left-0 right-0 z-30 flex justify-around border-t border-border bg-sidebar lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 flex justify-around border-t border-border bg-white lg:hidden">
         {items.slice(0, 5).map(({ to, label, Icon, exact }) => (
           <Link
             key={to}
             to={to}
             className={`flex flex-1 flex-col items-center gap-1 py-2.5 text-[10px] ${
-              isActive(to, exact) ? "text-sky" : "text-muted-foreground"
+              isActive(to, exact) ? "text-forest font-semibold" : "text-muted-foreground"
             }`}
           >
             <Icon className="h-5 w-5" />

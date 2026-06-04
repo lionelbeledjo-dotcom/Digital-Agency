@@ -47,7 +47,7 @@ function FaqPage() {
     <PublicLayout>
       <section className="bg-hero-radial py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-bold sm:text-5xl">Foire aux questions</h1>
+          <h1 className="text-4xl font-bold text-foreground sm:text-5xl">Foire aux questions</h1>
           <p className="mt-3 text-muted-foreground">Tout ce que tu dois savoir avant de te lancer.</p>
         </div>
       </section>
@@ -55,16 +55,16 @@ function FaqPage() {
         <div className="mx-auto max-w-3xl space-y-10 px-4 sm:px-6">
           {sections.map((s, i) => (
             <div key={s.titre}>
-              <h2 className="text-xl font-bold text-sky">{s.titre}</h2>
+              <h2 className="text-xl font-bold text-forest">{s.titre}</h2>
               <div className="mt-4 space-y-2">
                 {s.qs.map((qa, j) => {
                   const k = `s${i}q${j}`;
                   const isOpen = open === k;
                   return (
-                    <div key={k} className="rounded-2xl border border-border bg-card">
+                    <div key={k} className="rounded-2xl border border-border bg-white shadow-soft">
                       <button onClick={() => setOpen(isOpen ? null : k)} className="flex w-full items-center justify-between p-4 text-left">
-                        <span className="font-medium">{qa.q}</span>
-                        <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                        <span className="font-medium text-foreground">{qa.q}</span>
+                        <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
                       </button>
                       {isOpen && <p className="px-4 pb-4 text-sm text-muted-foreground">{qa.a}</p>}
                     </div>

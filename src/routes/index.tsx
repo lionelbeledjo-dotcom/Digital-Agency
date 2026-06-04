@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
 import { PublicLayout } from "@/components/public-layout";
-import { ArrowRight, Sparkles, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, Quote, ChevronDown } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, ChevronDown, Sparkles, Play } from "lucide-react";
 import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -14,7 +14,9 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const flags = ["🇨🇮","🇸🇳","🇨🇲","🇲🇱","🇧🇯","🇹🇬","🇧🇫","🇳🇪","🇬🇳","🇨🇬","🇬🇦","🇫🇷"];
+const services = [
+  "App Design", "Website Design", "Dashboard", "Wireframing", "Marketing Digital", "IA & Automatisation",
+];
 
 const steps = [
   { n: "01", t: "Inscription gratuite", d: "Accès immédiat aux formations et à ton lien affilié.", Icon: Sparkles },
@@ -43,42 +45,39 @@ function HomePage() {
     <PublicLayout>
       {/* HERO */}
       <section className="relative overflow-hidden bg-hero-radial">
-        <div className="absolute inset-0 bg-dots opacity-30" />
+        <div className="absolute inset-0 bg-dots opacity-40" />
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mx-auto flex flex-wrap items-center justify-center gap-1 text-lg">
-              {flags.map((f, i) => <span key={i} className="animate-float" style={{ animationDelay: `${i * 0.1}s` }}>{f}</span>)}
+            <div className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-forest/5 px-4 py-1.5 text-xs font-medium text-forest">
+              <span className="h-2 w-2 rounded-full bg-forest animate-pulse-dot" />
+              Plateforme Apprends & Gagne · 12 pays
             </div>
 
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-sky/30 bg-sky/10 px-4 py-1.5 text-xs font-medium text-sky">
-              <span className="h-2 w-2 rounded-full bg-green animate-pulse-dot" />
-              Plateforme Apprends & Gagne · 12 pays d'Afrique francophone
-            </div>
-
-            <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
-              Maîtrise l'<span className="text-gradient">IA</span>.
+            <h1 className="mt-8 text-4xl font-bold leading-[1.08] text-foreground sm:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
+              Maîtrise l'<span className="text-accent-serif">IA</span>.
               <br /> Partage la connaissance.
-              <br /> Génère des <span className="text-gradient">revenus réels</span>.
+              <br /> Génère des <span className="text-accent-serif">revenus réels</span>.
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
               LB Digital te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
             </p>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-cobalt px-7 py-4 text-base font-semibold text-white shadow-glow">
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]">
                 Démarrer gratuitement
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link to="/detail" className="rounded-full border border-border bg-card/40 px-7 py-4 text-base font-semibold backdrop-blur hover:bg-card">
-                Découvrir le programme →
+              <Link to="/detail" className="inline-flex items-center gap-2 rounded-full border-2 border-forest/20 bg-white px-7 py-4 text-base font-semibold text-forest hover:border-forest/40 transition-colors">
+                <Play className="h-4 w-4" />
+                Découvrir le programme
               </Link>
             </div>
 
             <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
               {["0 FCFA pour commencer","Aucun investissement","Paiement chaque vendredi","100% en français"].map((b) => (
                 <span key={b} className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-green" /> {b}
+                  <CheckCircle2 className="h-4 w-4 text-forest" /> {b}
                 </span>
               ))}
             </div>
@@ -88,12 +87,12 @@ function HomePage() {
           <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {[
               { v: "0 FCFA", l: "Pour commencer" },
-              { v: "+500K FCFA", l: "Par mois possibles" },
+              { v: "+500K", l: "FCFA/mois possibles" },
               { v: "12 pays", l: "Couverts" },
               { v: "Vendredi", l: "Paiement Mobile Money" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-border bg-card/60 p-6 text-center backdrop-blur">
-                <p className="font-serif text-3xl font-bold text-gradient sm:text-4xl">{s.v}</p>
+              <div key={s.l} className="rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
+                <p className="text-3xl font-bold text-forest sm:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>{s.v}</p>
                 <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.l}</p>
               </div>
             ))}
@@ -101,32 +100,43 @@ function HomePage() {
         </div>
       </section>
 
+      {/* TICKER BAND */}
+      <section className="overflow-hidden bg-forest py-4">
+        <div className="animate-scroll-x flex whitespace-nowrap">
+          {[...services, ...services].map((s, i) => (
+            <span key={i} className="mx-6 inline-flex items-center gap-3 text-sm font-medium text-white">
+              <span className="text-amber">✦</span> {s}
+            </span>
+          ))}
+        </div>
+      </section>
+
       {/* COMMENT ÇA MARCHE */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-sky">Le système</p>
-            <h2 className="mt-2 text-4xl font-bold sm:text-5xl">Comment ça marche</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber">Le système</p>
+            <h2 className="mt-2 text-4xl font-bold text-foreground sm:text-5xl">Comment ça marche</h2>
             <p className="mt-4 text-muted-foreground">5 étapes simples, du compte gratuit à ton premier virement vendredi.</p>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
             {steps.map((s) => (
-              <div key={s.n} className="card-glow rounded-2xl border border-border bg-card p-6">
+              <div key={s.n} className="card-glow rounded-2xl border border-border bg-white p-6 shadow-soft">
                 <div className="flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg gradient-cobalt">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest">
                     <s.Icon className="h-5 w-5 text-white" />
                   </div>
-                  <span className="font-serif text-3xl text-muted-foreground/40">{s.n}</span>
+                  <span className="text-3xl font-bold text-border" style={{ fontFamily: "var(--font-heading)" }}>{s.n}</span>
                 </div>
-                <h3 className="mt-5 font-semibold">{s.t}</h3>
+                <h3 className="mt-5 font-semibold text-foreground">{s.t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-10 text-center">
-            <Link to="/detail" className="inline-flex items-center gap-2 text-sm font-semibold text-sky hover:text-foreground">
+            <Link to="/detail" className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-forest-light transition-colors">
               Voir le détail complet <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -140,20 +150,20 @@ function HomePage() {
       <TarifsPreview />
 
       {/* PAIEMENTS */}
-      <section className="border-t border-border py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
-          <h2 className="text-3xl font-bold sm:text-4xl">Paie & sois payé partout</h2>
+          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">Paie & sois payé partout</h2>
           <p className="mt-3 text-muted-foreground">Paiement sécurisé · Résiliation libre · Remboursement 7 jours</p>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {[
-              { name: "Wero", c: "from-cobalt to-sky" },
-              { name: "PayPal", c: "from-sky to-teal" },
-              { name: "MTN Mobile Money", c: "from-gold to-cobalt" },
-              { name: "Orange Money", c: "from-gold to-destructive" },
+              { name: "Wero", c: "from-forest to-forest-light" },
+              { name: "PayPal", c: "from-forest-light to-olive" },
+              { name: "MTN Mobile Money", c: "from-amber to-amber-light" },
+              { name: "Orange Money", c: "from-amber-light to-amber" },
             ].map((p) => (
-              <div key={p.name} className={`rounded-2xl bg-gradient-to-br ${p.c} p-[1px]`}>
-                <div className="rounded-2xl bg-card p-5 text-center">
-                  <p className="text-sm font-semibold">{p.name}</p>
+              <div key={p.name} className={`rounded-2xl bg-gradient-to-br ${p.c} p-[2px]`}>
+                <div className="rounded-2xl bg-white p-5 text-center">
+                  <p className="text-sm font-semibold text-foreground">{p.name}</p>
                 </div>
               </div>
             ))}
@@ -162,27 +172,26 @@ function HomePage() {
       </section>
 
       {/* TÉMOIGNAGES */}
-      <section className="border-t border-border py-24">
+      <section className="bg-cream py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-sky">Communauté</p>
-            <h2 className="mt-2 text-4xl font-bold">Ils gagnent déjà chaque semaine</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber">Communauté</p>
+            <h2 className="mt-2 text-4xl font-bold text-foreground">Ils gagnent déjà chaque semaine</h2>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
-              <div key={t.name} className="card-glow rounded-2xl border border-border bg-card p-6">
-                <Quote className="h-6 w-6 text-sky/60" />
-                <p className="mt-4 text-sm leading-relaxed">{t.text}</p>
+              <div key={t.name} className="card-glow rounded-2xl border border-border bg-white p-6 shadow-soft">
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-amber text-amber" />)}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t.text}</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-cobalt text-sm font-bold text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-sm font-bold text-white">
                     {t.name[0]}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold">{t.name}</p>
+                    <p className="text-sm font-semibold text-foreground">{t.name}</p>
                     <p className="text-xs text-muted-foreground">{t.city}</p>
-                  </div>
-                  <div className="ml-auto flex gap-0.5">
-                    {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />)}
                   </div>
                 </div>
               </div>
@@ -195,13 +204,13 @@ function HomePage() {
       <FaqSection />
 
       {/* CTA FINAL */}
-      <section className="relative overflow-hidden border-t border-border py-24">
-        <div className="absolute inset-0 bg-hero-radial opacity-60" />
+      <section className="relative overflow-hidden bg-forest py-24">
+        <div className="absolute inset-0 opacity-10 bg-dots" />
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <Zap className="mx-auto h-10 w-10 text-gold" />
-          <h2 className="mt-6 text-4xl font-bold sm:text-5xl">Tu es à <span className="text-gradient">0 FCFA</span> de ton premier revenu digital</h2>
-          <p className="mt-4 text-muted-foreground">Rejoins LB Digital aujourd'hui. Ton premier virement peut tomber dès vendredi prochain.</p>
-          <Link to="/auth/register" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-cobalt px-8 py-4 text-base font-semibold text-white shadow-glow">
+          <Zap className="mx-auto h-10 w-10 text-amber" />
+          <h2 className="mt-6 text-4xl font-bold text-white sm:text-5xl">Tu es à <span className="text-amber">0 FCFA</span> de ton premier revenu digital</h2>
+          <p className="mt-4 text-white/70">Rejoins LB Digital aujourd'hui. Ton premier virement peut tomber dès vendredi prochain.</p>
+          <Link to="/auth/register" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-amber px-8 py-4 text-base font-semibold text-forest shadow-glow transition-transform hover:scale-[1.02]">
             Rejoindre LB Digital gratuitement
             <ArrowRight className="h-4 w-4" />
           </Link>
@@ -215,30 +224,30 @@ function FormationsPreview() {
   const allFormations = useAppStore((s) => s.formations);
   const formations = useMemo(() => allFormations.slice(0, 6), [allFormations]);
   return (
-    <section className="border-t border-border py-24">
+    <section className="bg-secondary py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-sky">Catalogue</p>
-            <h2 className="mt-2 text-4xl font-bold">Formations qui rapportent</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber">Catalogue</p>
+            <h2 className="mt-2 text-4xl font-bold text-foreground">Formations qui rapportent</h2>
           </div>
-          <Link to="/formations" className="text-sm font-semibold text-sky">Voir toutes les formations →</Link>
+          <Link to="/formations" className="text-sm font-semibold text-forest hover:text-forest-light transition-colors">Voir toutes les formations →</Link>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {formations.map((f) => (
-            <Link key={f.id} to="/formations/$id" params={{ id: f.id }} className="card-glow group rounded-2xl border border-border bg-card overflow-hidden">
-              <div className={`flex h-32 items-center justify-center bg-gradient-to-br ${f.couleur} text-5xl`}>{f.emoji}</div>
+            <Link key={f.id} to="/formations/$id" params={{ id: f.id }} className="card-glow group rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
+              <div className="flex h-32 items-center justify-center bg-forest/5 text-5xl">{f.emoji}</div>
               <div className="p-5">
                 <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-wider">
-                  <span className="rounded-full bg-cobalt/15 px-2 py-0.5 text-cobalt">{f.categorie}</span>
-                  <span className="rounded-full bg-teal/15 px-2 py-0.5 text-teal">{f.niveau}</span>
-                  <span className="rounded-full bg-gold/15 px-2 py-0.5 text-gold">{f.acces === "starter" ? "Gratuit" : f.acces === "club_ia" ? "Club IA" : "Pro"}</span>
+                  <span className="rounded-full bg-forest/10 px-2 py-0.5 text-forest font-medium">{f.categorie}</span>
+                  <span className="rounded-full bg-amber/10 px-2 py-0.5 text-amber font-medium">{f.niveau}</span>
+                  <span className="rounded-full bg-secondary px-2 py-0.5 text-muted-foreground">{f.acces === "starter" ? "Gratuit" : f.acces === "club_ia" ? "Club IA" : "Pro"}</span>
                 </div>
-                <h3 className="mt-3 font-semibold leading-snug">{f.titre}</h3>
+                <h3 className="mt-3 font-semibold leading-snug text-foreground group-hover:text-forest transition-colors">{f.titre}</h3>
                 <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
                   <span>{f.modules} modules · {f.duree}</span>
-                  <span className="flex items-center gap-1"><Star className="h-3 w-3 fill-gold text-gold" /> {f.note}</span>
+                  <span className="flex items-center gap-1"><Star className="h-3 w-3 fill-amber text-amber" /> {f.note}</span>
                 </div>
               </div>
             </Link>
@@ -258,34 +267,34 @@ function TarifsPreview() {
   ];
 
   return (
-    <section className="border-t border-border bg-navy2/30 py-24">
+    <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-sky">Tarifs</p>
-          <h2 className="mt-2 text-4xl font-bold">3 plans, 1 seul objectif : tes revenus</h2>
+          <p className="text-sm font-semibold uppercase tracking-wider text-amber">Tarifs</p>
+          <h2 className="mt-2 text-4xl font-bold text-foreground">3 plans, 1 seul objectif : tes revenus</h2>
         </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {planList.map((p) => {
             const isPop = p.populaire;
             return (
-              <div key={p.id} className={`relative rounded-3xl border bg-card p-7 ${isPop ? "border-cobalt shadow-glow" : "border-border"}`}>
+              <div key={p.id} className={`relative rounded-3xl border bg-white p-7 shadow-soft ${isPop ? "border-forest ring-2 ring-forest/10" : "border-border"}`}>
                 {isPop && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full gradient-cobalt px-4 py-1 text-xs font-bold text-white">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full gradient-primary px-4 py-1 text-xs font-bold text-white">
                     ⚡ Populaire
                   </div>
                 )}
-                <h3 className="text-lg font-bold">{p.nom}</h3>
-                <p className="mt-4 font-serif text-5xl font-bold">
-                  {p.prixMensuel === 0 ? "Gratuit" : <>{p.prixMensuel.toLocaleString("fr-FR")} <span className="text-base font-sans text-muted-foreground">FCFA/mois</span></>}
+                <h3 className="text-lg font-bold text-foreground">{p.nom}</h3>
+                <p className="mt-4 text-5xl font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>
+                  {p.prixMensuel === 0 ? "Gratuit" : <>{p.prixMensuel.toLocaleString("fr-FR")} <span className="text-base font-normal text-muted-foreground">FCFA/mois</span></>}
                 </p>
-                <p className="mt-2 text-sm text-teal">Commission affilié : {p.commission}%</p>
+                <p className="mt-2 text-sm text-amber font-medium">Commission affilié : {p.commission}%</p>
                 <ul className="mt-6 space-y-2.5">
                   {p.features.map((feat) => (
-                    <li key={feat} className="flex gap-2 text-sm"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green" /> {feat}</li>
+                    <li key={feat} className="flex gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-forest" /> {feat}</li>
                   ))}
                 </ul>
-                <Link to="/paiement" hash={p.anchor.slice(1)} className={`mt-7 block rounded-full px-5 py-3 text-center text-sm font-semibold ${isPop ? "gradient-cobalt text-white shadow-glow" : "border border-border hover:bg-secondary"}`}>
+                <Link to="/paiement" hash={p.anchor.slice(1)} className={`mt-7 block rounded-full px-5 py-3 text-center text-sm font-semibold transition-all ${isPop ? "gradient-primary text-white shadow-glow hover:scale-[1.02]" : "border-2 border-forest/20 text-forest hover:border-forest/40"}`}>
                   {p.cta}
                 </Link>
               </div>
@@ -294,7 +303,7 @@ function TarifsPreview() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link to="/tarifs" className="text-sm font-semibold text-sky">Comparer tous les plans →</Link>
+          <Link to="/tarifs" className="text-sm font-semibold text-forest">Comparer tous les plans →</Link>
         </div>
       </div>
     </section>
@@ -304,25 +313,25 @@ function TarifsPreview() {
 function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="border-t border-border py-24">
+    <section className="py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-sky">FAQ</p>
-          <h2 className="mt-2 text-4xl font-bold">Questions fréquentes</h2>
+          <p className="text-sm font-semibold uppercase tracking-wider text-amber">FAQ</p>
+          <h2 className="mt-2 text-4xl font-bold text-foreground">Questions fréquentes</h2>
         </div>
-        <div className="mt-10 space-y-2">
+        <div className="mt-10 space-y-3">
           {faqs.map((f, i) => (
-            <div key={i} className="rounded-2xl border border-border bg-card">
+            <div key={i} className="rounded-2xl border border-border bg-white shadow-soft">
               <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between p-5 text-left">
-                <span className="font-semibold">{f.q}</span>
-                <ChevronDown className={`h-5 w-5 shrink-0 transition-transform ${open === i ? "rotate-180" : ""}`} />
+                <span className="font-semibold text-foreground">{f.q}</span>
+                <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open === i ? "rotate-180" : ""}`} />
               </button>
               {open === i && <p className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</p>}
             </div>
           ))}
         </div>
         <div className="mt-8 text-center">
-          <Link to="/faq" className="text-sm font-semibold text-sky">Voir toutes les questions →</Link>
+          <Link to="/faq" className="text-sm font-semibold text-forest">Voir toutes les questions →</Link>
         </div>
       </div>
     </section>
