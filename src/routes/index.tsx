@@ -247,10 +247,11 @@ function FormationsPreview() {
           <Link to="/formations" className="text-sm font-semibold text-forest hover:text-forest-light transition-colors">Voir toutes les formations →</Link>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 stagger reveal">
           {formations.map((f) => (
-            <Link key={f.id} to="/formations/$id" params={{ id: f.id }} className="card-glow group rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
-              <div className="flex h-32 items-center justify-center bg-forest/5 text-5xl">{f.emoji}</div>
+            <Link key={f.id} to="/formations/$id" params={{ id: f.id }} className="card-glow hover-tilt group rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
+              <div className="flex h-32 items-center justify-center bg-forest/5 text-5xl transition-transform duration-300 group-hover:scale-110">{f.emoji}</div>
+
               <div className="p-5">
                 <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-wider">
                   <span className="rounded-full bg-forest/10 px-2 py-0.5 text-forest font-medium">{f.categorie}</span>
