@@ -30,7 +30,7 @@ function DashboardFormations() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-serif text-3xl font-bold">Mes formations</h1>
+        <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>Mes formations</h1>
         <p className="text-sm text-muted-foreground">Apprends à ton rythme. Décroche tes certificats.</p>
       </div>
 
@@ -38,7 +38,7 @@ function DashboardFormations() {
         {([
           ["en_cours","En cours"],["completes","Complétées"],["toutes","Toutes disponibles"],["verrouillees","Verrouillées"]
         ] as [Tab,string][]).map(([k,l]) => (
-          <button key={k} onClick={() => setTab(k)} className={`rounded-full border px-4 py-2 text-xs font-medium ${tab === k ? "border-cobalt bg-cobalt/20" : "border-border text-muted-foreground"}`}>{l}</button>
+          <button key={k} onClick={() => setTab(k)} className={`rounded-full border px-4 py-2 text-xs font-medium transition-colors ${tab === k ? "border-forest bg-forest/10 text-forest" : "border-border text-muted-foreground hover:border-forest/30"}`}>{l}</button>
         ))}
       </div>
 
@@ -48,28 +48,28 @@ function DashboardFormations() {
           const enCours = user.formationsEnCours.find((x) => x.id === f.id);
           const complet = user.formationsCompletes.includes(f.id);
           return (
-            <div key={f.id} className="card-glow rounded-2xl border border-border bg-card overflow-hidden">
-              <div className={`relative flex h-28 items-center justify-center bg-gradient-to-br ${f.couleur} text-5xl`}>
+            <div key={f.id} className="card-glow rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
+              <div className="relative flex h-28 items-center justify-center bg-forest/5 text-5xl">
                 {f.emoji}
-                {locked && <div className="absolute inset-0 flex items-center justify-center bg-navy/70 backdrop-blur-sm"><Lock className="h-6 w-6 text-white" /></div>}
+                {locked && <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm"><Lock className="h-6 w-6 text-muted-foreground" /></div>}
               </div>
               <div className="p-5">
-                <p className="font-semibold leading-snug">{f.titre}</p>
+                <p className="font-semibold leading-snug text-foreground">{f.titre}</p>
                 {enCours && (
                   <div className="mt-3">
                     <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-                      <div className="h-full gradient-cobalt" style={{ width: `${enCours.progression}%` }} />
+                      <div className="h-full gradient-primary rounded-full" style={{ width: `${enCours.progression}%` }} />
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">{enCours.progression}% terminé</p>
                   </div>
                 )}
-                {complet && <p className="mt-3 inline-flex items-center gap-1 text-xs text-green"><CheckCircle2 className="h-3 w-3" /> Complétée</p>}
+                {complet && <p className="mt-3 inline-flex items-center gap-1 text-xs text-forest font-medium"><CheckCircle2 className="h-3 w-3" /> Complétée</p>}
                 {locked ? (
-                  <Link to="/paiement" hash={f.acces === "club_ia" ? "club" : "pro"} className="mt-4 block rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-center text-xs font-semibold text-gold">
+                  <Link to="/paiement" hash={f.acces === "club_ia" ? "club" : "pro"} className="mt-4 block rounded-full border border-amber/40 bg-amber/10 px-4 py-2 text-center text-xs font-semibold text-amber">
                     Passer à {f.acces === "club_ia" ? "Club IA" : "Pro Creator"}
                   </Link>
                 ) : (
-                  <Link to="/dashboard/formation/$id" params={{ id: f.id }} className="mt-4 flex items-center justify-center gap-2 rounded-full gradient-cobalt px-4 py-2 text-xs font-semibold text-white">
+                  <Link to="/dashboard/formation/$id" params={{ id: f.id }} className="mt-4 flex items-center justify-center gap-2 rounded-full gradient-primary px-4 py-2 text-xs font-semibold text-white transition-transform hover:scale-[1.02]">
                     <Play className="h-3 w-3" /> {enCours ? "Continuer" : "Démarrer"}
                   </Link>
                 )}

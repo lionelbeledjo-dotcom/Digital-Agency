@@ -29,37 +29,37 @@ function CommissionsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-3xl font-bold">Commissions</h1>
+          <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>Commissions</h1>
           <p className="text-sm text-muted-foreground">L'historique complet de tes gains.</p>
         </div>
-        <button className="rounded-full border border-border px-4 py-2 text-sm flex items-center gap-2"><Download className="h-4 w-4" /> Export CSV</button>
+        <button className="rounded-full border border-border px-4 py-2 text-sm flex items-center gap-2 text-foreground hover:bg-secondary transition-colors"><Download className="h-4 w-4" /> Export CSV</button>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {kpis.map((k) => (
-          <div key={k.l} className="rounded-2xl border border-border bg-card p-5">
+          <div key={k.l} className="rounded-2xl border border-border bg-white p-5 shadow-soft">
             <p className="text-xs uppercase tracking-wider text-muted-foreground">{k.l}</p>
-            <p className="mt-1 font-serif text-2xl font-bold">{k.v}</p>
+            <p className="mt-1 text-2xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>{k.v}</p>
           </div>
         ))}
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-5">
-        <h3 className="font-semibold">Évolution sur 12 mois</h3>
+      <div className="rounded-2xl border border-border bg-white p-5 shadow-soft">
+        <h3 className="font-semibold text-foreground">Évolution sur 12 mois</h3>
         <div className="mt-4 h-64">
           <ResponsiveContainer>
             <LineChart data={lineData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-              <XAxis dataKey="mois" stroke="#888" fontSize={11} />
-              <YAxis stroke="#888" fontSize={11} />
-              <Tooltip contentStyle={{ background: "#0F1E38", border: "1px solid #1A56DB", borderRadius: 8 }} />
-              <Line type="monotone" dataKey="v" stroke="#0EA5E9" strokeWidth={3} dot={{ fill: "#3B82F6" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" />
+              <XAxis dataKey="mois" stroke="#6b6b6b" fontSize={11} />
+              <YAxis stroke="#6b6b6b" fontSize={11} />
+              <Tooltip contentStyle={{ background: "#fff", border: "1px solid #e5e5e0", borderRadius: 12 }} />
+              <Line type="monotone" dataKey="v" stroke="#1a5c3a" strokeWidth={3} dot={{ fill: "#c8a415" }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+      <div className="overflow-x-auto rounded-2xl border border-border bg-white shadow-soft">
         <table className="w-full text-sm">
           <thead className="border-b border-border">
             <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground">
@@ -70,11 +70,11 @@ function CommissionsPage() {
             {commissions.map((c) => (
               <tr key={c.id} className="border-b border-border/40">
                 <td className="px-4 py-3 text-muted-foreground">{c.date}</td>
-                <td className="px-4 py-3">{c.filleulEmail}</td>
-                <td className="px-4 py-3 capitalize">{c.plan.replace("_", " ")}</td>
-                <td className="px-4 py-3 font-semibold">{c.montant.toLocaleString("fr-FR")} F</td>
+                <td className="px-4 py-3 text-foreground">{c.filleulEmail}</td>
+                <td className="px-4 py-3 capitalize text-foreground">{c.plan.replace("_", " ")}</td>
+                <td className="px-4 py-3 font-semibold text-foreground">{c.montant.toLocaleString("fr-FR")} F</td>
                 <td className="px-4 py-3">
-                  <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase ${c.statut === "verse" ? "bg-green/20 text-green" : c.statut === "en_attente" ? "bg-gold/20 text-gold" : "bg-destructive/20 text-destructive"}`}>
+                  <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase ${c.statut === "verse" ? "bg-forest/10 text-forest" : c.statut === "en_attente" ? "bg-amber/15 text-amber" : "bg-destructive/10 text-destructive"}`}>
                     {c.statut === "verse" ? "Versé" : c.statut === "en_attente" ? "En attente" : "Annulé"}
                   </span>
                 </td>
