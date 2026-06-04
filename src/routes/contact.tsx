@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { MessageCircle, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title: "Contact · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Contact · Digital Agency" }] }),
   component: ContactPage,
 });
 

@@ -6,7 +6,7 @@ import { CheckCircle2, Lock } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/paiement")({
-  head: () => ({ meta: [{ title: "Paiement · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Paiement · Digital Agency" }] }),
   component: PaiementPage,
 });
 

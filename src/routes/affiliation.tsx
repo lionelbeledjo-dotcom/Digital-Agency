@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { useAppStore } from "@/store/appStore";
 
 export const Route = createFileRoute("/affiliation")({
-  head: () => ({ meta: [{ title: "Affiliation · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Affiliation · Digital Agency" }] }),
   component: AffiliationPage,
 });
 

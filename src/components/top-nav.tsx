@@ -23,7 +23,7 @@ export function TopNav() {
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-forest">
             <span className="text-sm font-bold text-white">LB</span>
           </div>
-          <span className="text-lg font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
+          <span className="text-lg font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

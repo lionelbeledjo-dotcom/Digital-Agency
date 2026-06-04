@@ -113,7 +113,7 @@ function FormationDetailPage() {
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full gradient-cobalt text-white font-bold">LB</div>
                 <div>
-                  <p className="font-semibold">Équipe LB Digital</p>
+                  <p className="font-semibold">Équipe Digital Agency</p>
                   <p className="text-xs text-muted-foreground">Experts en IA, marketing et entrepreneuriat</p>
                 </div>
               </div>

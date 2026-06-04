@@ -36,7 +36,7 @@ export function MemberLayout() {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber">
             <span className="text-xs font-bold text-forest">LB</span>
           </div>
-          <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
+          <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
         </Link>
 
         <nav className="flex-1 space-y-1 p-3">

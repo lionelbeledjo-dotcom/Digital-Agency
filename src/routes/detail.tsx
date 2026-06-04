@@ -5,7 +5,7 @@ import { ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/detail")({
-  head: () => ({ meta: [{ title: "Fonctionnement complet · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Fonctionnement complet · Digital Agency" }] }),
   component: DetailPage,
 });
 
@@ -35,7 +35,7 @@ function DetailPage() {
             <ChevronRight className="h-4 w-4" />
             <span className="text-foreground">Fonctionnement complet</span>
           </nav>
-          <h1 className="text-4xl font-bold text-foreground sm:text-6xl">Le fonctionnement complet de <span className="text-accent-serif">LB Digital</span></h1>
+          <h1 className="text-4xl font-bold text-foreground sm:text-6xl">Le fonctionnement complet de <span className="text-accent-serif">Digital Agency</span></h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">Apprends comment la plateforme te forme, te paie et grandit avec toi.</p>
         </div>
       </section>

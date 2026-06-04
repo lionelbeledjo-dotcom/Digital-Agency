@@ -7,7 +7,7 @@ import { useMemo, useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "LB Digital · Apprends l'IA, partage, gagne des commissions" },
+      { title: "Digital Agency · Apprends l'IA, partage, gagne des commissions" },
       { name: "description", content: "Plateforme de formation IA et marketing digital avec affiliation. 0 FCFA pour commencer. Paiement chaque vendredi via Mobile Money." },
     ],
   }),
@@ -60,7 +60,7 @@ function HomePage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              LB Digital te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
+              Digital Agency te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -209,9 +209,9 @@ function HomePage() {
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
           <Zap className="mx-auto h-10 w-10 text-amber" />
           <h2 className="mt-6 text-4xl font-bold text-white sm:text-5xl">Tu es à <span className="text-amber">0 FCFA</span> de ton premier revenu digital</h2>
-          <p className="mt-4 text-white/70">Rejoins LB Digital aujourd'hui. Ton premier virement peut tomber dès vendredi prochain.</p>
+          <p className="mt-4 text-white/70">Rejoins Digital Agency aujourd'hui. Ton premier virement peut tomber dès vendredi prochain.</p>
           <Link to="/auth/register" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-amber px-8 py-4 text-base font-semibold text-forest shadow-glow transition-transform hover:scale-[1.02]">
-            Rejoindre LB Digital gratuitement
+            Rejoindre Digital Agency gratuitement
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

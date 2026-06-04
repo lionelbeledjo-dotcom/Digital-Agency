@@ -194,7 +194,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   settings: {
     general: {
-      nomPlateforme: "LB Digital",
+      nomPlateforme: "Digital Agency",
       tagline: "Apprends. Partage. Gagne.",
       email: "contact@lbdigital.com",
       whatsapp: "+225 07 00 00 00 00",

@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/auth/register")({
-  head: () => ({ meta: [{ title: "Inscription · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Inscription · Digital Agency" }] }),
   component: RegisterPage,
 });
 
@@ -34,7 +34,7 @@ function RegisterPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest">
                 <span className="text-sm font-bold text-white">LB</span>
               </div>
-              <span className="text-lg font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>LB Digital</span>
+              <span className="text-lg font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
             </div>
             <h1 className="mt-6 text-2xl font-bold text-foreground">Crée ton compte en 1 minute</h1>
             <p className="mt-1 text-sm text-muted-foreground">Accès immédiat aux formations + ton lien affilié.</p>

@@ -3,7 +3,7 @@ import { PublicLayout } from "@/components/public-layout";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth/reset-password")({
-  head: () => ({ meta: [{ title: "Nouveau mot de passe · LB Digital" }] }),
+  head: () => ({ meta: [{ title: "Nouveau mot de passe · Digital Agency" }] }),
   component: Page,
 });
 
