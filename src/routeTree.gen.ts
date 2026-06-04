@@ -20,6 +20,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CgvRouteImport } from './routes/cgv'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AffiliationRouteImport } from './routes/affiliation'
+import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
@@ -41,7 +42,6 @@ import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-pas
 import { Route as AdminParametresRouteImport } from './routes/admin.parametres'
 import { Route as AdminPaiementsRouteImport } from './routes/admin.paiements'
 import { Route as AdminMembresRouteImport } from './routes/admin.membres'
-import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminFormationsRouteImport } from './routes/admin.formations'
 import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
 import { Route as AdminContenuRouteImport } from './routes/admin.contenu'
@@ -104,6 +104,11 @@ const BlogRoute = BlogRouteImport.update({
 const AffiliationRoute = AffiliationRouteImport.update({
   id: '/affiliation',
   path: '/affiliation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin-login',
+  path: '/admin-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -211,11 +216,6 @@ const AdminMembresRoute = AdminMembresRouteImport.update({
   path: '/membres',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => AdminRoute,
-} as any)
 const AdminFormationsRoute = AdminFormationsRouteImport.update({
   id: '/formations',
   path: '/formations',
@@ -260,6 +260,7 @@ const AdminFormationsIdEditRoute = AdminFormationsIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/admin-login': typeof AdminLoginRoute
   '/affiliation': typeof AffiliationRoute
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
@@ -275,7 +276,6 @@ export interface FileRoutesByFullPath {
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
-  '/admin/login': typeof AdminLoginRoute
   '/admin/membres': typeof AdminMembresRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
@@ -302,6 +302,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin-login': typeof AdminLoginRoute
   '/affiliation': typeof AffiliationRoute
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
@@ -316,7 +317,6 @@ export interface FileRoutesByTo {
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
-  '/admin/login': typeof AdminLoginRoute
   '/admin/membres': typeof AdminMembresRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
@@ -345,6 +345,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/admin-login': typeof AdminLoginRoute
   '/affiliation': typeof AffiliationRoute
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
@@ -360,7 +361,6 @@ export interface FileRoutesById {
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
-  '/admin/login': typeof AdminLoginRoute
   '/admin/membres': typeof AdminMembresRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
@@ -390,6 +390,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/admin-login'
     | '/affiliation'
     | '/blog'
     | '/cgv'
@@ -405,7 +406,6 @@ export interface FileRouteTypes {
     | '/admin/contenu'
     | '/admin/emails'
     | '/admin/formations'
-    | '/admin/login'
     | '/admin/membres'
     | '/admin/paiements'
     | '/admin/parametres'
@@ -432,6 +432,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin-login'
     | '/affiliation'
     | '/blog'
     | '/cgv'
@@ -446,7 +447,6 @@ export interface FileRouteTypes {
     | '/admin/contenu'
     | '/admin/emails'
     | '/admin/formations'
-    | '/admin/login'
     | '/admin/membres'
     | '/admin/paiements'
     | '/admin/parametres'
@@ -474,6 +474,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/admin-login'
     | '/affiliation'
     | '/blog'
     | '/cgv'
@@ -489,7 +490,6 @@ export interface FileRouteTypes {
     | '/admin/contenu'
     | '/admin/emails'
     | '/admin/formations'
-    | '/admin/login'
     | '/admin/membres'
     | '/admin/paiements'
     | '/admin/parametres'
@@ -518,6 +518,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
   AffiliationRoute: typeof AffiliationRoute
   BlogRoute: typeof BlogRouteWithChildren
   CgvRoute: typeof CgvRoute
@@ -612,6 +613,13 @@ declare module '@tanstack/react-router' {
       path: '/affiliation'
       fullPath: '/affiliation'
       preLoaderRoute: typeof AffiliationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-login': {
+      id: '/admin-login'
+      path: '/admin-login'
+      fullPath: '/admin-login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -761,13 +769,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMembresRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/admin/formations': {
       id: '/admin/formations'
       path: '/formations'
@@ -846,7 +847,6 @@ interface AdminRouteChildren {
   AdminContenuRoute: typeof AdminContenuRoute
   AdminEmailsRoute: typeof AdminEmailsRoute
   AdminFormationsRoute: typeof AdminFormationsRouteWithChildren
-  AdminLoginRoute: typeof AdminLoginRoute
   AdminMembresRoute: typeof AdminMembresRoute
   AdminPaiementsRoute: typeof AdminPaiementsRoute
   AdminParametresRoute: typeof AdminParametresRoute
@@ -859,7 +859,6 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminContenuRoute: AdminContenuRoute,
   AdminEmailsRoute: AdminEmailsRoute,
   AdminFormationsRoute: AdminFormationsRouteWithChildren,
-  AdminLoginRoute: AdminLoginRoute,
   AdminMembresRoute: AdminMembresRoute,
   AdminPaiementsRoute: AdminPaiementsRoute,
   AdminParametresRoute: AdminParametresRoute,
@@ -934,6 +933,7 @@ const PaiementRouteWithChildren = PaiementRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
   AffiliationRoute: AffiliationRoute,
   BlogRoute: BlogRouteWithChildren,
   CgvRoute: CgvRoute,

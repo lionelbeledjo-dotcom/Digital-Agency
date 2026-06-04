@@ -3,7 +3,7 @@ import { useAppStore } from "@/store/appStore";
 import { ShieldCheck } from "lucide-react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/admin/login")({
+export const Route = createFileRoute("/admin-login")({
   head: () => ({ meta: [{ title: "Admin · Connexion" }] }),
   component: AdminLoginPage,
 });
