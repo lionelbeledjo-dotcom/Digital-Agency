@@ -57,17 +57,18 @@ function HomePage() {
               Plateforme Apprends & Gagne · 12 pays
             </div>
 
-            <h1 className="mt-8 text-3xl font-bold leading-[1.08] text-foreground sm:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="hero-word" style={{ animationDelay: "0.1s" }}>Maîtrise&nbsp;l'</span>
+            <h1 className="mt-8 text-3xl font-bold leading-[1.15] text-foreground sm:text-6xl sm:leading-[1.08] lg:text-7xl break-words" style={{ fontFamily: "var(--font-heading)" }}>
+              <span className="hero-word" style={{ animationDelay: "0.1s" }}>Maîtrise l'</span>
               <span className="hero-word text-accent-serif" style={{ animationDelay: "0.4s" }}>IA</span>
               <span className="hero-word" style={{ animationDelay: "0.7s" }}>.</span>
               <br />
-              <span className="hero-word" style={{ animationDelay: "1.0s" }}>Partage&nbsp;la&nbsp;connaissance.</span>
+              <span className="hero-word" style={{ animationDelay: "1.0s" }}>Partage la connaissance.</span>
               <br />
-              <span className="hero-word" style={{ animationDelay: "1.3s" }}>Génère&nbsp;des&nbsp;</span>
-              <span className="hero-word text-accent-serif" style={{ animationDelay: "1.6s" }}>revenus&nbsp;réels</span>
+              <span className="hero-word" style={{ animationDelay: "1.3s" }}>Génère des </span>
+              <span className="hero-word text-accent-serif" style={{ animationDelay: "1.6s" }}>revenus réels</span>
               <span className="hero-word" style={{ animationDelay: "1.9s" }}>.</span>
             </h1>
+
 
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
