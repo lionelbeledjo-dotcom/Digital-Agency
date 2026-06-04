@@ -3,6 +3,8 @@ import { useAppStore } from "@/store/appStore";
 import { PublicLayout } from "@/components/public-layout";
 import { ArrowRight, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, ChevronDown, Sparkles, Play } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useReveal } from "@/hooks/use-reveal";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
