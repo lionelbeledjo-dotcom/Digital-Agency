@@ -132,11 +132,11 @@ function HomePage() {
             <p className="mt-4 text-muted-foreground">5 étapes simples, du compte gratuit à ton premier virement vendredi.</p>
           </div>
 
-          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5 reveal">
             {steps.map((s) => (
-              <div key={s.n} className="card-glow rounded-2xl border border-border bg-white p-6 shadow-soft">
+              <div key={s.n} className="card-glow hover-tilt rounded-2xl border border-border bg-white p-6 shadow-soft">
                 <div className="flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest">
+                  <div className="icon-bounce flex h-10 w-10 items-center justify-center rounded-xl bg-forest">
                     <s.Icon className="h-5 w-5 text-white" />
                   </div>
                   <span className="text-3xl font-bold text-border" style={{ fontFamily: "var(--font-heading)" }}>{s.n}</span>
@@ -146,6 +146,7 @@ function HomePage() {
               </div>
             ))}
           </div>
+
 
           <div className="mt-10 text-center">
             <Link to="/detail" className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-forest-light transition-colors">
