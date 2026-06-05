@@ -1,6 +1,8 @@
 import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
 import { useAppStore, PAYS_LIST } from "@/store/appStore";
+import { supabase } from "@/lib/supabase";
+import { generateTransactionId } from "@/lib/cinetpay";
 import { useState, useEffect } from "react";
 import { CheckCircle2, Lock } from "lucide-react";
 import { toast } from "sonner";
@@ -31,12 +33,58 @@ function PaiementPage() {
 
   const prix = plans[plan].prixMensuel;
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+
+    const form = e.target as HTMLFormElement;
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+    const prenom = (form.elements.namedItem("prenom") as HTMLInputElement)?.value || "";
+    const nom = (form.elements.namedItem("nom") as HTMLInputElement)?.value || "";
+
+    if (prix === 0) {
       navigate({ to: "/paiement/succes" });
-    }, 1800);
+      return;
+    }
+
+    const transactionId = generateTransactionId();
+
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      await supabase.from("paiements").insert({
+        user_id: session.user.id,
+        montant: prix,
+        methode: method,
+        plan,
+        statut: "en_attente",
+        reference: transactionId,
+      });
+    }
+
+    const w = window as unknown as { CinetPay?: { setConfig: (c: unknown) => void; getCheckout: (c: unknown) => void } };
+
+    if (w.CinetPay) {
+      w.CinetPay.setConfig({
+        apikey: import.meta.env.VITE_CINETPAY_API_KEY || "",
+        site_id: import.meta.env.VITE_CINETPAY_SITE_ID || "",
+        notify_url: `${window.location.origin}/api/cinetpay-webhook`,
+        return_url: `${window.location.origin}/paiement/succes`,
+        mode: "PRODUCTION",
+      });
+
+      w.CinetPay.getCheckout({
+        transaction_id: transactionId,
+        amount: prix,
+        currency: "XOF",
+        channels: "MOBILE_MONEY",
+        description: `Abonnement ${plans[plan].nom} - Digital Agency`,
+        customer_name: `${prenom} ${nom}`,
+        customer_email: email,
+      });
+    } else {
+      toast.info("Paiement en cours de traitement...");
+      setTimeout(() => navigate({ to: "/paiement/succes" }), 2000);
+    }
   }
 
   return (
