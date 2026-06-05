@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
+import { supabase } from "@/lib/supabase";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { Copy, Share2, GraduationCap, Users, Wallet, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/dashboard/")({
   component: DashboardHome,
@@ -24,19 +26,37 @@ const activities = [
 function DashboardHome() {
   const user = useAppStore((s) => s.currentUser);
   const formations = useAppStore((s) => s.formations);
-  if (!user) return null;
+  const [realProfile, setRealProfile] = useState<{ prenom: string; nom: string; plan: string; lien_affilie: string; parrain_code: string } | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) return;
+      const { data } = await supabase
+        .from("profiles")
+        .select("prenom, nom, plan, lien_affilie, parrain_code")
+        .eq("id", session.user.id)
+        .single();
+      if (data) setRealProfile(data);
+    });
+  }, []);
+
+  const displayUser = realProfile || user;
+  if (!displayUser) return null;
+  const affiliateLink = realProfile
+    ? `https://digital-agency.site/?ref=${realProfile.parrain_code}`
+    : user?.lienAffilie || "";
 
   const kpis = [
-    { label: "Formations complétées", value: `${user.formationsCompletes.length} / ${formations.length}`, Icon: GraduationCap, c: "bg-forest" },
-    { label: "Filleuls actifs", value: user.filleulsActifs, Icon: Users, c: "bg-forest-light" },
-    { label: "Commissions ce mois", value: `${user.commissionsMois.toLocaleString("fr-FR")} F`, Icon: Wallet, c: "bg-amber" },
-    { label: "Total gagné", value: `${user.commissionsTotal.toLocaleString("fr-FR")} F`, Icon: TrendingUp, c: "bg-olive" },
+    { label: "Formations complétées", value: `${user?.formationsCompletes?.length || 0} / ${formations.length}`, Icon: GraduationCap, c: "bg-forest" },
+    { label: "Filleuls actifs", value: user?.filleulsActifs || 0, Icon: Users, c: "bg-forest-light" },
+    { label: "Commissions ce mois", value: `${(user?.commissionsMois || 0).toLocaleString("fr-FR")} F`, Icon: Wallet, c: "bg-amber" },
+    { label: "Total gagné", value: `${(user?.commissionsTotal || 0).toLocaleString("fr-FR")} F`, Icon: TrendingUp, c: "bg-olive" },
   ];
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>Salut {user.prenom} 👋</h1>
+        <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>Salut {displayUser.prenom} 👋</h1>
         <p className="text-sm text-muted-foreground">Ravie de te revoir. Voici tes stats du moment.</p>
       </div>
 
@@ -92,7 +112,7 @@ function DashboardHome() {
       <div className="rounded-2xl border border-border bg-white p-5 shadow-soft">
         <h3 className="font-semibold text-foreground">Formations en cours</h3>
         <div className="mt-4 space-y-4">
-          {user.formationsEnCours.map((fc) => {
+          {(user?.formationsEnCours || []).map((fc) => {
             const f = formations.find((x) => x.id === fc.id);
             if (!f) return null;
             return (
@@ -115,14 +135,14 @@ function DashboardHome() {
       <div className="rounded-2xl border border-forest/20 bg-forest/5 p-5">
         <p className="text-xs uppercase tracking-wider text-forest font-semibold">Mon lien affilié</p>
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <code className="flex-1 min-w-[200px] truncate rounded-xl bg-white border border-border px-3 py-2 text-sm text-foreground">{user.lienAffilie}</code>
-          <button onClick={() => { navigator.clipboard?.writeText(user.lienAffilie); toast.success("Lien copié !"); }} className="rounded-xl border border-border bg-white px-3 py-2 text-sm text-muted-foreground hover:text-forest transition-colors"><Copy className="h-4 w-4" /></button>
-          <a href={`https://wa.me/?text=${encodeURIComponent("Rejoins Digital Agency : " + user.lienAffilie)}`} className="rounded-xl gradient-primary px-3 py-2 text-sm text-white"><Share2 className="h-4 w-4" /></a>
+          <code className="flex-1 min-w-[200px] truncate rounded-xl bg-white border border-border px-3 py-2 text-sm text-foreground">{affiliateLink}</code>
+          <button onClick={() => { navigator.clipboard?.writeText(affiliateLink); toast.success("Lien copié !"); }} className="rounded-xl border border-border bg-white px-3 py-2 text-sm text-muted-foreground hover:text-forest transition-colors"><Copy className="h-4 w-4" /></button>
+          <a href={`https://wa.me/?text=${encodeURIComponent("Rejoins Digital Agency : " + affiliateLink)}`} className="rounded-xl gradient-primary px-3 py-2 text-sm text-white"><Share2 className="h-4 w-4" /></a>
         </div>
       </div>
 
       {/* Upgrade banner */}
-      {user.plan !== "pro_creator" && (
+      {displayUser.plan !== "pro_creator" && (
         <Link to="/tarifs" className="flex items-center gap-4 rounded-2xl border border-amber/30 bg-amber/5 p-5 card-glow">
           <Sparkles className="h-8 w-8 text-amber" />
           <div className="flex-1">

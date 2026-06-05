@@ -2,7 +2,7 @@ import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-route
 import { Home, GraduationCap, Wallet, Users, CreditCard, Award, User, LogOut } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
 import { supabase } from "@/lib/supabase";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NotificationBell } from "./notifications";
 
 const items = [
@@ -15,18 +15,62 @@ const items = [
   { to: "/dashboard/profil", label: "Profil", Icon: User, exact: undefined as boolean | undefined },
 ] as const;
 
+interface UserInfo {
+  prenom: string;
+  nom: string;
+  plan: string;
+}
+
 export function MemberLayout() {
-  const user = useAppStore((s) => s.currentUser);
-  const isLoggedIn = useAppStore((s) => s.isLoggedIn);
+  const demoUser = useAppStore((s) => s.currentUser);
+  const isLoggedInDemo = useAppStore((s) => s.isLoggedIn);
   const logout = useAppStore((s) => s.logout);
   const navigate = useNavigate();
   const path = useRouterState({ select: (r) => r.location.pathname });
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (!isLoggedIn) navigate({ to: "/auth/login" });
-  }, [isLoggedIn, navigate]);
+    if (isLoggedInDemo && demoUser) {
+      setUserInfo({ prenom: demoUser.prenom, nom: demoUser.nom, plan: demoUser.plan });
+      setAuthorized(true);
+      return;
+    }
 
-  if (!user) return null;
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) {
+        navigate({ to: "/auth/login" });
+        return;
+      }
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("prenom, nom, plan")
+        .eq("id", session.user.id)
+        .single();
+
+      if (profile) {
+        setUserInfo({ prenom: profile.prenom || "User", nom: profile.nom || "", plan: profile.plan || "starter" });
+        setAuthorized(true);
+      } else {
+        setUserInfo({ prenom: session.user.email?.split("@")[0] || "User", nom: "", plan: "starter" });
+        setAuthorized(true);
+      }
+    });
+  }, [isLoggedInDemo, demoUser, navigate]);
+
+  if (authorized === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-secondary">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-forest border-t-transparent mx-auto" />
+          <p className="mt-3 text-sm text-muted-foreground">Chargement...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!authorized || !userInfo) return null;
 
   const isActive = (to: string, exact?: boolean) => (exact ? path === to : path.startsWith(to));
 
@@ -65,11 +109,11 @@ export function MemberLayout() {
         <div className="border-t border-white/10 p-3">
           <div className="flex items-center gap-3 rounded-xl bg-white/10 p-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-forest">
-              {user.prenom[0]}{user.nom[0]}
+              {userInfo.prenom[0]}{userInfo.nom?.[0] || ""}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-white">{user.prenom}</p>
-              <p className="text-[10px] uppercase tracking-wider text-amber">{user.plan.replace("_", " ")}</p>
+              <p className="truncate text-sm font-semibold text-white">{userInfo.prenom}</p>
+              <p className="text-[10px] uppercase tracking-wider text-amber">{userInfo.plan.replace("_", " ")}</p>
             </div>
             <button onClick={handleLogout} className="text-white/50 hover:text-white"><LogOut className="h-4 w-4" /></button>
           </div>
@@ -78,11 +122,10 @@ export function MemberLayout() {
 
       {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col pb-20 lg:pb-0">
-        {/* Top bar avec notifications */}
         <header className="flex h-14 items-center justify-end gap-3 border-b border-border bg-white px-4 sm:px-8">
           <NotificationBell />
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-forest text-xs font-bold text-white">
-            {user.prenom[0]}{user.nom[0]}
+            {userInfo.prenom[0]}{userInfo.nom?.[0] || ""}
           </div>
         </header>
         <main className="flex-1 px-4 py-6 sm:px-8">
