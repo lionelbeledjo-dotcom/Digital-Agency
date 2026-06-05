@@ -125,7 +125,7 @@ function HomePage() {
               </div>
 
               {/* Floating card — Commissions */}
-              <div className="absolute top-6 right-0 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border">
+              <div className="absolute top-[45%] -right-4 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border">
                 <p className="text-xs text-muted-foreground">Commissions</p>
                 <p className="text-xl font-bold text-forest">+ 650.000 FCFA</p>
                 <p className="text-[11px] text-muted-foreground">Chaque vendredi</p>
