@@ -119,8 +119,7 @@ function HomePage() {
               <img
                 src="/hero-person.png"
                 alt="Membre Digital Agency avec téléphone"
-                className="relative z-10 h-auto w-[400px] sm:w-[500px] lg:w-[580px] max-w-none object-contain"
-                style={{ mixBlendMode: "screen" }}
+                className="relative z-10 h-auto w-[400px] sm:w-[520px] lg:w-[600px] max-w-none object-contain drop-shadow-2xl"
               />
 
               {/* Floating card — Commissions */}
