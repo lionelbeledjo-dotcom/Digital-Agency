@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
 import { PublicLayout } from "@/components/public-layout";
-import { ArrowRight, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, ChevronDown, Sparkles, Play } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Share2, Coins, Wallet, GraduationCap, Star, ChevronDown, Sparkles, Play, Rocket, Users, ShieldCheck, Headphones } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Digital Agency · Apprends l'IA, partage, gagne des commissions" },
       { property: "og:description", content: "Plateforme de formation IA et marketing digital avec affiliation pour l'Afrique francophone." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://digital-agencyia.lovable.app" },
+      { property: "og:url", content: "https://digitalagency.site" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Digital Agency" },
       { name: "twitter:description", content: "Formation IA + affiliation. 0 FCFA pour commencer." },
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
           "@type": "EducationalOrganization",
           name: "Digital Agency",
           description: "Plateforme de formation IA et marketing digital avec affiliation pour l'Afrique francophone",
-          url: "https://digital-agencyia.lovable.app",
+          url: "https://digitalagency.site",
           areaServed: "Afrique francophone",
           foundingDate: "2025",
           offers: {
@@ -77,66 +77,157 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden bg-hero-radial">
         <div className="absolute inset-0 bg-dots opacity-40" />
-        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-forest/5 px-4 py-1.5 text-xs font-medium text-forest">
-              <span className="h-2 w-2 rounded-full bg-forest animate-pulse-dot" />
-              Plateforme Apprends & Gagne · 12 pays
+        <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 sm:pt-20">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+            {/* Left column — text */}
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-forest/5 px-4 py-1.5 text-xs font-medium text-forest">
+                <span className="h-2 w-2 rounded-full bg-forest animate-pulse-dot" />
+                Plateforme Apprends & Gagne
+              </div>
+
+              <h1 className="mt-8 text-3xl font-bold leading-[1.12] text-foreground sm:text-5xl lg:text-6xl" style={{ fontFamily: "var(--font-heading)" }}>
+                <span className="hero-word" style={{ animationDelay: "0.1s" }}>Maîtrise l'</span>
+                <span className="hero-word text-accent-serif" style={{ animationDelay: "0.4s" }}>IA</span>
+                <span className="hero-word" style={{ animationDelay: "0.7s" }}>.</span>
+                <br />
+                <span className="hero-word" style={{ animationDelay: "1.0s" }}>Partage la connaissance.</span>
+                <br />
+                <span className="hero-word" style={{ animationDelay: "1.3s" }}>Génère des </span>
+                <span className="hero-word text-accent-serif" style={{ animationDelay: "1.6s" }}>revenus réels</span>
+                <span className="hero-word" style={{ animationDelay: "1.9s" }}>.</span>
+              </h1>
+
+              <p className="mt-6 max-w-lg text-base text-muted-foreground sm:text-lg">
+                Digital Agency te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow pulse-glow transition-transform hover:scale-[1.03]">
+                  Démarrer gratuitement
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link to="/detail" className="inline-flex items-center gap-2 rounded-full border-2 border-forest/20 bg-white px-7 py-4 text-base font-semibold text-forest hover:border-forest/40 transition-colors">
+                  <Play className="h-4 w-4" />
+                  Découvrir le programme
+                </Link>
+              </div>
             </div>
 
-            <h1 className="mt-8 text-3xl font-bold leading-[1.15] text-foreground sm:text-6xl sm:leading-[1.08] lg:text-7xl break-words" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="hero-word" style={{ animationDelay: "0.1s" }}>Maîtrise l'</span>
-              <span className="hero-word text-accent-serif" style={{ animationDelay: "0.4s" }}>IA</span>
-              <span className="hero-word" style={{ animationDelay: "0.7s" }}>.</span>
-              <br />
-              <span className="hero-word" style={{ animationDelay: "1.0s" }}>Partage la connaissance.</span>
-              <br />
-              <span className="hero-word" style={{ animationDelay: "1.3s" }}>Génère des </span>
-              <span className="hero-word text-accent-serif" style={{ animationDelay: "1.6s" }}>revenus réels</span>
-              <span className="hero-word" style={{ animationDelay: "1.9s" }}>.</span>
-            </h1>
+            {/* Right column — hero image + floating cards */}
+            <div className="relative flex justify-center lg:justify-end">
+              <img
+                src="/hero-person.png"
+                alt="Membre Digital Agency avec téléphone"
+                className="relative z-10 h-auto w-[320px] sm:w-[400px] lg:w-[460px] object-contain drop-shadow-2xl"
+              />
 
+              {/* Floating card — Commissions */}
+              <div className="absolute top-4 right-0 z-20 animate-float rounded-xl bg-white px-4 py-3 shadow-soft border border-border">
+                <p className="text-xs text-muted-foreground">Commissions</p>
+                <p className="text-lg font-bold text-forest">+ 650$</p>
+                <p className="text-[10px] text-muted-foreground">Chaque vendredi</p>
+              </div>
 
+              {/* Floating card — Revenus */}
+              <div className="absolute bottom-[40%] left-0 z-20 animate-float rounded-xl bg-white px-4 py-3 shadow-soft border border-border" style={{ animationDelay: "1s" }}>
+                <p className="text-xs text-muted-foreground">Revenus générés</p>
+                <p className="text-xl font-bold text-forest">+ 2.450$</p>
+                <p className="text-[10px] text-muted-foreground">Cette semaine</p>
+              </div>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              Digital Agency te forme aux outils IA et au marketing digital depuis ton téléphone — et te reverse des commissions récurrentes chaque vendredi via Mobile Money.
-            </p>
+              {/* Floating card — Payment logos */}
+              <div className="absolute bottom-[20%] right-0 z-20 animate-float flex items-center gap-2 rounded-xl bg-white px-3 py-2 shadow-soft border border-border" style={{ animationDelay: "2s" }}>
+                <span className="rounded bg-orange-500 px-1.5 py-0.5 text-[9px] font-bold text-white">orange</span>
+                <span className="rounded bg-yellow-400 px-1.5 py-0.5 text-[9px] font-bold text-black">MTN</span>
+                <span className="rounded bg-blue-900 px-1.5 py-0.5 text-[9px] font-bold text-white">Moov</span>
+              </div>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link to="/auth/register" className="group inline-flex items-center gap-2 rounded-full gradient-primary px-8 py-4 text-base font-semibold text-white shadow-glow pulse-glow transition-transform hover:scale-[1.03]">
-                Démarrer gratuitement
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link to="/detail" className="inline-flex items-center gap-2 rounded-full border-2 border-forest/20 bg-white px-7 py-4 text-base font-semibold text-forest hover:border-forest/40 transition-colors">
-                <Play className="h-4 w-4" />
-                Découvrir le programme
-              </Link>
-            </div>
-
-            <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              {["0 FCFA pour commencer","Aucun investissement","Paiement chaque vendredi","100% en français"].map((b) => (
-                <span key={b} className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-forest" /> {b}
-                </span>
-              ))}
+              {/* Rocket icon top-left */}
+              <div className="absolute top-10 left-10 z-20 flex h-12 w-12 items-center justify-center rounded-xl bg-forest shadow-lg">
+                <Rocket className="h-6 w-6 text-white" />
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4 stagger">
+        {/* Features bar */}
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pb-6">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
             {[
-              { v: "0 FCFA", l: "Pour commencer" },
-              { v: "+500K", l: "FCFA/mois possibles" },
-              { v: "12 pays", l: "Couverts" },
-              { v: "Vendredi", l: "Paiement Mobile Money" },
-            ].map((s) => (
-              <div key={s.l} className="hover-tilt rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
-                <p className="text-3xl font-bold text-forest sm:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>{s.v}</p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.l}</p>
+              { Icon: GraduationCap, title: "Formations", desc: "IA & Marketing Digital 100% pratiques" },
+              { Icon: Users, title: "Affiliation", desc: "Gagne des commissions chaque semaine" },
+              { Icon: Wallet, title: "Paiement", desc: "Mobile Money rapide & sécurisé" },
+              { Icon: Headphones, title: "Accompagnement", desc: "Support & suivi personnalisé" },
+            ].map((f) => (
+              <div key={f.title} className="hover-tilt rounded-2xl border border-border bg-white p-5 text-center shadow-soft">
+                <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-forest/10">
+                  <f.Icon className="h-5 w-5 text-forest" />
+                </div>
+                <h3 className="mt-3 text-sm font-bold text-foreground">{f.title}</h3>
+                <p className="mt-1 text-xs text-muted-foreground">{f.desc}</p>
               </div>
             ))}
           </div>
 
+          {/* "Commence aujourd'hui" banner */}
+          <div className="mt-5 flex flex-col items-center gap-4 rounded-2xl bg-forest p-5 sm:flex-row sm:justify-between sm:p-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-green-300" />
+                <h3 className="text-lg font-bold text-white">Commence aujourd'hui</h3>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1.5">
+                {["0 FCFA pour commencer", "Aucun investissement", "Paiement chaque vendredi", "100% en français"].map((b) => (
+                  <span key={b} className="inline-flex items-center gap-1.5 text-sm text-white/90">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-green-300" /> {b}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col items-center rounded-xl bg-white/10 px-5 py-3 backdrop-blur-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-green-300">Pour commencer</p>
+              <p className="text-4xl font-black text-white" style={{ fontFamily: "var(--font-heading)" }}>0 <span className="text-lg">FCFA</span></p>
+              <p className="text-[10px] uppercase tracking-wide text-white/70">Rejoins des milliers déjà actifs !</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Social proof bar */}
+        <div className="relative border-t border-border bg-white/80 backdrop-blur-sm">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted-foreground">Déjà plus de <strong className="text-foreground">15.000+</strong> membres actifs</span>
+              <div className="flex -space-x-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-forest text-[10px] font-bold text-white">
+                    {["A", "K", "M", "D", "S"][i]}
+                  </div>
+                ))}
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-amber text-[10px] font-bold text-foreground">
+                  15K+
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-amber text-amber" />
+              ))}
+              <span className="ml-1 text-sm text-muted-foreground">4.9/5 (Avis vérifiés)</span>
+            </div>
+            <div className="hidden items-center gap-5 sm:flex">
+              {[
+                { Icon: Rocket, label: "Simple" },
+                { Icon: Zap, label: "Rapide" },
+                { Icon: ShieldCheck, label: "Sécurisé" },
+                { Icon: CheckCircle2, label: "Efficace" },
+              ].map((t) => (
+                <span key={t.label} className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+                  <t.Icon className="h-4 w-4 text-forest" /> {t.label}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

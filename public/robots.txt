@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://digital-agencyia.lovable.app/sitemap.xml
+Sitemap: https://digitalagency.site/sitemap.xml
