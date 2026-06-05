@@ -9,5 +9,25 @@ export const Route = createFileRoute("/admin/formations/$id/edit")({
 function EditPage() {
   const { id } = useParams({ from: "/admin/formations/$id/edit" });
   const f = useAppStore((s) => s.getFormation(id));
-  return <FormationForm titre={f ? `Éditer : ${f.titre}` : "Édition"} />;
+
+  if (!f) return <div className="p-8"><p className="text-foreground">Formation introuvable.</p></div>;
+
+  return (
+    <FormationForm
+      titre={`Éditer : ${f.titre}`}
+      initial={{
+        id: f.id,
+        slug: f.slug,
+        titre: f.titre,
+        description: f.description,
+        categorie: f.categorie,
+        niveau: f.niveau,
+        acces: f.acces,
+        duree: f.duree,
+        emoji: f.emoji,
+        modules: f.modules,
+        apprentissages: f.apprentissages,
+      }}
+    />
+  );
 }
