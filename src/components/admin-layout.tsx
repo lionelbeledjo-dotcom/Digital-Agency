@@ -1,7 +1,8 @@
 import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, Users, GraduationCap, Wallet, CreditCard, Mail, FileText, Settings, ShieldCheck } from "lucide-react";
+import { LayoutDashboard, Users, GraduationCap, Wallet, CreditCard, Mail, FileText, Settings, ShieldCheck, LogOut } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
-import { useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
 
 const items = [
   { to: "/admin", label: "Dashboard", Icon: LayoutDashboard, exact: true as boolean | undefined },
@@ -15,17 +16,52 @@ const items = [
 ] as const;
 
 export function AdminLayout() {
-  const isAdmin = useAppStore((s) => s.isAdmin);
+  const isAdminDemo = useAppStore((s) => s.isAdmin);
   const navigate = useNavigate();
   const path = useRouterState({ select: (r) => r.location.pathname });
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (!isAdmin) navigate({ to: "/" });
-  }, [isAdmin, navigate]);
+    if (isAdminDemo) {
+      setAuthorized(true);
+      return;
+    }
 
-  if (!isAdmin) return null;
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) {
+        navigate({ to: "/admin-login" });
+        return;
+      }
+
+      const { data } = await supabase.rpc("get_user_role", { user_id: session.user.id });
+
+      if (data === "admin") {
+        setAuthorized(true);
+      } else {
+        navigate({ to: "/admin-login" });
+      }
+    });
+  }, [isAdminDemo, navigate]);
+
+  if (authorized === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-secondary">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-forest border-t-transparent mx-auto" />
+          <p className="mt-3 text-sm text-muted-foreground">Chargement...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!authorized) return null;
 
   const isActive = (to: string, exact?: boolean) => (exact ? path === to : path.startsWith(to));
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    navigate({ to: "/admin-login" });
+  }
 
   return (
     <div className="flex min-h-screen bg-secondary">
@@ -55,8 +91,13 @@ export function AdminLayout() {
           ))}
         </nav>
 
-        <div className="border-t border-white/10 p-3 text-xs text-white/50">
-          <div className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-amber" /> Mode admin actif</div>
+        <div className="border-t border-white/10 p-3">
+          <div className="flex items-center justify-between text-xs text-white/50">
+            <div className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-amber" /> Admin actif</div>
+            <button onClick={handleLogout} className="flex items-center gap-1 text-white/40 hover:text-white transition-colors">
+              <LogOut className="h-3.5 w-3.5" /> Quitter
+            </button>
+          </div>
         </div>
       </aside>
 
