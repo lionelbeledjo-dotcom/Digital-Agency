@@ -116,11 +116,13 @@ function HomePage() {
 
             {/* Right column — hero image + floating cards */}
             <div className="relative flex justify-center lg:justify-end min-h-[420px] sm:min-h-[520px] lg:min-h-[580px]">
-              <img
-                src="/hero-person.png"
-                alt="Membre Digital Agency avec téléphone"
-                className="relative z-10 h-auto w-[400px] sm:w-[520px] lg:w-[600px] max-w-none object-contain drop-shadow-2xl"
-              />
+              <div className="relative z-10 w-[380px] sm:w-[480px] lg:w-[560px] overflow-hidden rounded-3xl bg-gradient-to-b from-forest/90 to-forest shadow-2xl">
+                <img
+                  src="/hero-person.png"
+                  alt="Membre Digital Agency avec téléphone"
+                  className="h-auto w-full object-cover object-right"
+                />
+              </div>
 
               {/* Floating card — Commissions */}
               <div className="absolute top-6 right-0 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border">
