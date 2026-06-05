@@ -11,6 +11,33 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Digital Agency · Apprends l'IA, partage, gagne des commissions" },
       { name: "description", content: "Plateforme de formation IA et marketing digital avec affiliation. 0 FCFA pour commencer. Paiement chaque vendredi via Mobile Money." },
+      { property: "og:title", content: "Digital Agency · Apprends l'IA, partage, gagne des commissions" },
+      { property: "og:description", content: "Plateforme de formation IA et marketing digital avec affiliation pour l'Afrique francophone." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://digital-agencyia.lovable.app" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Digital Agency" },
+      { name: "twitter:description", content: "Formation IA + affiliation. 0 FCFA pour commencer." },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          name: "Digital Agency",
+          description: "Plateforme de formation IA et marketing digital avec affiliation pour l'Afrique francophone",
+          url: "https://digital-agencyia.lovable.app",
+          areaServed: "Afrique francophone",
+          foundingDate: "2025",
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "XOF",
+            description: "Plan Starter gratuit à vie",
+          },
+        }),
+      },
     ],
   }),
   component: HomePage,
