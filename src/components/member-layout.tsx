@@ -1,7 +1,9 @@
 import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
 import { Home, GraduationCap, Wallet, Users, CreditCard, Award, User, LogOut } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
+import { supabase } from "@/lib/supabase";
 import { useEffect } from "react";
+import { NotificationBell } from "./notifications";
 
 const items = [
   { to: "/dashboard", label: "Accueil", Icon: Home, exact: true as boolean | undefined },
@@ -27,6 +29,12 @@ export function MemberLayout() {
   if (!user) return null;
 
   const isActive = (to: string, exact?: boolean) => (exact ? path === to : path.startsWith(to));
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    logout();
+    navigate({ to: "/" });
+  }
 
   return (
     <div className="flex min-h-screen bg-secondary">
@@ -63,13 +71,20 @@ export function MemberLayout() {
               <p className="truncate text-sm font-semibold text-white">{user.prenom}</p>
               <p className="text-[10px] uppercase tracking-wider text-amber">{user.plan.replace("_", " ")}</p>
             </div>
-            <button onClick={logout} className="text-white/50 hover:text-white"><LogOut className="h-4 w-4" /></button>
+            <button onClick={handleLogout} className="text-white/50 hover:text-white"><LogOut className="h-4 w-4" /></button>
           </div>
         </div>
       </aside>
 
       {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col pb-20 lg:pb-0">
+        {/* Top bar avec notifications */}
+        <header className="flex h-14 items-center justify-end gap-3 border-b border-border bg-white px-4 sm:px-8">
+          <NotificationBell />
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-forest text-xs font-bold text-white">
+            {user.prenom[0]}{user.nom[0]}
+          </div>
+        </header>
         <main className="flex-1 px-4 py-6 sm:px-8">
           <Outlet />
         </main>
