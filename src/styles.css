@@ -127,6 +127,28 @@
   --input: #1a2a20;
   --ring: #237a4d;
   --cream: #162019;
+
+  --shadow-glow: 0 4px 24px -4px rgba(35, 122, 77, 0.3);
+  --shadow-soft: 0 2px 12px -2px rgba(0, 0, 0, 0.3);
+}
+
+.dark .bg-hero-radial {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(35, 122, 77, 0.15), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(200, 164, 21, 0.1), transparent 60%),
+    #0f1a14;
+}
+
+.dark .bg-white {
+  background-color: var(--card) !important;
+}
+
+.dark .shadow-soft {
+  box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.4);
+}
+
+.dark .bg-secondary\/50 {
+  background-color: rgba(26, 42, 32, 0.5);
 }
 
 @layer base {

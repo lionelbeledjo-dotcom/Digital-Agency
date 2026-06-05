@@ -22,7 +22,7 @@ export function AdminLayout() {
   const [authorized, setAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (isAdminDemo) {
+    if (import.meta.env.DEV && isAdminDemo) {
       setAuthorized(true);
       return;
     }

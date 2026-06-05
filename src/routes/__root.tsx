@@ -114,7 +114,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
-      <DemoSwitcher />
+      {import.meta.env.DEV && <DemoSwitcher />}
       <Toaster theme="light" position="top-right" richColors />
     </QueryClientProvider>
   );
