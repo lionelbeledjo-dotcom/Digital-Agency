@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
-import { Plus, Edit3, Copy, Archive, GraduationCap, Star, Users, BookOpen } from "lucide-react";
+import { Plus, Edit3, Copy, Archive, GraduationCap, Star, Users, BookOpen, Video } from "lucide-react";
 
 export const Route = createFileRoute("/admin/formations")({
   component: AdminFormations,
@@ -67,9 +67,10 @@ function AdminFormations() {
                 <td className="px-4 py-3"><span className="rounded-full bg-forest/10 px-2.5 py-1 text-[10px] font-semibold text-forest">Publié</span></td>
                 <td className="px-4 py-3">
                   <div className="flex gap-1">
-                    <Link to="/admin/formations/$id/edit" params={{ id: f.id }} className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-forest"><Edit3 className="h-3.5 w-3.5" /></Link>
-                    <button className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-forest"><Copy className="h-3.5 w-3.5" /></button>
-                    <button className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-destructive"><Archive className="h-3.5 w-3.5" /></button>
+                    <Link to="/admin/modules/$formationId" params={{ formationId: f.id }} className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-forest" title="Modules & vidéos"><Video className="h-3.5 w-3.5" /></Link>
+                    <Link to="/admin/formations/$id/edit" params={{ id: f.id }} className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-forest" title="Éditer"><Edit3 className="h-3.5 w-3.5" /></Link>
+                    <button className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-forest" title="Dupliquer"><Copy className="h-3.5 w-3.5" /></button>
+                    <button className="rounded-lg p-1.5 hover:bg-secondary transition-colors text-muted-foreground hover:text-destructive" title="Archiver"><Archive className="h-3.5 w-3.5" /></button>
                   </div>
                 </td>
               </tr>

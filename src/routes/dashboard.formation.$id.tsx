@@ -1,11 +1,24 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useAppStore } from "@/store/appStore";
+import { supabase } from "@/lib/supabase";
 import { CheckCircle2, Circle, ChevronLeft, ChevronRight, Play, FileText, MessageSquare, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const Route = createFileRoute("/dashboard/formation/$id")({
   component: FormationLecture,
 });
+
+interface RealLecon {
+  titre: string;
+  duree: string;
+  video_type: "youtube" | "upload" | "vimeo";
+  video_url: string;
+}
+
+interface RealModule {
+  titre: string;
+  lecons: RealLecon[];
+}
 
 function FormationLecture() {
   const { id } = useParams({ from: "/dashboard/formation/$id" });
@@ -13,6 +26,35 @@ function FormationLecture() {
   const [done, setDone] = useState<string[]>([]);
   const [current, setCurrent] = useState<{ m: number; l: number }>({ m: 0, l: 0 });
   const [activeTab, setActiveTab] = useState(0);
+  const [realModules, setRealModules] = useState<RealModule[] | null>(null);
+
+  const fetchRealModules = useCallback(async () => {
+    const { data: mods } = await supabase
+      .from("modules")
+      .select("id, titre, position")
+      .eq("formation_id", id)
+      .order("position");
+
+    if (mods && mods.length > 0) {
+      const { data: lecs } = await supabase
+        .from("lecons")
+        .select("module_id, titre, duree, video_type, video_url")
+        .in("module_id", mods.map((m) => m.id))
+        .order("position");
+
+      setRealModules(mods.map((m) => ({
+        titre: m.titre,
+        lecons: (lecs || []).filter((l) => l.module_id === m.id).map((l) => ({
+          titre: l.titre,
+          duree: l.duree || "",
+          video_type: l.video_type || "youtube",
+          video_url: l.video_url || "",
+        })),
+      })));
+    }
+  }, [id]);
+
+  useEffect(() => { fetchRealModules(); }, [fetchRealModules]);
 
   if (!formation) return <div className="p-8"><h1 className="text-2xl font-bold text-foreground">Formation introuvable</h1></div>;
 
@@ -87,15 +129,14 @@ function FormationLecture() {
 
         {/* Player */}
         <main className="rounded-2xl border border-border bg-white overflow-hidden shadow-soft">
-          <div className="relative aspect-video bg-forest/5 flex items-center justify-center">
-            <div className="text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-forest/10 mx-auto">
-                <Play className="h-8 w-8 text-forest" />
-              </div>
-              <p className="mt-3 text-sm text-muted-foreground">Vidéo de la leçon</p>
-              <p className="text-xs text-muted-foreground mt-1">{currentLesson?.titre} · {currentLesson?.duree}</p>
-            </div>
-          </div>
+          <VideoPlayer
+            modules={realModules}
+            fallbackProgramme={formation.programme}
+            currentM={current.m}
+            currentL={current.l}
+            lessonTitle={currentLesson?.titre}
+            lessonDuree={currentLesson?.duree}
+          />
           <div className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -159,4 +200,75 @@ function FormationLecture() {
       </div>
     </div>
   );
+}
+
+function VideoPlayer({ modules, fallbackProgramme, currentM, currentL, lessonTitle, lessonDuree }: {
+  modules: RealModule[] | null;
+  fallbackProgramme: { titre: string; lecons: { titre: string; duree: string }[] }[];
+  currentM: number;
+  currentL: number;
+  lessonTitle?: string;
+  lessonDuree?: string;
+}) {
+  const realLecon = modules?.[currentM]?.lecons[currentL];
+
+  if (realLecon?.video_url) {
+    const url = realLecon.video_url;
+
+    if (realLecon.video_type === "youtube") {
+      const videoId = extractYouTubeId(url);
+      if (videoId) {
+        return (
+          <div className="relative aspect-video bg-black rounded-t-2xl overflow-hidden">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+              className="h-full w-full"
+              allowFullScreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            />
+          </div>
+        );
+      }
+    }
+
+    if (realLecon.video_type === "vimeo") {
+      const vimeoId = url.match(/vimeo\.com\/(\d+)/)?.[1];
+      if (vimeoId) {
+        return (
+          <div className="relative aspect-video bg-black rounded-t-2xl overflow-hidden">
+            <iframe
+              src={`https://player.vimeo.com/video/${vimeoId}`}
+              className="h-full w-full"
+              allowFullScreen
+            />
+          </div>
+        );
+      }
+    }
+
+    if (realLecon.video_type === "upload") {
+      return (
+        <div className="relative aspect-video bg-black rounded-t-2xl overflow-hidden">
+          <video src={url} controls className="h-full w-full" />
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div className="relative aspect-video bg-forest/5 flex items-center justify-center">
+      <div className="text-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-forest/10 mx-auto">
+          <Play className="h-8 w-8 text-forest" />
+        </div>
+        <p className="mt-3 text-sm text-muted-foreground">Vidéo bientôt disponible</p>
+        <p className="text-xs text-muted-foreground mt-1">{lessonTitle} · {lessonDuree}</p>
+      </div>
+    </div>
+  );
+}
+
+function extractYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?\s]+)/);
+  return match?.[1] || null;
 }
