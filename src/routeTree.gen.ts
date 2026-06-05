@@ -45,6 +45,7 @@ import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AdminParametresRouteImport } from './routes/admin.parametres'
 import { Route as AdminPaiementsRouteImport } from './routes/admin.paiements'
+import { Route as AdminNouvelleFormationRouteImport } from './routes/admin.nouvelle-formation'
 import { Route as AdminMembresRouteImport } from './routes/admin.membres'
 import { Route as AdminFormationsRouteImport } from './routes/admin.formations'
 import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
@@ -52,7 +53,6 @@ import { Route as AdminContenuRouteImport } from './routes/admin.contenu'
 import { Route as AdminCommissionsRouteImport } from './routes/admin.commissions'
 import { Route as DashboardFormationIdRouteImport } from './routes/dashboard.formation.$id'
 import { Route as AdminModulesFormationIdRouteImport } from './routes/admin.modules.$formationId'
-import { Route as AdminFormationsNewRouteImport } from './routes/admin.formations.new'
 import { Route as AdminFormationsIdEditRouteImport } from './routes/admin.formations.$id.edit'
 
 const TemoignagesRoute = TemoignagesRouteImport.update({
@@ -235,6 +235,11 @@ const AdminPaiementsRoute = AdminPaiementsRouteImport.update({
   path: '/paiements',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminNouvelleFormationRoute = AdminNouvelleFormationRouteImport.update({
+  id: '/nouvelle-formation',
+  path: '/nouvelle-formation',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminMembresRoute = AdminMembresRouteImport.update({
   id: '/membres',
   path: '/membres',
@@ -270,11 +275,6 @@ const AdminModulesFormationIdRoute = AdminModulesFormationIdRouteImport.update({
   path: '/modules/$formationId',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminFormationsNewRoute = AdminFormationsNewRouteImport.update({
-  id: '/new',
-  path: '/new',
-  getParentRoute: () => AdminFormationsRoute,
-} as any)
 const AdminFormationsIdEditRoute = AdminFormationsIdEditRouteImport.update({
   id: '/$id/edit',
   path: '/$id/edit',
@@ -305,6 +305,7 @@ export interface FileRoutesByFullPath {
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
   '/admin/membres': typeof AdminMembresRoute
+  '/admin/nouvelle-formation': typeof AdminNouvelleFormationRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -323,7 +324,6 @@ export interface FileRoutesByFullPath {
   '/paiement/succes': typeof PaiementSuccesRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/admin/formations/new': typeof AdminFormationsNewRoute
   '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
   '/dashboard/formation/$id': typeof DashboardFormationIdRoute
   '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
@@ -350,6 +350,7 @@ export interface FileRoutesByTo {
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
   '/admin/membres': typeof AdminMembresRoute
+  '/admin/nouvelle-formation': typeof AdminNouvelleFormationRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -368,7 +369,6 @@ export interface FileRoutesByTo {
   '/paiement/succes': typeof PaiementSuccesRoute
   '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/admin/formations/new': typeof AdminFormationsNewRoute
   '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
   '/dashboard/formation/$id': typeof DashboardFormationIdRoute
   '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
@@ -398,6 +398,7 @@ export interface FileRoutesById {
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
   '/admin/membres': typeof AdminMembresRoute
+  '/admin/nouvelle-formation': typeof AdminNouvelleFormationRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -416,7 +417,6 @@ export interface FileRoutesById {
   '/paiement/succes': typeof PaiementSuccesRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/admin/formations/new': typeof AdminFormationsNewRoute
   '/admin/modules/$formationId': typeof AdminModulesFormationIdRoute
   '/dashboard/formation/$id': typeof DashboardFormationIdRoute
   '/admin/formations/$id/edit': typeof AdminFormationsIdEditRoute
@@ -447,6 +447,7 @@ export interface FileRouteTypes {
     | '/admin/emails'
     | '/admin/formations'
     | '/admin/membres'
+    | '/admin/nouvelle-formation'
     | '/admin/paiements'
     | '/admin/parametres'
     | '/auth/forgot-password'
@@ -465,7 +466,6 @@ export interface FileRouteTypes {
     | '/paiement/succes'
     | '/admin/'
     | '/dashboard/'
-    | '/admin/formations/new'
     | '/admin/modules/$formationId'
     | '/dashboard/formation/$id'
     | '/admin/formations/$id/edit'
@@ -492,6 +492,7 @@ export interface FileRouteTypes {
     | '/admin/emails'
     | '/admin/formations'
     | '/admin/membres'
+    | '/admin/nouvelle-formation'
     | '/admin/paiements'
     | '/admin/parametres'
     | '/auth/forgot-password'
@@ -510,7 +511,6 @@ export interface FileRouteTypes {
     | '/paiement/succes'
     | '/admin'
     | '/dashboard'
-    | '/admin/formations/new'
     | '/admin/modules/$formationId'
     | '/dashboard/formation/$id'
     | '/admin/formations/$id/edit'
@@ -539,6 +539,7 @@ export interface FileRouteTypes {
     | '/admin/emails'
     | '/admin/formations'
     | '/admin/membres'
+    | '/admin/nouvelle-formation'
     | '/admin/paiements'
     | '/admin/parametres'
     | '/auth/forgot-password'
@@ -557,7 +558,6 @@ export interface FileRouteTypes {
     | '/paiement/succes'
     | '/admin/'
     | '/dashboard/'
-    | '/admin/formations/new'
     | '/admin/modules/$formationId'
     | '/dashboard/formation/$id'
     | '/admin/formations/$id/edit'
@@ -842,6 +842,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPaiementsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/nouvelle-formation': {
+      id: '/admin/nouvelle-formation'
+      path: '/nouvelle-formation'
+      fullPath: '/admin/nouvelle-formation'
+      preLoaderRoute: typeof AdminNouvelleFormationRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/membres': {
       id: '/admin/membres'
       path: '/membres'
@@ -891,13 +898,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminModulesFormationIdRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/formations/new': {
-      id: '/admin/formations/new'
-      path: '/new'
-      fullPath: '/admin/formations/new'
-      preLoaderRoute: typeof AdminFormationsNewRouteImport
-      parentRoute: typeof AdminFormationsRoute
-    }
     '/admin/formations/$id/edit': {
       id: '/admin/formations/$id/edit'
       path: '/$id/edit'
@@ -909,12 +909,10 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminFormationsRouteChildren {
-  AdminFormationsNewRoute: typeof AdminFormationsNewRoute
   AdminFormationsIdEditRoute: typeof AdminFormationsIdEditRoute
 }
 
 const AdminFormationsRouteChildren: AdminFormationsRouteChildren = {
-  AdminFormationsNewRoute: AdminFormationsNewRoute,
   AdminFormationsIdEditRoute: AdminFormationsIdEditRoute,
 }
 
@@ -928,6 +926,7 @@ interface AdminRouteChildren {
   AdminEmailsRoute: typeof AdminEmailsRoute
   AdminFormationsRoute: typeof AdminFormationsRouteWithChildren
   AdminMembresRoute: typeof AdminMembresRoute
+  AdminNouvelleFormationRoute: typeof AdminNouvelleFormationRoute
   AdminPaiementsRoute: typeof AdminPaiementsRoute
   AdminParametresRoute: typeof AdminParametresRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -940,6 +939,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminEmailsRoute: AdminEmailsRoute,
   AdminFormationsRoute: AdminFormationsRouteWithChildren,
   AdminMembresRoute: AdminMembresRoute,
+  AdminNouvelleFormationRoute: AdminNouvelleFormationRoute,
   AdminPaiementsRoute: AdminPaiementsRoute,
   AdminParametresRoute: AdminParametresRoute,
   AdminIndexRoute: AdminIndexRoute,
