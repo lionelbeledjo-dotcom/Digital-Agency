@@ -17,6 +17,7 @@ import { Route as FormationsRouteImport } from './routes/formations'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DetailRouteImport } from './routes/detail'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CreerFormationRouteImport } from './routes/creer-formation'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CgvRouteImport } from './routes/cgv'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -45,7 +46,6 @@ import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AdminParametresRouteImport } from './routes/admin.parametres'
 import { Route as AdminPaiementsRouteImport } from './routes/admin.paiements'
-import { Route as AdminNouvelleFormationRouteImport } from './routes/admin.nouvelle-formation'
 import { Route as AdminMembresRouteImport } from './routes/admin.membres'
 import { Route as AdminFormationsRouteImport } from './routes/admin.formations'
 import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
@@ -93,6 +93,11 @@ const DetailRoute = DetailRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreerFormationRoute = CreerFormationRouteImport.update({
+  id: '/creer-formation',
+  path: '/creer-formation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -235,11 +240,6 @@ const AdminPaiementsRoute = AdminPaiementsRouteImport.update({
   path: '/paiements',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminNouvelleFormationRoute = AdminNouvelleFormationRouteImport.update({
-  id: '/nouvelle-formation',
-  path: '/nouvelle-formation',
-  getParentRoute: () => AdminRoute,
-} as any)
 const AdminMembresRoute = AdminMembresRouteImport.update({
   id: '/membres',
   path: '/membres',
@@ -292,6 +292,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
   '/contact': typeof ContactRoute
+  '/creer-formation': typeof CreerFormationRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/detail': typeof DetailRoute
   '/faq': typeof FaqRoute
@@ -305,7 +306,6 @@ export interface FileRoutesByFullPath {
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
   '/admin/membres': typeof AdminMembresRoute
-  '/admin/nouvelle-formation': typeof AdminNouvelleFormationRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -338,6 +338,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
   '/contact': typeof ContactRoute
+  '/creer-formation': typeof CreerFormationRoute
   '/detail': typeof DetailRoute
   '/faq': typeof FaqRoute
   '/formations': typeof FormationsRouteWithChildren
@@ -350,7 +351,6 @@ export interface FileRoutesByTo {
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
   '/admin/membres': typeof AdminMembresRoute
-  '/admin/nouvelle-formation': typeof AdminNouvelleFormationRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -385,6 +385,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteWithChildren
   '/cgv': typeof CgvRoute
   '/contact': typeof ContactRoute
+  '/creer-formation': typeof CreerFormationRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/detail': typeof DetailRoute
   '/faq': typeof FaqRoute
@@ -398,7 +399,6 @@ export interface FileRoutesById {
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
   '/admin/membres': typeof AdminMembresRoute
-  '/admin/nouvelle-formation': typeof AdminNouvelleFormationRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -434,6 +434,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/cgv'
     | '/contact'
+    | '/creer-formation'
     | '/dashboard'
     | '/detail'
     | '/faq'
@@ -447,7 +448,6 @@ export interface FileRouteTypes {
     | '/admin/emails'
     | '/admin/formations'
     | '/admin/membres'
-    | '/admin/nouvelle-formation'
     | '/admin/paiements'
     | '/admin/parametres'
     | '/auth/forgot-password'
@@ -480,6 +480,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/cgv'
     | '/contact'
+    | '/creer-formation'
     | '/detail'
     | '/faq'
     | '/formations'
@@ -492,7 +493,6 @@ export interface FileRouteTypes {
     | '/admin/emails'
     | '/admin/formations'
     | '/admin/membres'
-    | '/admin/nouvelle-formation'
     | '/admin/paiements'
     | '/admin/parametres'
     | '/auth/forgot-password'
@@ -526,6 +526,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/cgv'
     | '/contact'
+    | '/creer-formation'
     | '/dashboard'
     | '/detail'
     | '/faq'
@@ -539,7 +540,6 @@ export interface FileRouteTypes {
     | '/admin/emails'
     | '/admin/formations'
     | '/admin/membres'
-    | '/admin/nouvelle-formation'
     | '/admin/paiements'
     | '/admin/parametres'
     | '/auth/forgot-password'
@@ -574,6 +574,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRouteWithChildren
   CgvRoute: typeof CgvRoute
   ContactRoute: typeof ContactRoute
+  CreerFormationRoute: typeof CreerFormationRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   DetailRoute: typeof DetailRoute
   FaqRoute: typeof FaqRoute
@@ -644,6 +645,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creer-formation': {
+      id: '/creer-formation'
+      path: '/creer-formation'
+      fullPath: '/creer-formation'
+      preLoaderRoute: typeof CreerFormationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -842,13 +850,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPaiementsRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/nouvelle-formation': {
-      id: '/admin/nouvelle-formation'
-      path: '/nouvelle-formation'
-      fullPath: '/admin/nouvelle-formation'
-      preLoaderRoute: typeof AdminNouvelleFormationRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/admin/membres': {
       id: '/admin/membres'
       path: '/membres'
@@ -926,7 +927,6 @@ interface AdminRouteChildren {
   AdminEmailsRoute: typeof AdminEmailsRoute
   AdminFormationsRoute: typeof AdminFormationsRouteWithChildren
   AdminMembresRoute: typeof AdminMembresRoute
-  AdminNouvelleFormationRoute: typeof AdminNouvelleFormationRoute
   AdminPaiementsRoute: typeof AdminPaiementsRoute
   AdminParametresRoute: typeof AdminParametresRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -939,7 +939,6 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminEmailsRoute: AdminEmailsRoute,
   AdminFormationsRoute: AdminFormationsRouteWithChildren,
   AdminMembresRoute: AdminMembresRoute,
-  AdminNouvelleFormationRoute: AdminNouvelleFormationRoute,
   AdminPaiementsRoute: AdminPaiementsRoute,
   AdminParametresRoute: AdminParametresRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -1021,6 +1020,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRouteWithChildren,
   CgvRoute: CgvRoute,
   ContactRoute: ContactRoute,
+  CreerFormationRoute: CreerFormationRoute,
   DashboardRoute: DashboardRouteWithChildren,
   DetailRoute: DetailRoute,
   FaqRoute: FaqRoute,
