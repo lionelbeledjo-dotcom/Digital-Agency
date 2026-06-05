@@ -20,7 +20,7 @@ function AdminFormations() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>Formations</h1>
-        <Link to="/admin/formations/new" className="rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white flex items-center gap-2 shadow-glow transition-transform hover:scale-[1.02]"><Plus className="h-4 w-4" /> Nouvelle formation</Link>
+        <a href="/admin/formations/new" className="rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white flex items-center gap-2 shadow-glow transition-transform hover:scale-[1.02]"><Plus className="h-4 w-4" /> Nouvelle formation</a>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-4">
