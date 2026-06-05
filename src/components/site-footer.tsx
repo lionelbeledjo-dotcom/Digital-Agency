@@ -26,8 +26,8 @@ export function SiteFooter() {
           </div>
 
           {[
-            { title: "Plateforme", links: [["Accueil","/"],["Fonctionnement","/detail"],["Tarifs","/tarifs"],["Affiliation","/affiliation"]] },
-            { title: "Formations", links: [["Catalogue","/formations"],["Blog","/blog"],["FAQ","/faq"]] },
+            { title: "Plateforme", links: [["Accueil","/"],["À propos","/a-propos"],["Tarifs","/tarifs"],["Affiliation","/affiliation"]] },
+            { title: "Formations", links: [["Catalogue","/formations"],["Témoignages","/temoignages"],["Blog","/blog"],["FAQ","/faq"]] },
             { title: "Légal", links: [["Mentions légales","/mentions-legales"],["CGV","/cgv"],["Contact","/contact"]] },
           ].map((col) => (
             <div key={col.title}>

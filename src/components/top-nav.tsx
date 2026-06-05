@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useAppStore } from "@/store/appStore";
+import { ThemeToggle } from "./theme-toggle";
 
 const links = [
   { to: "/formations", label: "Formations" },
@@ -17,13 +18,13 @@ export function TopNav() {
   const pathname = useRouterState({ select: (r) => r.location.pathname });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border bg-white/80 dark:bg-[#0f1a14]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-forest">
             <span className="text-sm font-bold text-white">LB</span>
           </div>
-          <span className="text-lg font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
+          <span className="text-lg font-bold text-forest dark:text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -35,11 +36,11 @@ export function TopNav() {
             >
               {l.label}
             </Link>
-
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
+          <ThemeToggle />
           {isLoggedIn ? (
             <Link to="/dashboard" className="rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow">
               Mon espace
@@ -56,17 +57,20 @@ export function TopNav() {
           )}
         </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-md border border-border p-2 lg:hidden"
-          aria-label="Menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-md border border-border p-2"
+            aria-label="Menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
-        <div className="animate-slide-in-down border-t border-border bg-white lg:hidden">
+        <div className="animate-slide-in-down border-t border-border bg-white dark:bg-[#0f1a14] lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
             {links.map((l) => (
               <Link

@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TemoignagesRouteImport } from './routes/temoignages'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as PaiementRouteImport } from './routes/paiement'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
@@ -54,6 +55,11 @@ import { Route as AdminModulesFormationIdRouteImport } from './routes/admin.modu
 import { Route as AdminFormationsNewRouteImport } from './routes/admin.formations.new'
 import { Route as AdminFormationsIdEditRouteImport } from './routes/admin.formations.$id.edit'
 
+const TemoignagesRoute = TemoignagesRouteImport.update({
+  id: '/temoignages',
+  path: '/temoignages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TarifsRoute = TarifsRouteImport.update({
   id: '/tarifs',
   path: '/tarifs',
@@ -293,6 +299,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
+  '/temoignages': typeof TemoignagesRoute
   '/admin/commissions': typeof AdminCommissionsRoute
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
@@ -337,6 +344,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
+  '/temoignages': typeof TemoignagesRoute
   '/admin/commissions': typeof AdminCommissionsRoute
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
@@ -384,6 +392,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
+  '/temoignages': typeof TemoignagesRoute
   '/admin/commissions': typeof AdminCommissionsRoute
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
@@ -432,6 +441,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/paiement'
     | '/tarifs'
+    | '/temoignages'
     | '/admin/commissions'
     | '/admin/contenu'
     | '/admin/emails'
@@ -476,6 +486,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/paiement'
     | '/tarifs'
+    | '/temoignages'
     | '/admin/commissions'
     | '/admin/contenu'
     | '/admin/emails'
@@ -522,6 +533,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/paiement'
     | '/tarifs'
+    | '/temoignages'
     | '/admin/commissions'
     | '/admin/contenu'
     | '/admin/emails'
@@ -569,6 +581,7 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PaiementRoute: typeof PaiementRouteWithChildren
   TarifsRoute: typeof TarifsRoute
+  TemoignagesRoute: typeof TemoignagesRoute
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
@@ -577,6 +590,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/temoignages': {
+      id: '/temoignages'
+      path: '/temoignages'
+      fullPath: '/temoignages'
+      preLoaderRoute: typeof TemoignagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tarifs': {
       id: '/tarifs'
       path: '/tarifs'
@@ -1008,6 +1028,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   PaiementRoute: PaiementRouteWithChildren,
   TarifsRoute: TarifsRoute,
+  TemoignagesRoute: TemoignagesRoute,
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,

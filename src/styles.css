@@ -108,6 +108,27 @@
   --sidebar-ring: #c8a415;
 }
 
+.dark {
+  --background: #0f1a14;
+  --foreground: #f0f0eb;
+  --card: #162019;
+  --card-foreground: #f0f0eb;
+  --popover: #162019;
+  --popover-foreground: #f0f0eb;
+  --primary: #237a4d;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2a20;
+  --secondary-foreground: #f0f0eb;
+  --muted: #1a2a20;
+  --muted-foreground: #8a9a8f;
+  --accent: #c8a415;
+  --accent-foreground: #f0f0eb;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: #1a2a20;
+  --ring: #237a4d;
+  --cream: #162019;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
