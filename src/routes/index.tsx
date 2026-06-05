@@ -115,37 +115,38 @@ function HomePage() {
             </div>
 
             {/* Right column — hero image + floating cards */}
-            <div className="relative flex justify-center lg:justify-end">
+            <div className="relative flex justify-center lg:justify-end min-h-[420px] sm:min-h-[520px] lg:min-h-[580px]">
               <img
                 src="/hero-person.png"
                 alt="Membre Digital Agency avec téléphone"
-                className="relative z-10 h-auto w-[320px] sm:w-[400px] lg:w-[460px] object-contain drop-shadow-2xl"
+                className="relative z-10 h-auto w-[400px] sm:w-[500px] lg:w-[580px] max-w-none object-contain"
+                style={{ mixBlendMode: "screen" }}
               />
 
               {/* Floating card — Commissions */}
-              <div className="absolute top-4 right-0 z-20 animate-float rounded-xl bg-white px-4 py-3 shadow-soft border border-border">
+              <div className="absolute top-6 right-0 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border">
                 <p className="text-xs text-muted-foreground">Commissions</p>
-                <p className="text-lg font-bold text-forest">+ 650$</p>
-                <p className="text-[10px] text-muted-foreground">Chaque vendredi</p>
+                <p className="text-xl font-bold text-forest">+ 650.000 FCFA</p>
+                <p className="text-[11px] text-muted-foreground">Chaque vendredi</p>
               </div>
 
               {/* Floating card — Revenus */}
-              <div className="absolute bottom-[40%] left-0 z-20 animate-float rounded-xl bg-white px-4 py-3 shadow-soft border border-border" style={{ animationDelay: "1s" }}>
+              <div className="absolute bottom-[38%] -left-4 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border" style={{ animationDelay: "1s" }}>
                 <p className="text-xs text-muted-foreground">Revenus générés</p>
-                <p className="text-xl font-bold text-forest">+ 2.450$</p>
-                <p className="text-[10px] text-muted-foreground">Cette semaine</p>
+                <p className="text-2xl font-bold text-forest">+ 2.450.000 FCFA</p>
+                <p className="text-[11px] text-muted-foreground">Cette semaine</p>
               </div>
 
               {/* Floating card — Payment logos */}
-              <div className="absolute bottom-[20%] right-0 z-20 animate-float flex items-center gap-2 rounded-xl bg-white px-3 py-2 shadow-soft border border-border" style={{ animationDelay: "2s" }}>
-                <span className="rounded bg-orange-500 px-1.5 py-0.5 text-[9px] font-bold text-white">orange</span>
-                <span className="rounded bg-yellow-400 px-1.5 py-0.5 text-[9px] font-bold text-black">MTN</span>
-                <span className="rounded bg-blue-900 px-1.5 py-0.5 text-[9px] font-bold text-white">Moov</span>
+              <div className="absolute bottom-[16%] right-0 z-20 animate-float flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-lg border border-border" style={{ animationDelay: "2s" }}>
+                <span className="rounded-md bg-orange-500 px-2 py-1 text-[10px] font-bold text-white">Orange</span>
+                <span className="rounded-md bg-yellow-400 px-2 py-1 text-[10px] font-bold text-black">MTN</span>
+                <span className="rounded-md bg-blue-800 px-2 py-1 text-[10px] font-bold text-white">Moov</span>
               </div>
 
               {/* Rocket icon top-left */}
-              <div className="absolute top-10 left-10 z-20 flex h-12 w-12 items-center justify-center rounded-xl bg-forest shadow-lg">
-                <Rocket className="h-6 w-6 text-white" />
+              <div className="absolute top-12 left-4 z-20 flex h-14 w-14 items-center justify-center rounded-2xl bg-forest shadow-lg">
+                <Rocket className="h-7 w-7 text-white" />
               </div>
             </div>
           </div>
