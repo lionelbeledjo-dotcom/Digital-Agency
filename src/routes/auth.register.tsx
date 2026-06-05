@@ -2,8 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
 import { useAppStore, PAYS_LIST, type Plan } from "@/store/appStore";
 import { supabase } from "@/lib/supabase";
+import { getAffiliateCookie } from "@/lib/affiliation";
 import { CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth/register")({
@@ -24,6 +25,11 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [codeParrain, setCodeParrain] = useState("");
+
+  useEffect(() => {
+    const ref = getAffiliateCookie();
+    if (ref && !codeParrain) setCodeParrain(ref);
+  }, []);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
