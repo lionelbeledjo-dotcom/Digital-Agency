@@ -27,13 +27,9 @@ function AdminLoginPage() {
       return;
     }
 
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", data.user.id)
-      .single();
+    const { data: roleData } = await supabase.rpc("get_user_role", { user_id: data.user.id });
 
-    if (!profile || profile.role !== "admin") {
+    if (!roleData || roleData !== "admin") {
       await supabase.auth.signOut();
       toast.error("Ce compte n'a pas les droits administrateur.");
       setLoading(false);
