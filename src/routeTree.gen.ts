@@ -53,6 +53,7 @@ import { Route as AdminFormationsRouteImport } from './routes/admin.formations'
 import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
 import { Route as AdminContenuRouteImport } from './routes/admin.contenu'
 import { Route as AdminCommissionsRouteImport } from './routes/admin.commissions'
+import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as DashboardFormationIdRouteImport } from './routes/dashboard.formation.$id'
 import { Route as AdminModulesFormationIdRouteImport } from './routes/admin.modules.$formationId'
 import { Route as AdminFormationsIdEditRouteImport } from './routes/admin.formations.$id.edit'
@@ -277,6 +278,11 @@ const AdminCommissionsRoute = AdminCommissionsRouteImport.update({
   path: '/commissions',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminRoute,
+} as any)
 const DashboardFormationIdRoute = DashboardFormationIdRouteImport.update({
   id: '/formation/$id',
   path: '/formation/$id',
@@ -313,6 +319,7 @@ export interface FileRoutesByFullPath {
   '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
   '/temoignages': typeof TemoignagesRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/commissions': typeof AdminCommissionsRoute
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
@@ -360,6 +367,7 @@ export interface FileRoutesByTo {
   '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
   '/temoignages': typeof TemoignagesRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/commissions': typeof AdminCommissionsRoute
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
@@ -410,6 +418,7 @@ export interface FileRoutesById {
   '/paiement': typeof PaiementRouteWithChildren
   '/tarifs': typeof TarifsRoute
   '/temoignages': typeof TemoignagesRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/commissions': typeof AdminCommissionsRoute
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
@@ -461,6 +470,7 @@ export interface FileRouteTypes {
     | '/paiement'
     | '/tarifs'
     | '/temoignages'
+    | '/admin/blog'
     | '/admin/commissions'
     | '/admin/contenu'
     | '/admin/emails'
@@ -508,6 +518,7 @@ export interface FileRouteTypes {
     | '/paiement'
     | '/tarifs'
     | '/temoignages'
+    | '/admin/blog'
     | '/admin/commissions'
     | '/admin/contenu'
     | '/admin/emails'
@@ -557,6 +568,7 @@ export interface FileRouteTypes {
     | '/paiement'
     | '/tarifs'
     | '/temoignages'
+    | '/admin/blog'
     | '/admin/commissions'
     | '/admin/contenu'
     | '/admin/emails'
@@ -923,6 +935,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCommissionsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/dashboard/formation/$id': {
       id: '/dashboard/formation/$id'
       path: '/formation/$id'
@@ -960,6 +979,7 @@ const AdminFormationsRouteWithChildren = AdminFormationsRoute._addFileChildren(
 )
 
 interface AdminRouteChildren {
+  AdminBlogRoute: typeof AdminBlogRoute
   AdminCommissionsRoute: typeof AdminCommissionsRoute
   AdminContenuRoute: typeof AdminContenuRoute
   AdminEmailsRoute: typeof AdminEmailsRoute
@@ -973,6 +993,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminBlogRoute: AdminBlogRoute,
   AdminCommissionsRoute: AdminCommissionsRoute,
   AdminContenuRoute: AdminContenuRoute,
   AdminEmailsRoute: AdminEmailsRoute,

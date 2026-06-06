@@ -1,5 +1,5 @@
 import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, Users, GraduationCap, Wallet, CreditCard, Mail, FileText, Settings, ShieldCheck, LogOut, Image } from "lucide-react";
+import { LayoutDashboard, Users, GraduationCap, Wallet, CreditCard, Mail, FileText, Settings, ShieldCheck, LogOut, Image, Newspaper } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ const items = [
   { to: "/admin/paiements", label: "Paiements", Icon: CreditCard, exact: undefined as boolean | undefined },
   { to: "/admin/emails", label: "Emails", Icon: Mail, exact: undefined as boolean | undefined },
   { to: "/admin/galerie", label: "Galerie IA", Icon: Image, exact: undefined as boolean | undefined },
+  { to: "/admin/blog", label: "Blog", Icon: Newspaper, exact: undefined as boolean | undefined },
   { to: "/admin/contenu", label: "Contenu", Icon: FileText, exact: undefined as boolean | undefined },
   { to: "/admin/parametres", label: "Paramètres", Icon: Settings, exact: undefined as boolean | undefined },
 ] as const;
