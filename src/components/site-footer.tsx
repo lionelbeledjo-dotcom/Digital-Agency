@@ -17,8 +17,13 @@ export function SiteFooter() {
               La plateforme "Apprends & Gagne" qui forme l'Afrique francophone à l'IA et reverse des commissions chaque vendredi.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {[Facebook, Instagram, Send, MessageCircle].map((Icon, i) => (
-                <a key={i} href="#" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 hover:bg-white/10 hover:text-white transition-colors">
+              {[
+                { Icon: Facebook, href: "https://www.facebook.com/digitalagency.site" },
+                { Icon: Instagram, href: "https://www.instagram.com/digitalagency.site" },
+                { Icon: Send, href: "https://t.me/digitalagencysite" },
+                { Icon: MessageCircle, href: "https://wa.me/message/digitalagency" },
+              ].map(({ Icon, href }) => (
+                <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 hover:bg-white/10 hover:text-white transition-colors">
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
@@ -45,7 +50,7 @@ export function SiteFooter() {
           {["Wero","PayPal","MTN Mobile Money","Orange Money"].map((p) => (
             <span key={p} className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/70">{p}</span>
           ))}
-          <p className="ml-auto text-xs text-white/50">&copy; 2025 Digital Agency &middot; Tous droits réservés</p>
+          <p className="ml-auto text-xs text-white/50">&copy; 2025–2026 Digital Agency &middot; Tous droits réservés</p>
         </div>
       </div>
     </footer>

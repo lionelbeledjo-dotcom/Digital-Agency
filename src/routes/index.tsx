@@ -126,16 +126,16 @@ function HomePage() {
 
               {/* Floating card — Commissions */}
               <div className="absolute top-[45%] -right-4 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border">
-                <p className="text-xs text-muted-foreground">Commissions</p>
-                <p className="text-xl font-bold text-forest">+ 650.000 FCFA</p>
-                <p className="text-[11px] text-muted-foreground">Chaque vendredi</p>
+                <p className="text-xs text-muted-foreground">Top membre</p>
+                <p className="text-xl font-bold text-forest">+ 85.000 FCFA</p>
+                <p className="text-[11px] text-muted-foreground">gagné ce vendredi</p>
               </div>
 
               {/* Floating card — Revenus */}
               <div className="absolute bottom-[38%] -left-4 z-20 animate-float rounded-2xl bg-white px-5 py-4 shadow-lg border border-border" style={{ animationDelay: "1s" }}>
-                <p className="text-xs text-muted-foreground">Revenus générés</p>
-                <p className="text-2xl font-bold text-forest">+ 2.450.000 FCFA</p>
-                <p className="text-[11px] text-muted-foreground">Cette semaine</p>
+                <p className="text-xs text-muted-foreground">Total distribué</p>
+                <p className="text-2xl font-bold text-forest">+ 2.4M FCFA</p>
+                <p className="text-[11px] text-muted-foreground">à nos membres cette semaine</p>
               </div>
 
               {/* Floating card — Payment logos */}
