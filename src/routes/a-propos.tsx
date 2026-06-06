@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
-import { ArrowRight, Target, Heart, Globe, Zap } from "lucide-react";
+import { ArrowRight, Target, Heart, Globe, Zap, Linkedin, Twitter } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/a-propos")({
   head: () => ({ meta: [{ title: "À propos · Digital Agency" }] }),
@@ -22,13 +24,41 @@ const milestones = [
   { year: "2026", event: "App mobile, certifications officielles, 50+ formations" },
 ];
 
-const team = [
-  { name: "Lionel B.", role: "Fondateur & CEO", desc: "Expert marketing digital et IA. Passionné par l'éducation et l'entrepreneuriat africain." },
-  { name: "Équipe Tech", role: "Développement", desc: "Ingénieurs fullstack qui construisent la plateforme la plus rapide et fiable d'Afrique." },
-  { name: "Équipe Contenu", role: "Formations", desc: "Créateurs de contenu pédagogique, experts en IA, design, vidéo et marketing." },
-];
+interface Fondateur {
+  nom: string;
+  role: string;
+  bio: string;
+  photo_url: string;
+  linkedin: string;
+  twitter: string;
+}
+
+interface Stats {
+  formations: string;
+  pays: string;
+  apprenants: string;
+  reverses: string;
+}
 
 function AProposPage() {
+  const [fondateur, setFondateur] = useState<Fondateur>({
+    nom: "Lionel Beledjo", role: "Fondateur & CEO",
+    bio: "Passionné de marketing digital et d'intelligence artificielle, j'ai créé Digital Agency avec une mission simple : donner à chaque francophone les outils pour générer un revenu en ligne. Après 5 ans dans le digital en Europe, j'ai décidé de mettre mon expertise au service de l'Afrique francophone.",
+    photo_url: "", linkedin: "", twitter: "",
+  });
+  const [stats, setStats] = useState<Stats>({ formations: "15+", pays: "12", apprenants: "10K+", reverses: "5M+ FCFA" });
+
+  useEffect(() => {
+    supabase.from("site_content").select("key, value").in("key", ["fondateur", "statistiques"]).then(({ data }) => {
+      if (data) {
+        data.forEach((row) => {
+          if (row.key === "fondateur") setFondateur(row.value as Fondateur);
+          if (row.key === "statistiques") setStats(row.value as Stats);
+        });
+      }
+    });
+  }, []);
+
   return (
     <PublicLayout>
       <section className="bg-hero-radial py-20">
@@ -60,41 +90,58 @@ function AProposPage() {
         </div>
       </section>
 
+      {/* Fondateur */}
+      <section className="py-20 bg-secondary">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber">Le fondateur</p>
+            <h2 className="mt-2 text-3xl font-bold text-foreground">Le visage derrière Digital Agency</h2>
+          </div>
+
+          <div className="mt-12 grid items-center gap-10 md:grid-cols-2">
+            <div className="flex justify-center">
+              {fondateur.photo_url ? (
+                <img src={fondateur.photo_url} alt={fondateur.nom} className="h-72 w-72 rounded-3xl object-cover shadow-xl border-4 border-white" />
+              ) : (
+                <div className="flex h-72 w-72 items-center justify-center rounded-3xl bg-forest text-6xl font-bold text-white shadow-xl">
+                  {fondateur.nom.split(" ").map(w => w[0]).join("")}
+                </div>
+              )}
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-foreground">{fondateur.nom}</h3>
+              <p className="mt-1 text-sm font-semibold text-forest">{fondateur.role}</p>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{fondateur.bio}</p>
+              <div className="mt-6 flex items-center gap-3">
+                {fondateur.linkedin && (
+                  <a href={fondateur.linkedin} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-forest/10 text-forest hover:bg-forest hover:text-white transition-colors">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                )}
+                {fondateur.twitter && (
+                  <a href={fondateur.twitter} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-forest/10 text-forest hover:bg-forest hover:text-white transition-colors">
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Chiffres */}
       <section className="bg-forest py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 text-center">
             {[
-              { v: "15+", l: "Formations" },
-              { v: "12", l: "Pays couverts" },
-              { v: "10K+", l: "Apprenants" },
-              { v: "5M+", l: "FCFA reversés" },
+              { v: stats.formations, l: "Formations" },
+              { v: stats.pays, l: "Pays couverts" },
+              { v: stats.apprenants, l: "Apprenants" },
+              { v: stats.reverses, l: "FCFA reversés" },
             ].map((s) => (
               <div key={s.l}>
                 <p className="text-4xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>{s.v}</p>
                 <p className="mt-1 text-sm text-white/60">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Équipe */}
-      <section className="py-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-amber">L'équipe</p>
-            <h2 className="mt-2 text-3xl font-bold text-foreground">Les personnes derrière Digital Agency</h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {team.map((t) => (
-              <div key={t.name} className="rounded-2xl border border-border bg-white p-6 shadow-soft text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-forest text-xl font-bold text-white mx-auto">
-                  {t.name.split(" ").map(w => w[0]).join("")}
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">{t.name}</h3>
-                <p className="text-xs text-amber font-medium">{t.role}</p>
-                <p className="mt-3 text-sm text-muted-foreground">{t.desc}</p>
               </div>
             ))}
           </div>
