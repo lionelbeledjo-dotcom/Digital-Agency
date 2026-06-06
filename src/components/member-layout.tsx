@@ -1,5 +1,5 @@
 import { Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
-import { Home, GraduationCap, Wallet, Users, CreditCard, Award, User, LogOut } from "lucide-react";
+import { Home, GraduationCap, Wallet, Users, CreditCard, Award, User, LogOut, Image } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { NotificationBell } from "./notifications";
 const items = [
   { to: "/dashboard", label: "Accueil", Icon: Home, exact: true as boolean | undefined },
   { to: "/dashboard/formations", label: "Formations", Icon: GraduationCap, exact: undefined as boolean | undefined },
+  { to: "/dashboard/galerie", label: "Galerie IA", Icon: Image, exact: undefined as boolean | undefined },
   { to: "/dashboard/commissions", label: "Commissions", Icon: Wallet, exact: undefined as boolean | undefined },
   { to: "/dashboard/affiliation", label: "Affiliation", Icon: Users, exact: undefined as boolean | undefined },
   { to: "/dashboard/paiements", label: "Paiements", Icon: CreditCard, exact: undefined as boolean | undefined },

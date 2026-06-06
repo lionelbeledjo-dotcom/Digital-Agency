@@ -35,6 +35,7 @@ import { Route as PaiementAnnuleRouteImport } from './routes/paiement.annule'
 import { Route as FormationsIdRouteImport } from './routes/formations.$id'
 import { Route as DashboardProfilRouteImport } from './routes/dashboard.profil'
 import { Route as DashboardPaiementsRouteImport } from './routes/dashboard.paiements'
+import { Route as DashboardGalerieRouteImport } from './routes/dashboard.galerie'
 import { Route as DashboardFormationsRouteImport } from './routes/dashboard.formations'
 import { Route as DashboardCommissionsRouteImport } from './routes/dashboard.commissions'
 import { Route as DashboardCertificatsRouteImport } from './routes/dashboard.certificats'
@@ -47,6 +48,7 @@ import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-pas
 import { Route as AdminParametresRouteImport } from './routes/admin.parametres'
 import { Route as AdminPaiementsRouteImport } from './routes/admin.paiements'
 import { Route as AdminMembresRouteImport } from './routes/admin.membres'
+import { Route as AdminGalerieRouteImport } from './routes/admin.galerie'
 import { Route as AdminFormationsRouteImport } from './routes/admin.formations'
 import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
 import { Route as AdminContenuRouteImport } from './routes/admin.contenu'
@@ -185,6 +187,11 @@ const DashboardPaiementsRoute = DashboardPaiementsRouteImport.update({
   path: '/paiements',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardGalerieRoute = DashboardGalerieRouteImport.update({
+  id: '/galerie',
+  path: '/galerie',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardFormationsRoute = DashboardFormationsRouteImport.update({
   id: '/formations',
   path: '/formations',
@@ -243,6 +250,11 @@ const AdminPaiementsRoute = AdminPaiementsRouteImport.update({
 const AdminMembresRoute = AdminMembresRouteImport.update({
   id: '/membres',
   path: '/membres',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminGalerieRoute = AdminGalerieRouteImport.update({
+  id: '/galerie',
+  path: '/galerie',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminFormationsRoute = AdminFormationsRouteImport.update({
@@ -305,6 +317,7 @@ export interface FileRoutesByFullPath {
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
+  '/admin/galerie': typeof AdminGalerieRoute
   '/admin/membres': typeof AdminMembresRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
@@ -317,6 +330,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/certificats': typeof DashboardCertificatsRoute
   '/dashboard/commissions': typeof DashboardCommissionsRoute
   '/dashboard/formations': typeof DashboardFormationsRoute
+  '/dashboard/galerie': typeof DashboardGalerieRoute
   '/dashboard/paiements': typeof DashboardPaiementsRoute
   '/dashboard/profil': typeof DashboardProfilRoute
   '/formations/$id': typeof FormationsIdRoute
@@ -350,6 +364,7 @@ export interface FileRoutesByTo {
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
+  '/admin/galerie': typeof AdminGalerieRoute
   '/admin/membres': typeof AdminMembresRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
@@ -362,6 +377,7 @@ export interface FileRoutesByTo {
   '/dashboard/certificats': typeof DashboardCertificatsRoute
   '/dashboard/commissions': typeof DashboardCommissionsRoute
   '/dashboard/formations': typeof DashboardFormationsRoute
+  '/dashboard/galerie': typeof DashboardGalerieRoute
   '/dashboard/paiements': typeof DashboardPaiementsRoute
   '/dashboard/profil': typeof DashboardProfilRoute
   '/formations/$id': typeof FormationsIdRoute
@@ -398,6 +414,7 @@ export interface FileRoutesById {
   '/admin/contenu': typeof AdminContenuRoute
   '/admin/emails': typeof AdminEmailsRoute
   '/admin/formations': typeof AdminFormationsRouteWithChildren
+  '/admin/galerie': typeof AdminGalerieRoute
   '/admin/membres': typeof AdminMembresRoute
   '/admin/paiements': typeof AdminPaiementsRoute
   '/admin/parametres': typeof AdminParametresRoute
@@ -410,6 +427,7 @@ export interface FileRoutesById {
   '/dashboard/certificats': typeof DashboardCertificatsRoute
   '/dashboard/commissions': typeof DashboardCommissionsRoute
   '/dashboard/formations': typeof DashboardFormationsRoute
+  '/dashboard/galerie': typeof DashboardGalerieRoute
   '/dashboard/paiements': typeof DashboardPaiementsRoute
   '/dashboard/profil': typeof DashboardProfilRoute
   '/formations/$id': typeof FormationsIdRoute
@@ -447,6 +465,7 @@ export interface FileRouteTypes {
     | '/admin/contenu'
     | '/admin/emails'
     | '/admin/formations'
+    | '/admin/galerie'
     | '/admin/membres'
     | '/admin/paiements'
     | '/admin/parametres'
@@ -459,6 +478,7 @@ export interface FileRouteTypes {
     | '/dashboard/certificats'
     | '/dashboard/commissions'
     | '/dashboard/formations'
+    | '/dashboard/galerie'
     | '/dashboard/paiements'
     | '/dashboard/profil'
     | '/formations/$id'
@@ -492,6 +512,7 @@ export interface FileRouteTypes {
     | '/admin/contenu'
     | '/admin/emails'
     | '/admin/formations'
+    | '/admin/galerie'
     | '/admin/membres'
     | '/admin/paiements'
     | '/admin/parametres'
@@ -504,6 +525,7 @@ export interface FileRouteTypes {
     | '/dashboard/certificats'
     | '/dashboard/commissions'
     | '/dashboard/formations'
+    | '/dashboard/galerie'
     | '/dashboard/paiements'
     | '/dashboard/profil'
     | '/formations/$id'
@@ -539,6 +561,7 @@ export interface FileRouteTypes {
     | '/admin/contenu'
     | '/admin/emails'
     | '/admin/formations'
+    | '/admin/galerie'
     | '/admin/membres'
     | '/admin/paiements'
     | '/admin/parametres'
@@ -551,6 +574,7 @@ export interface FileRouteTypes {
     | '/dashboard/certificats'
     | '/dashboard/commissions'
     | '/dashboard/formations'
+    | '/dashboard/galerie'
     | '/dashboard/paiements'
     | '/dashboard/profil'
     | '/formations/$id'
@@ -773,6 +797,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardPaiementsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/galerie': {
+      id: '/dashboard/galerie'
+      path: '/galerie'
+      fullPath: '/dashboard/galerie'
+      preLoaderRoute: typeof DashboardGalerieRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/formations': {
       id: '/dashboard/formations'
       path: '/formations'
@@ -857,6 +888,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMembresRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/galerie': {
+      id: '/admin/galerie'
+      path: '/galerie'
+      fullPath: '/admin/galerie'
+      preLoaderRoute: typeof AdminGalerieRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/formations': {
       id: '/admin/formations'
       path: '/formations'
@@ -926,6 +964,7 @@ interface AdminRouteChildren {
   AdminContenuRoute: typeof AdminContenuRoute
   AdminEmailsRoute: typeof AdminEmailsRoute
   AdminFormationsRoute: typeof AdminFormationsRouteWithChildren
+  AdminGalerieRoute: typeof AdminGalerieRoute
   AdminMembresRoute: typeof AdminMembresRoute
   AdminPaiementsRoute: typeof AdminPaiementsRoute
   AdminParametresRoute: typeof AdminParametresRoute
@@ -938,6 +977,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminContenuRoute: AdminContenuRoute,
   AdminEmailsRoute: AdminEmailsRoute,
   AdminFormationsRoute: AdminFormationsRouteWithChildren,
+  AdminGalerieRoute: AdminGalerieRoute,
   AdminMembresRoute: AdminMembresRoute,
   AdminPaiementsRoute: AdminPaiementsRoute,
   AdminParametresRoute: AdminParametresRoute,
@@ -962,6 +1002,7 @@ interface DashboardRouteChildren {
   DashboardCertificatsRoute: typeof DashboardCertificatsRoute
   DashboardCommissionsRoute: typeof DashboardCommissionsRoute
   DashboardFormationsRoute: typeof DashboardFormationsRoute
+  DashboardGalerieRoute: typeof DashboardGalerieRoute
   DashboardPaiementsRoute: typeof DashboardPaiementsRoute
   DashboardProfilRoute: typeof DashboardProfilRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -973,6 +1014,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardCertificatsRoute: DashboardCertificatsRoute,
   DashboardCommissionsRoute: DashboardCommissionsRoute,
   DashboardFormationsRoute: DashboardFormationsRoute,
+  DashboardGalerieRoute: DashboardGalerieRoute,
   DashboardPaiementsRoute: DashboardPaiementsRoute,
   DashboardProfilRoute: DashboardProfilRoute,
   DashboardIndexRoute: DashboardIndexRoute,
