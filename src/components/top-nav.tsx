@@ -22,7 +22,7 @@ export function TopNav() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-forest">
-            <span className="text-sm font-bold text-white">LB</span>
+            <span className="text-sm font-bold text-white">DA</span>
           </div>
           <span className="text-lg font-bold text-forest dark:text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
         </Link>

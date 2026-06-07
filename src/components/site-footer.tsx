@@ -43,7 +43,7 @@ export function SiteFooter() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber">
-                <span className="text-sm font-bold text-forest">LB</span>
+                <span className="text-sm font-bold text-forest">DA</span>
               </div>
               <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
             </div>

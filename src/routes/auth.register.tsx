@@ -76,7 +76,7 @@ function RegisterPage() {
           <div className="rounded-3xl border border-border bg-white p-8 shadow-soft">
             <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest">
-                <span className="text-sm font-bold text-white">LB</span>
+                <span className="text-sm font-bold text-white">DA</span>
               </div>
               <span className="text-lg font-bold text-forest" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
             </div>

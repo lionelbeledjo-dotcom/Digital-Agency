@@ -71,7 +71,7 @@ export function AdminLayout() {
         <Link to="/" className="flex items-center justify-between gap-2 border-b border-white/10 px-5 py-4">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber">
-              <span className="text-xs font-bold text-forest">LB</span>
+              <span className="text-xs font-bold text-forest">DA</span>
             </div>
             <span className="font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
           </div>

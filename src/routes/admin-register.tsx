@@ -29,7 +29,7 @@ function AdminRegisterPage() {
       <div className="hidden lg:flex lg:w-1/2 flex-col justify-between bg-olive p-12">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber">
-            <span className="text-sm font-bold text-forest">LB</span>
+            <span className="text-sm font-bold text-forest">DA</span>
           </div>
           <span className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
         </div>
@@ -138,7 +138,7 @@ function AdminRegisterPage() {
           <div className="mt-6 text-center lg:hidden">
             <div className="flex items-center justify-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber">
-                <span className="text-xs font-bold text-forest">LB</span>
+                <span className="text-xs font-bold text-forest">DA</span>
               </div>
               <span className="font-bold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>Digital Agency</span>
             </div>

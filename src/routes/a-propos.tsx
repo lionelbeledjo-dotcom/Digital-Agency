@@ -42,8 +42,8 @@ interface Stats {
 
 function AProposPage() {
   const [fondateur, setFondateur] = useState<Fondateur>({
-    nom: "Lionel Beledjo", role: "Fondateur & CEO",
-    bio: "Passionné de marketing digital et d'intelligence artificielle, j'ai créé Digital Agency avec une mission simple : donner à chaque francophone les outils pour générer un revenu en ligne. Après 5 ans dans le digital en Europe, j'ai décidé de mettre mon expertise au service de l'Afrique francophone.",
+    nom: "Lionel & Ines", role: "Co-fondateurs",
+    bio: "Passionnes de marketing digital et d'intelligence artificielle, nous avons cree Digital Agency avec une mission simple : donner a chaque francophone les outils pour generer un revenu en ligne. Apres plusieurs annees dans le digital, nous avons decide de mettre notre expertise au service de l'Afrique francophone.",
     photo_url: "", linkedin: "", twitter: "",
   });
   const [stats, setStats] = useState<Stats>({ formations: "15+", pays: "12", apprenants: "10K+", reverses: "5M+ FCFA" });
@@ -94,8 +94,8 @@ function AProposPage() {
       <section className="py-20 bg-secondary">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-amber">Le fondateur</p>
-            <h2 className="mt-2 text-3xl font-bold text-foreground">Le visage derrière Digital Agency</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber">Les fondateurs</p>
+            <h2 className="mt-2 text-3xl font-bold text-foreground">Les visages derriere Digital Agency</h2>
           </div>
 
           <div className="mt-12 grid items-center gap-10 md:grid-cols-2">
